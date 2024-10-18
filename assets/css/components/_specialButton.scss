@@ -1,0 +1,26 @@
+$width: 170px;
+$height: 40px;
+
+.button-container {
+    height: $height;
+    width: $width;
+    margin: 5px 0;
+    cursor: pointer;
+    border-radius: $height/4;
+    border: 1px solid var(--text-color);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    overflow: hidden;
+    background-color: transparent;
+
+    transition: all .4s;
+   
+    &:hover {
+        background-color: var(--text-color);
+        color: var(--background-color)
+    }
+
+}

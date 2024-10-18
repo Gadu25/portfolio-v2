@@ -1,0 +1,24 @@
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 10%;
+    justify-content: space-between;
+    align-items: center;
+
+    ul {
+        display: flex;
+        flex-direction: row;
+        list-style-type: none;
+        justify-content: start;
+
+        li {
+            font-size: $font_medium;
+            font-weight: 800;
+            padding: 5px 25px 5px 0;
+        }
+    }
+
+    &.scrolled {
+        border-bottom: 1px solid var(--text-color);
+    }
+}

@@ -1,0 +1,58 @@
+$width: 48px;
+$height: 22px;
+$color: $special_color_dark;
+$ball_color: $special_color_light;
+
+$halfWidth: $width / 2;
+$moonWidth: $width / 7;
+
+.theme-toggle-container {
+    position: relative;
+    width: $width;
+    height: $height;
+    background-color: $color;
+    border-radius: $height/2;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+
+    .toggle-circle {
+        width: $height - $height*.2;
+        height: $height - $height*.2;
+        margin: 0 $height*.1;
+        border-radius: 50%;
+        background-color: $ball_color;
+        transition: all .4s;
+
+        &.dark {
+            position: absolute;
+            background-color: $ball_color;
+            transform: translateX($width - $height);
+
+            &::after{
+                content:"";
+                width: $height - $height*.2;
+                height: $height - $height*.2;
+                background-color: $color;
+                position: absolute;
+                border-radius: 50%;
+                z-index: 1;
+                animation: delay .5s ease;
+                transform: translateX(-$moonWidth);
+            }
+        }
+
+
+        &.light, &.dark{
+            &:hover{
+                background-color: lighten($ball_color, 10%);
+            }
+        }
+    }
+}
+
+@keyframes delay {
+    0%   { transform: translateX(-$halfWidth); }
+    100% { transform: translateX(-$moonWidth); }
+}
