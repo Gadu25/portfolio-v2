@@ -1,15 +1,8 @@
 <template>
     <div>
-        <!-- <h1 class="title">Hello World</h1> -->
-        <!-- <ThemeToggle/> -->
-        <Navigation/>
+        <Navigation :isScrolled="isScrolled"/>
         <Hero/>
         <AboutMe/>
-        <!-- <div>
-            <i class="fas fa-camera"></i>
-            <i class="far fa-heart"></i>
-            <i class="fab fa-github"></i>
-        </div> -->
     </div>
 </template>
 
@@ -21,7 +14,25 @@
 
     export default {
         name: 'App',
-        components: { ThemeToggle, Navigation, Hero, AboutMe }
+        components: { ThemeToggle, Navigation, Hero, AboutMe },
+        data() {
+            return {
+            isScrolled: false, // Track if the user has scrolled
+            };
+        },
+        methods: {
+            handleScroll() {
+            this.isScrolled = window.scrollY > 0; // Update based on scroll position
+            },
+        },
+        mounted() {
+            // Listen to scroll events
+            window.addEventListener('scroll', this.handleScroll);
+        },
+        beforeDestroy() {
+            // Clean up event listener
+            window.removeEventListener('scroll', this.handleScroll);
+        },
     }
 
 </script>
