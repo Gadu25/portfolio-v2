@@ -1,4 +1,5 @@
 $font_largest: 70px;
+$font_medium_large: 30px;
 $font_medium: 20px;
 
 body {
@@ -13,4 +14,12 @@ a {
 p {
     line-height: 1.75;
     font-size: $font_medium;
+}
+
+h1 {
+    font-size: $font_largest;
+}
+
+h4 {
+    font-size: $font_medium_large;
 }
