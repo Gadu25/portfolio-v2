@@ -1,5 +1,5 @@
-$font_largest: 60px;
-$font_medium: 16px;
+$font_largest: 70px;
+$font_medium: 20px;
 
 body {
     font-family: "Inter", sans-serif;
@@ -8,4 +8,9 @@ body {
 a {
     text-decoration: none;
     color: var(--text-color);
+}
+
+p {
+    line-height: 1.75;
+    font-size: $font_medium;
 }

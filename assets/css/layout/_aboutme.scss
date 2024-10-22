@@ -1,0 +1,63 @@
+.about-me {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h4 {
+        font-size: large;
+        margin-bottom: 20px;
+    }
+
+    .content {
+        width: 70%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        
+        .content-column {
+            flex: 1;
+            padding: 20px;
+
+            .images {
+                position: relative;
+                margin: auto;
+                // display: flex;
+                // justify-content: center;
+                // align-items: center;
+
+                .image-container {
+                    position: absolute;
+                    transition: all .3s;
+                    margin-left: 15%;
+                    &:nth-child(1) {
+                        top: 0;
+                        left: 0;
+                        z-index: 1; // Ensure this image is on top
+                        &:hover{
+                            z-index: 3;
+                            scale: 1.25;
+                        }
+                    }
+                
+                    &:nth-child(2) {
+                        top: 80px; // Shift the second image down
+                        left: 80px; // Shift it right to create visible overlap
+                        z-index: 2; // Put it behind the first image
+                        &:hover{
+                            z-index: 3;
+                            scale: 1.25;
+                        }
+                    }
+    
+                    img {
+                        border-radius: 10px;
+                        object-fit: cover;
+                        width: 280px;
+                    }
+                }
+            }
+
+        }
+    }
+}

@@ -4,6 +4,7 @@
         <!-- <ThemeToggle/> -->
         <Navigation/>
         <Hero/>
+        <AboutMe/>
         <!-- <div>
             <i class="fas fa-camera"></i>
             <i class="far fa-heart"></i>
@@ -16,10 +17,11 @@
     import ThemeToggle from '../components/common/themeToggle'
     import Navigation from '../layouts/navigation'
     import Hero from '../layouts/hero'
+    import AboutMe from '../layouts/aboutme.vue';
 
     export default {
         name: 'App',
-        components: { ThemeToggle, Navigation, Hero }
+        components: { ThemeToggle, Navigation, Hero, AboutMe }
     }
 
 </script>
