@@ -9,7 +9,6 @@
     const { theme, toggleTheme } = useTheme()
 
     const clickToggle = () => {
-        console.log("clicked")
         toggleTheme()
     }
 
