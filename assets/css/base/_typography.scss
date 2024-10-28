@@ -3,6 +3,8 @@ $font_medium_large: 30px;
 $font_medium: 20px;
 
 $mobile_font_largest: 50px;
+$mobile_font_medium_large: 24px; 
+$mobile_font_medium: 12px;
 
 body {
     font-family: "Inter", sans-serif;
@@ -29,5 +31,13 @@ h4 {
 @media screen and (max-width: 480px) {
     h1 {
         font-size: $mobile_font_largest;
+    }
+
+    p {
+        font-size: $mobile_font_medium
+    }
+
+    h4 {
+        font-size: $mobile_font_medium_large;
     }
 }
