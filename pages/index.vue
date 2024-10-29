@@ -1,8 +1,12 @@
 <template>
     <div>
+        <Cursor/>
         <Navigation :isScrolled="isScrolled"/>
         <Hero/>
         <AboutMe/>
+        <div style="height: 100vh;">
+
+        </div>
     </div>
 </template>
 
@@ -11,10 +15,11 @@
     import Navigation from '../layouts/navigation'
     import Hero from '../layouts/hero'
     import AboutMe from '../layouts/aboutme.vue';
+    import Cursor from '../components/cursor.vue';
 
     export default {
         name: 'App',
-        components: { ThemeToggle, Navigation, Hero, AboutMe },
+        components: { ThemeToggle, Navigation, Hero, AboutMe, Cursor },
         data() {
             return {
             isScrolled: false, // Track if the user has scrolled

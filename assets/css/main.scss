@@ -9,6 +9,8 @@
 @import './layout/hero';
 @import './layout/aboutme';
 
+@import './components/cursor';
+
 * {
     box-sizing: 0;
     margin: 0;
@@ -20,6 +22,7 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     margin: 0;
+    cursor: none;
 }
 
 .title {
