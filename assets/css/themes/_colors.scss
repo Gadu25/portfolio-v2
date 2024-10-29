@@ -6,6 +6,8 @@ $special_color_light: #f5ba07;
   --background-color: #ffffff;
   --text-color: #333333;
   --special-color: #251638;
+  --special-color-60: #25163899;
+  --special-color-50: #25163880;
 }
 
 [data-theme="dark"] {
@@ -13,4 +15,6 @@ $special_color_light: #f5ba07;
   --background-color: #121212;
   --text-color: #e0e0e0;
   --special-color: #f5ba07;
+  --special-color-60: #f5ba0799;
+  --special-color-50: #f5ba0780;
 }

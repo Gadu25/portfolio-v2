@@ -1,5 +1,5 @@
 <template>
-    <div class="theme-toggle-container" @click="clickToggle">
+    <div class="theme-toggle-container hover-pointer" @click="clickToggle">
         <div class="toggle-circle" :class="theme"></div>
     </div>
 </template>

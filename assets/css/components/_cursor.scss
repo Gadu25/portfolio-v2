@@ -1,15 +1,27 @@
-.cursor {
-    position: fixed;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    $special_color: #f5ba07;
-    background-color: rgba($special_color, 0.6);
-    box-shadow: 0 0 5px rgba($special_color, 1), 
-                0 0 30px 20px rgba($special_color, 0.5); 
-    pointer-events: none;
-    left: -9px;
-    top: -9px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    z-index: 9999;
+@media screen and (min-width: 1224px) {
+    .cursor {
+        position: fixed;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        $special_color: var(--special-color-60);
+        background-color: $special_color;
+        box-shadow: 0 0 5px $special_color, 
+                    0 0 30px 15px var(--special-color-50); 
+        pointer-events: none;
+        left: -9px;
+        top: -9px;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        z-index: 9999;
+
+        &.hovered {
+            background-color: var(--special-color-70); /* Brighter or different color */
+            box-shadow: 0 0 10px var(--special-color-70), 0 0 40px 20px var(--special-color-60);
+            transform: scale(1.5); /* Enlarge the cursor slightly */
+        }
+    }
+
+    body {
+        cursor: none;
+    }
 }

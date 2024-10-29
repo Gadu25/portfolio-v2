@@ -22,10 +22,10 @@
         </div>
         <div class="content-column">
           <div class="images">
-            <div class="image-container">
+            <div class="image-container hover-pointer">
                 <img src="~/assets/images/corp.jpg" alt="my corporate image"/>
             </div>
-            <div class="image-container">
+            <div class="image-container hover-pointer">
                 <img src="~/assets/images/sablay.jpg" alt="my corporate image"/>
             </div>
           </div>
