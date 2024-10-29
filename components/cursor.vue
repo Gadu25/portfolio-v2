@@ -33,6 +33,11 @@ const handleClick = () => {
   setTimeout(() => (clicked.value = false), 50); // Reset after 300ms
 };
 
+const handleHold = () => {
+  clicked.value = true; // Trigger click animation
+  // setTimeout(() => (clicked.value = false), 50); // Reset after 300ms
+};
+
 onMounted(() => {
   // Listen to global mouse movements
   window.addEventListener("mousemove", handleMouseMove);
@@ -44,6 +49,7 @@ onMounted(() => {
   });
   // element.addEventListener("click", handleClick);
   window.addEventListener("click", handleClick);
+  window.addEventListener("mousedown", handleHold);
 });
 
 onUnmounted(() => {
