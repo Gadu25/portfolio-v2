@@ -15,7 +15,7 @@ $moonWidth: $width / 5;
     display: flex;
     align-items: center;
     overflow: hidden;
-    cursor: pointer;
+    // cursor: pointer;
 
     .toggle-circle {
         width: $height - $height*.2;

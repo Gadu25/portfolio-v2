@@ -5,23 +5,39 @@
         height: 18px;
         border-radius: 50%;
         $special_color: var(--special-color-60);
-        background-color: $special_color;
+        background-color: var(--special-color);
         box-shadow: 0 0 5px $special_color, 
-                    0 0 30px 15px var(--special-color-50); 
+                    0 0 40px 30px var(--special-color-50); 
         pointer-events: none;
         left: -9px;
         top: -9px;
-        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease, width 0.1s linear, height 0.1s linear;
         z-index: 9999;
 
         &.hovered {
-            background-color: var(--special-color-70); /* Brighter or different color */
-            box-shadow: 0 0 10px var(--special-color-70), 0 0 40px 20px var(--special-color-60);
+            width: 10px;
+            height: 10px;
+            left: -5px;
+            top: -5px;
+            background-color: var(--special-color); /* Brighter or different color */
+            box-shadow: 0 0 10px var(--special-color), 0 0 0px var(--special-color-60);
             transform: scale(1.5); /* Enlarge the cursor slightly */
+        }
+        
+        /* Click effect: Enlarged animation */
+        &.clicked {
+            width: 20px;
+            height: 20px;
+            transition: all 0.1s linear; /* Smooth animation */
+            box-shadow: 0 0 0 var(--special-color)
         }
     }
 
-    body {
-        cursor: none;
-    }
+}
+body {
+    cursor: none;
+}
+
+a {
+    cursor: none
 }
