@@ -30,7 +30,7 @@ const removeHoverEffect = () => (hovered.value = false);
 // Handle click animation
 const handleClick = () => {
   clicked.value = true; // Trigger click animation
-  setTimeout(() => (clicked.value = false), 50); // Reset after 300ms
+  setTimeout(() => (clicked.value = false), 80); // Reset after 300ms
 };
 
 const handleHold = () => {
