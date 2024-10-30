@@ -1,10 +1,13 @@
-$font_largest: 70px;
+$font_large: 70px;
 $font_medium_large: 30px;
-$font_medium: 20px;
+$font_medium: 18px;
+$font_small: 12px;
 
-$mobile_font_largest: 50px;
+$mobile_font_large: 50px;
 $mobile_font_medium_large: 24px; 
 $mobile_font_medium: 12px;
+$mobile_font_small: 8px;
+
 
 body {
     font-family: "Inter", sans-serif;
@@ -21,16 +24,24 @@ p {
 }
 
 h1 {
-    font-size: $font_largest;
+    font-size: $font_large;
+}
+
+h3 {
+    font-size: $font_medium_large;
 }
 
 h4 {
-    font-size: $font_medium_large;
+    font-size: $font_medium + 4px;
+}
+
+li {
+    font-size: $font_medium;
 }
 
 @media screen and (max-width: 480px) {
     h1 {
-        font-size: $mobile_font_largest;
+        font-size: $mobile_font_large;
     }
 
     p {
@@ -39,5 +50,9 @@ h4 {
 
     h4 {
         font-size: $mobile_font_medium_large;
+    }
+
+    li {
+        font-size: $mobile_font_medium;
     }
 }

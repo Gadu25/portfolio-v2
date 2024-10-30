@@ -1,0 +1,74 @@
+.swiping-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    
+    .contents{
+        display: flex;
+        justify-content: center;
+        .card-wrapper {
+            width: 60vw;
+            margin: 30px 0;
+            top: 0;
+            position: absolute;
+            opacity: 0.8;
+            transition: transform 0.6s ease, z-index 0.2s ease;
+            .card {
+                padding: 25px;
+                background-color: var(--card-color);
+                border-radius: 12px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+                transition: transform 0.6s ease, z-index 0.2s ease;
+        
+                .company-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    .company-title{
+                        display: inline-flex;
+                        align-items: center;
+                        margin-bottom: 10px;
+                        .company-logo {
+                            img {
+                                width: 40px;
+                                object-fit:cover;
+                            }
+                        }
+                        .company-name {
+                            font-weight: bold;
+                            margin: 0 5px;
+                        }
+                    }
+                    .my-role {
+                        margin: 15px 0;
+                    }
+                    .role-tasks {
+                        margin-left: 15px;
+                        li {
+                            margin: 15px 0;
+                        }
+                    }
+                }
+            }
+            &.active {
+                z-index: 13;
+                transform: translateX(0) scale(1);
+                opacity: 1;
+              }
+          
+            &.left {
+                z-index: 2;
+                transform: translateX(-40%) scale(0.7);
+            }
+        
+            &.right {
+                z-index: 2;
+                transform: translateX(40%) scale(0.7);
+            }
+    
+            &.none {
+                display: none;
+            }
+        }
+    }
+}

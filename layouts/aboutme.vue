@@ -2,7 +2,7 @@
   <div class="about-me">
     <div class="content">
         <div class="content-column">
-            <h4>About Me</h4>
+            <h3>About Me</h3>
             <p>
               Hi there! I’m Alexander Udag, a web developer enthusiastic about coding
               and continuous improvement. I work with

@@ -4,12 +4,14 @@
 
 @import './components/themeToggle';
 @import './components/specialButton';
+@import './components/cursor';
+@import './components/card';
 
 @import './layout/navigation';
 @import './layout/hero';
 @import './layout/aboutme';
+@import './layout/workexp';
 
-@import './components/cursor';
 
 * {
     box-sizing: 0;
