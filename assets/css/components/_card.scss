@@ -7,9 +7,31 @@
     .contents{
         display: flex;
         justify-content: center;
+        .swiper-controls {
+            display: none;
+        }
+        .swiper-controls {
+            position:absolute;
+            top:0;
+            right: 0;
+            .control-wrapper {
+                position:relative;
+                display: flex;
+                justify-content: space-between;
+                .swiper-left, .swiper-right {
+                    padding: 5px;
+                    background-color: var(--card-color);
+                    font-size: 20px;
+                    border-radius: 5px;
+                }
+                .swiper-right {
+                    margin-left: 10px;
+                }
+            }
+        }
         .card-wrapper {
             width: 60vw;
-            margin: 30px 0;
+            margin: 40px 0;
             top: 0;
             position: absolute;
             opacity: 0.8;
@@ -58,16 +80,33 @@
           
             &.left {
                 z-index: 2;
-                transform: translateX(-40%) scale(0.7);
+                transform: translateX(-35%) scale(0.7);
             }
         
             &.right {
                 z-index: 2;
-                transform: translateX(40%) scale(0.7);
+                transform: translateX(35%) scale(0.7);
             }
     
             &.none {
                 display: none;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .card-wrapper {
+                width: 80vw;
+                &.left {
+                    display: none;
+                }
+            
+                &.right {
+                    display: none;
+                }
+            }
+
+            .swiper-controls {
+                display: block;
             }
         }
     }

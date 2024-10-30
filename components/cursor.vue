@@ -1,9 +1,9 @@
 <template>
-  <div 
-    class="cursor" 
-    :class="{ hovered, clicked }" 
-    :style="{ transform: `translate(${x}px, ${y}px)` }">
-  </div>
+  <div
+    class="cursor"
+    :class="{ hovered, clicked }"
+    :style="{ transform: `translate(${x}px, ${y}px)` }"
+  ></div>
 </template>
 
 <script setup>

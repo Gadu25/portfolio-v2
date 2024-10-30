@@ -1,6 +1,16 @@
 <template>
     <div class="swiping-cards">
         <div class="contents">
+            <div class="swiper-controls">
+                <div class="control-wrapper">
+                    <div class="swiper-left hover-pointer" @click="handlePrev()">
+                        <i class="fa fa-chevron-left"></i>
+                    </div>
+                    <div class="swiper-right hover-pointer"@click="handleNext()">
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
             <template v-for="(card, index) in cards">
                 <div class="card-wrapper" :class="card.position" @mousemove="(event) => handleMouseMove(event, card.position)"
                     @mouseleave="(event) => resetTilt(event, card.position)">
@@ -95,7 +105,6 @@ export default {
             let left = (active - 1) < 0 ? (this.cards.length - 1) : (active - 1)
             let right = (active + 1) > (this.cards.length - 1) ? 0 : (active + 1)
 
-            console.log(left, active, right)
             for (let i = 0; i < this.cards.length; i++) {
                 if (i == active) {
                     this.cards[i].position = 'active'
@@ -108,6 +117,57 @@ export default {
                 }
             }
         },
+        handleNext(){
+            let activeIndex = 0
+            for (let i = 0; i < this.cards.length; i++) {
+                if (this.cards[i].position == 'active') {
+                    activeIndex = i >= (this.cards.length - 1) ? 0 : i+1
+                }
+            }
+
+            let active = activeIndex
+            let left = (active - 1) < 0 ? (this.cards.length - 1) : (active - 1)
+            let right = (active + 1) > (this.cards.length - 1) ? 0 : (active + 1)
+
+            for (let i = 0; i < this.cards.length; i++) {
+                if (i == active) {
+                    this.cards[i].position = 'active'
+                } else if (i == left) {
+                    this.cards[i].position = 'left'
+                } else if (i == right) {
+                    this.cards[i].position = 'right'
+                } else {
+                    this.cards[i].position = 'none'
+                }
+            }
+        },
+        handlePrev(){
+            let activeIndex = 0
+            for (let i = 0; i < this.cards.length; i++) {
+                if (this.cards[i].position == 'active') {
+                    activeIndex = i <=  0 ? (this.cards.length - 1) : i-1
+                }
+            }
+
+            let active = activeIndex
+            let left = (active - 1) < 0 ? (this.cards.length - 1) : (active - 1)
+            let right = (active + 1) > (this.cards.length - 1) ? 0 : (active + 1)
+
+            console.log(active)
+
+            for (let i = 0; i < this.cards.length; i++) {
+                if (i == active) {
+                    this.cards[i].position = 'active'
+                } else if (i == left) {
+                    this.cards[i].position = 'left'
+                } else if (i == right) {
+                    this.cards[i].position = 'right'
+                } else {
+                    this.cards[i].position = 'none'
+                }
+            }
+        },
+
         handleMouseMove(event, index) {
             const card = event.currentTarget.querySelector('.card');
             const rect = card.getBoundingClientRect();
