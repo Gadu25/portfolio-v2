@@ -8,3 +8,11 @@
         position: relative;
     }
 }
+
+@media screen and (max-width: 480px) {
+    .work-exp {
+        .content{
+            width: 80%;
+        }
+    }
+}
