@@ -22,10 +22,10 @@
         </div>
         <div class="content-column">
           <div class="images">
-            <div class="image-container hover-pointer">
+            <div class="image-container hover-pointer" @mousemove="handleMouseMove" @mouseleave="resetTilt">
                 <img src="~/assets/images/corp.jpg" alt="my corporate image"/>
             </div>
-            <div class="image-container hover-pointer">
+            <div class="image-container hover-pointer" @mousemove="handleMouseMove" @mouseleave="resetTilt">
                 <img src="~/assets/images/sablay.jpg" alt="my corporate image"/>
             </div>
           </div>
@@ -37,5 +37,26 @@
 <script>
 export default {
   name: "AboutMe",
+  methods: {
+    handleMouseMove(event) {
+            const card = event.currentTarget.querySelector('img');
+            const rect = card.getBoundingClientRect();
+
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = (centerY - y) / 50;
+            const rotateY = (x - centerX) / 50;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        },
+        resetTilt(event) {
+            const card = event.currentTarget.querySelector('img');
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+        },
+  }
 };
 </script>
