@@ -1,5 +1,5 @@
 @media screen and (min-width: 1224px) {
-    .cursor {
+    [data-theme="dark"] .cursor {
         position: fixed;
         width: 14px;
         height: 14px;
@@ -56,12 +56,22 @@
         }
     }
 
-    body {
+    [data-theme="dark"] body {
         cursor: none;
     }
     
-    a {
+    [data-theme="dark"] a {
         cursor: none
+    }
+
+    [data-theme="light"] .hover-pointer {
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 1224px) {
+    .hover-pointer {
+        cursor: pointer;
     }
 }
 
