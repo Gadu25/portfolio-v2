@@ -5,4 +5,12 @@
     padding: 0 10%;
     min-height: 90vh;
     margin-top: 15px;
+    .content {
+        h1 {
+            transition: all .3s ease;
+            &:hover {
+                color: var(--special-color)
+            }
+        }
+    }
 }

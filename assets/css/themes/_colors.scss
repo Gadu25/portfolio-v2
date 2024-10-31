@@ -1,4 +1,4 @@
-$special_color_dark: #251638;
+$special_color_dark: #333333;
 $special_color_light: #f5ba07;
 
 :root {
@@ -6,15 +6,15 @@ $special_color_light: #f5ba07;
   --background-color: #ffffff;
   --text-color: #333333;
 
-  --special-color: #251638E6;
-  --special-color-60: #25163899;
-  --special-color-50: #25163880;
+  --special-color: #3D5AFEE6;
+  --special-color-60: #3D5AFE99;
+  --special-color-50: #3D5AFE80;
 
   --card-color: #F8F9FA;
 
-  --glowing-card: 0 0 8px rgba(37, 22, 56, 1), 
-                  0 0 10px rgba(37, 22, 56, 0.8), 
-                  0 0 10px rgba(37, 22, 56, 0.6);
+  --glowing-card: 0 0 8px rgba(61, 90, 254, 1), 
+                  0 0 10px rgba(61, 90, 254, 0.8), 
+                  0 0 10px rgba(61, 90, 254, 0.6);
 }
 
 [data-theme="dark"] {
