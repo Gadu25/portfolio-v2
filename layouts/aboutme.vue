@@ -48,8 +48,8 @@ export default {
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
 
-            const rotateX = (centerY - y) / 50;
-            const rotateY = (x - centerX) / 50;
+            const rotateX = (centerY - y) / 20;
+            const rotateY = (x - centerX) / 20;
 
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         },
