@@ -57,3 +57,13 @@ li {
         font-size: $mobile_font_medium;
     }
 }
+
+@media screen and (max-width: 650px) {
+    p {
+        font-size: $mobile_font_medium
+    }
+    li {
+        font-size: $mobile_font_medium;
+    }
+}
+

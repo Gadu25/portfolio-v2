@@ -68,7 +68,7 @@ export default {
                         'Implemented end-to-end testing with Cypress to ensure reliability and seamless functionality across components.',
                         'Collaborated with cross-functional teams to integrate the frontend library effectively, enhancing development efficiency and consistency.'
                     ],
-                    position: 'left'
+                    position: 'active'
                 },
                 {
                     logo: seiLogo,
@@ -84,7 +84,7 @@ export default {
                         'Conducted thorough testing and debugging to ensure reliability and performance of the PMIS application.',
                         'Delivered project presentations and demonstrations to stakeholders, showcasing system features and addressing feedback.'
                     ],
-                    position: 'active'
+                    position: 'right'
                 },
                 {
                     logo: xtendlyLogo,
@@ -100,7 +100,7 @@ export default {
                         'Handled backend tasks, including managing databases with MySQL and creating RESTful APIs using the Laravel framework.',
                         'Streamlined front-to-back communication by integrating frontend components with backend APIs, enhancing data flow and usability.'
                     ],
-                    position: 'right'
+                    position: 'left'
                 }
             ]
         }
