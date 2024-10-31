@@ -2,6 +2,14 @@
     min-height: 80vh;
     display: flex;
     justify-content: center;
+
+    &:hover {
+        h3 {
+            transition: color 3s ease;
+            color: var(--special-color);
+        }
+    }
+
     .content{
         width: 70%;
         position: relative;
