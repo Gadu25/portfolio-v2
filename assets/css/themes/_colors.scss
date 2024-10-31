@@ -11,6 +11,10 @@ $special_color_light: #f5ba07;
   --special-color-50: #25163880;
 
   --card-color: #F8F9FA;
+
+  --glowing-card: 0 0 8px rgba(37, 22, 56, 1), 
+                  0 0 10px rgba(37, 22, 56, 0.8), 
+                  0 0 10px rgba(37, 22, 56, 0.6);
 }
 
 [data-theme="dark"] {
@@ -23,4 +27,8 @@ $special_color_light: #f5ba07;
   --special-color-50: #f5ba0780;
 
   --card-color: #1F1F1F;
+
+  --glowing-card: 0 0 8px rgba(245, 186, 7, 1), 
+                  0 0 10px rgba(245, 186, 7, 0.8), 
+                  0 0 10px rgba(245, 186, 7, 0.6);
 }
