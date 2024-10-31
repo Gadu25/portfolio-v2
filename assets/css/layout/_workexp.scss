@@ -13,10 +13,17 @@
     .content{
         width: 70%;
         position: relative;
+    }    
+}
+
+@media screen and (max-height: 700px) {
+    .work-exp{
+        min-height: 100vh;
     }
 }
 
-@media screen and (max-width: 480px) {
+
+@media screen and (max-width: 480px) and (min-width: 700px){
     .work-exp {
         min-height: 80vh;
         .content{

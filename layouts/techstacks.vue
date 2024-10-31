@@ -39,14 +39,14 @@
                         link: 'https://www.javascript.com/'
                     },
                     {
-                        name: 'nuxt',
-                        icon: nuxt,
-                        link: 'https://nuxt.com/'
-                    },
-                    {
                         name: 'vue',
                         icon: vue,
                         link: 'https://vuejs.org/'
+                    },
+                    {
+                        name: 'nuxt',
+                        icon: nuxt,
+                        link: 'https://nuxt.com/'
                     },
                     {
                         name: 'sass',
