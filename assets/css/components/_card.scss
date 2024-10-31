@@ -19,10 +19,14 @@
                 display: flex;
                 justify-content: space-between;
                 .swiper-left, .swiper-right {
+                    text-align: center;
                     padding: 5px;
                     background-color: var(--card-color);
                     font-size: 20px;
                     border-radius: 5px;
+                    i {
+                        margin: auto;
+                    }
                 }
                 .swiper-right {
                     margin-left: 10px;

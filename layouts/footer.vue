@@ -2,7 +2,7 @@
     <div class="footer">
         <div class="content">
             <div class="col">
-                <p>© {{ year }} All Rights Reserved</p>
+                <p>© {{ getCurrentYear }} All Rights Reserved</p>
             </div>
             <div class="col">
                 <a href="https://www.linkedin.com/in/alexander-udag/" target="_blank">
@@ -27,7 +27,13 @@
         name: 'footer',
         data() {
             return {
-                year: '2024'
+            }
+        },
+        computed: {
+            getCurrentYear(){
+                const d = new Date();
+                let year = d.getFullYear();
+                return year
             }
         }
     }
