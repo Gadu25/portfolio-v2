@@ -5,6 +5,7 @@
         <Hero/>
         <AboutMe/>
         <WorkExp/>
+        <Footer/>
     </div>
 </template>
 
@@ -15,10 +16,11 @@
     import AboutMe from '../layouts/aboutme.vue';
     import Cursor from '../components/cursor.vue';
     import WorkExp from '~/layouts/workexp.vue';
+    import Footer from '~/layouts/footer.vue';
 
     export default {
         name: 'App',
-        components: { ThemeToggle, Navigation, Hero, AboutMe, Cursor, WorkExp },
+        components: { ThemeToggle, Navigation, Hero, AboutMe, Cursor, WorkExp, Footer },
         data() {
             return {
             isScrolled: false, // Track if the user has scrolled
