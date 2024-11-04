@@ -1,0 +1,15 @@
+.regular-work-exp {
+    margin-top: 80px;
+    min-height: 80vh;
+    width: 100vw;
+    .content {
+        width: 70%;
+        margin: auto;
+    }
+
+    @media screen and (max-width: 480px) {
+        .content {
+            width: 90%;
+        }
+    }
+}

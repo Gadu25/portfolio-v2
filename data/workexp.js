@@ -2,6 +2,23 @@ import galaticLogo from '~/assets/images/galatic_logo.png'
 import xtendlyLogo from '~/assets/images/xtendly_logo.png'
 import seiLogo from '~/assets/images/sei_logo.webp'
 
+import storybook from '~/assets/images/tech/storybook.png'
+import cypress from '~/assets/images/tech/cypress.png'
+import quasar from '~/assets/images/tech/quasar.png'
+import css from '~/assets/images/tech/css.png'
+import bootstrap from '~/assets/images/tech/bootstrap.png'
+import javascript from '~/assets/images/tech/javascript.png'
+import laravel from '~/assets/images/tech/laravel.png'
+import react from '~/assets/images/tech/react.png'
+import mysql from '~/assets/images/tech/mysql.png'
+import nodejs from '~/assets/images/tech/nodejs.png'
+import nuxt from '~/assets/images/tech/nuxt.png'
+import php from '~/assets/images/tech/php.png'
+import postgresql from '~/assets/images/tech/postgresql.png'
+import sass from '~/assets/images/tech/sass.png'
+import tailwind from '~/assets/images/tech/tailwind.png'
+import vue from '~/assets/images/tech/vue.png'
+
 export default [
     {
         logo: galaticLogo,
@@ -18,13 +35,38 @@ export default [
         ],
         position: 'active',
         techUsed: [
-            'Storybook',
-            'Vue',
-            'Nuxt',
-            'Cypress',
-            'SCSS',
-            'Javascript',
-            'Quasar'
+            {
+                name: 'Storybook',
+                icon: storybook
+            },
+            {
+                name: 'Vue',
+                icon: vue
+            },
+            {
+                name: 'Nuxt',
+                icon: nuxt
+            },
+            {
+                name: 'Cypress',
+                icon: cypress
+            },
+            {
+                name: 'SCSS',
+                icon: sass
+            },
+            {
+                name: 'Javascript',
+                icon: javascript
+            },
+            {
+                name: 'Quasar',
+                icon: quasar
+            },
+            {
+                name: 'NodeJS',
+                icon: nodejs
+            }
         ]
     },
     {
@@ -43,13 +85,38 @@ export default [
         ],
         position: 'right',
         techUsed: [
-            'Vue',
-            'Laravel',
-            'CSS',
-            'Javascript',
-            'Posgresql',
-            'PHP',
-            'Bootstrap'
+            {
+                name: 'Vue',
+                icon: vue
+            },
+            {
+                name: 'Laravel',
+                icon: laravel
+            },
+            {
+                name: 'CSS',
+                icon: css
+            },
+            {
+                name: 'Javascript',
+                icon: javascript
+            },
+            {
+                name: 'Postgresql',
+                icon: postgresql
+            },
+            {
+                name: 'PHP',
+                icon: php
+            },
+            {
+                name: 'Bootstrap',
+                icon: bootstrap
+            },
+            {
+                name: 'NodeJS',
+                icon: nodejs
+            }
         ]
     },
     {
@@ -68,11 +135,30 @@ export default [
         ],
         position: 'left',
         techUsed: [
-            'React',
-            'Tailwind',
-            'Javascript',
-            'Laravel',
-            'MySql'
+            {
+                name: 'React',
+                icon: react
+            },
+            {
+                name: 'Tailwind',
+                icon: tailwind
+            },
+            {
+                name: 'Javascript',
+                icon: javascript
+            },
+            {
+                name: 'Laravel',
+                icon: laravel
+            },
+            {
+                name: 'MySQL',
+                icon: mysql
+            },
+            {
+                name: 'NodeJS',
+                icon: nodejs
+            }
         ]
     }
 ]

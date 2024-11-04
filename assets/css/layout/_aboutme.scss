@@ -20,6 +20,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 16px;
+        
         .content-column {
             flex: 1;
             padding: 20px;
@@ -89,6 +90,12 @@
                 }
             }
 
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .content {
+            width: 90%;
         }
     }
 }

@@ -1,14 +1,13 @@
 <template>
     <div>
-        <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-            <h1> Hellow Work</h1>
-        </div>
+        <RegularWorkExp/>
     </div>
 </template>
 
 <script>
-
+    import RegularWorkExp from '~/layouts/regularworkexp.vue';
     export default {
-        name: 'Work'
+        name: 'Work',
+        components: { RegularWorkExp }
     }
 </script>

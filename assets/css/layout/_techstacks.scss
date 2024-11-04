@@ -49,4 +49,17 @@
             }
         }
     }
+
+    @media screen and (max-width: 480px) {
+        .content {
+            width: 90%;
+            .tech-wrapper {
+                .tech {
+                    .image-container {
+                        width: 40px;
+                    }
+                }
+            }
+        }
+    }
 }

@@ -5,7 +5,9 @@
 @import './components/themeToggle';
 @import './components/specialButton';
 @import './components/cursor';
-@import './components/card';
+@import './components/swiping-card';
+@import './layout/regularworkexp';
+@import './components/regular-cards';
 
 @import './layout/navigation';
 @import './layout/hero';
@@ -26,6 +28,7 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     margin: 0;
+    overflow-x: hidden;
 }
 
 .title {
@@ -44,3 +47,9 @@ body {
   border-radius: 5px;
 //   cursor: pointer;
 }
+
+// @media screen and (max-width: 480px) {
+//     .content {
+//         width: 90%;
+//     }
+// }

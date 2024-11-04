@@ -13,7 +13,13 @@
     .content{
         width: 70%;
         position: relative;
-    }    
+    }
+
+    @media screen and (max-width: 480px) {
+        .content {
+            width: 90%;
+        }
+    }
 }
 
 @media screen and (max-height: 700px) {
