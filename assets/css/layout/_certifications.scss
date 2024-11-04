@@ -16,14 +16,14 @@
 
         .cert-card {
             padding: 15px;
-            // background-color: var(--card-color);
             border-radius: 15px;
             margin: 10px 0;
 
             .cert-content {
                 display: flex;
+                flex-direction: row;
                 .col {
-                    padding: 0 10px;
+                    margin-right: 10px;
                     .image-container {
                         background-color: var(--card-color);
                         border-radius: 12px;
@@ -42,6 +42,17 @@
                             img {
                                 transform: scale(.8);
                             }
+                        }
+                    }
+                }
+
+            }
+            @media screen and (max-width: 480px) {
+                .cert-content {
+                    flex-direction: column;
+                    .col {
+                        .image-container {
+                            width: 100%;
                         }
                     }
                 }
