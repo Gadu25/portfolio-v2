@@ -109,8 +109,6 @@ export default {
             let left = (active - 1) < 0 ? (this.cards.length - 1) : (active - 1)
             let right = (active + 1) > (this.cards.length - 1) ? 0 : (active + 1)
 
-            console.log(active)
-
             for (let i = 0; i < this.cards.length; i++) {
                 if (i == active) {
                     this.cards[i].position = 'active'
