@@ -26,6 +26,7 @@ export default [
         jobTitle: 'Software Engineer',
         date: '09/2024 - present',
         duration: '',
+        isRolesShown: false,
         roles: [
             'Developed a comprehensive frontend component library using Vue.js and Nuxt to support a scalable and modular system architecture.',
             'Utilized Storybook to document and showcase reusable components, ensuring consistent UI/UX across the application.',
@@ -75,6 +76,7 @@ export default [
         jobTitle: 'Full Stack Web Developer',
         date: '03/2023 - 08/2024',
         duration: '(1 year 8 months)',
+        isRolesShown: false,
         roles: [
             'Developed and maintained a comprehensive Project Management Information System (PMIS) using Vue.js, Bootstrap, and the Laravel framework.',
             'Designed and implemented responsive layouts and UI components to enhance user experience across devices.',
@@ -125,6 +127,7 @@ export default [
         jobTitle: 'Junior Frontend Web Developer',
         date: '07/2022 - 02/2023',
         duration: '(7 months)',
+        isRolesShown: false,
         roles: [
             'Designed and implemented responsive web pages using React, Next.js, Tailwind, and Bootstrap, ensuring cross-device compatibility and optimal user experience.',
             'Developed client-side logic in JavaScript, enhancing interactivity and functionality on web applications.',

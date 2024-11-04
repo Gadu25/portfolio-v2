@@ -16,14 +16,7 @@
                         <small>{{ work.date }} <i v-if="work.duration.length > 0">. {{ work.duration
                                 }}</i></small>
                     </div>
-                    <!-- <div class="role-tasks">
-                        <ul>
-                            <template v-for="item in work.roles">
-                                <li>{{ item }}</li>
-                            </template>
-                        </ul>
-                    </div> -->
-                    <small>Tech stacks</small>
+                    <small><strong>Tech stacks</strong></small>
                     <div class="techs">
                         <template v-for="item in work.techUsed">
                             <div class="tech">
@@ -31,6 +24,16 @@
                                 <span class="tech-name"><small>{{ item.name }}</small></span>
                             </div>
                         </template>
+                    </div>
+                    <div class="show-more hover-pointer" @click="work.isRolesShown = !work.isRolesShown">
+                        <small><i class="fa" :class="work.isRolesShown ? 'fa-chevron-up':'fa-chevron-down'"></i> show {{ work.isRolesShown ? 'less':'more' }}..</small>
+                    </div>
+                    <div class="role-tasks" :class="work.isRolesShown ? 'active':''">
+                        <ul>
+                            <template v-for="item in work.roles">
+                                <li><small>{{ item }}</small></li>
+                            </template>
+                        </ul>
                     </div>
                 </div>
             </template>
