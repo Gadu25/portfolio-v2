@@ -21,6 +21,11 @@
             }
         }
     }
+    @media screen and (max-width: 480px) {
+        .content {
+            padding: 0 5vw;
+        }
+    }
 }
 
 @media screen and (max-width: 480px) {
