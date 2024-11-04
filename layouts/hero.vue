@@ -2,7 +2,7 @@
     <div class="hero">
         <div class="content">
             <p>I am..</p>
-            <h1>ALEXANDER UDAG</h1>
+            <h1>Alexander Udag</h1>
             <p>Software Engineer / Web Developer 💻</p>
             <SpecialButton/>
         </div>

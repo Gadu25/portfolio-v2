@@ -4,8 +4,8 @@
             <h3>Certificates</h3>
 
             <template v-for="cert of (showAll ? certs : certs.slice(0, 3))">
-                 <div class="cert-card">
-                    <div class="cert-content hover-pointer">
+                 <div class="cert-card hover-pointer" @click="downloadPDF(cert.file, cert.name)">
+                    <div class="cert-content">
                         <div class="col">
                             <div class="image-container">
                                 <img :src="cert.image" :alt="'image-for-'+cert.name"/>
@@ -35,6 +35,17 @@
             return {
               certs: certifications ,
               showAll: false
+            }
+        },
+        methods: {
+            downloadPDF(file, filename){
+                const fileUrl = file;
+                const link = document.createElement('a');
+                link.href = fileUrl;
+                link.download = filename+'.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
             }
         }
     }
