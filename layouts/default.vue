@@ -27,7 +27,6 @@
         },
         methods: {
             setDirection(direction) {
-                console.log(direction)
                 this.transitionDirection = direction; // Set the direction based on navigation
             },
             handleScroll() {

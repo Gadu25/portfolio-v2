@@ -49,9 +49,6 @@
                     }
                 }
 
-                console.log('acitve', active)
-                console.log('index', index)
-
                 let animation = active < index ? 'swipe-right' : 'swipe-left'
             
                 
