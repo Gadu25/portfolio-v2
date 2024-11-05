@@ -2,7 +2,7 @@
     <div class="regular-card">
         <div class="card">
             <template v-for="work in works">
-                <div class="company-wrapper">
+                <div class="company-wrapper" data-aos="fade-up">
                     <div class="company-title">
                         <div class="company-logo">
                             <img :src="work.logo" />
