@@ -13,6 +13,6 @@
     import SpecialButton from '../components/button/specialButton'
     export default {
         name: 'Hero',
-        components: { SpecialButton }
+        components: { SpecialButton },
     }
 </script>

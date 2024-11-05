@@ -4,20 +4,26 @@
             <h3>Certificates</h3>
 
             <template v-for="cert of (showAll ? certs : certs.slice(0, 3))">
-                 <div class="cert-card hover-pointer" @click="downloadPDF(cert.file, cert.name)">
-                    <div class="cert-content">
-                        <div class="col">
-                            <div class="image-container">
-                                <img :src="cert.image" :alt="'image-for-'+cert.name"/>
+                <!-- <div class="tooltip-container">
+                    <span class="tooltip">8 contributions on March 8th.</span>
+                    <span class="text"> -->
+                        <div class="cert-card hover-pointer" @click="downloadPDF(cert.file, cert.name)">
+                            <div class="cert-content">
+                                <div class="col">
+                                    <div class="image-container">
+                                        <img :src="cert.image" :alt="'image-for-'+cert.name"/>
+                                    </div>
+                                </div>
+                                <div clas="col">
+                                    <h4>{{ cert.name }}</h4>
+                                    <p>{{ cert.provider }}</p>
+                                    <small>Issued {{ cert.issued }}</small>
+                                </div>
                             </div>
                         </div>
-                        <div clas="col">
-                            <h4>{{ cert.name }}</h4>
-                            <p>{{ cert.provider }}</p>
-                            <small>Issued {{ cert.issued }}</small>
-                        </div>
-                    </div>
-                 </div>
+                    <!-- </span>
+                </div> -->
+                 
             </template>
 
             <div class="show-more hover-pointer" @click="showAll = !showAll">
