@@ -4,6 +4,7 @@
     top: 0;
     backdrop-filter: blur(10px);
     transition: all 0.3s;
+    
     z-index: 100;
 
     .content {
@@ -133,30 +134,40 @@
     .mobile-nav {
         height: 0;
         opacity: 0;
-        
+        // background: var(--background-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 50;
+        transition: all .5s ease;
+
+        ul {
+            li {
+                margin: 4vh 0;
+                text-align: center;
+                font-size: $font_medium_large;
+                font-weight: 800;
+                list-style-type: none;
+                &.active {
+                    a {
+                        color: var(--special-color) !important
+                    }
+                }
+                
+            }
+        }
         &.active {
-            transition: all .5s ease;
             height: calc(100vh - 61px);
             opacity: 1;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 50;
 
-            ul {
-                li {
-                    margin: 4vh 0;
-                    text-align: center;
-                    font-size: $font_medium_large;
-                    font-weight: 800;
-                    list-style-type: none;
-                }
-            }
         }
     }
 
     &.scrolled {
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+    @media screen and (max-width: 480px){
+        backdrop-filter: blur(20px);
     }
 }

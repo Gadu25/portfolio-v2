@@ -1,5 +1,5 @@
 <template>
-    <div class="nav-container" :class="isScrolled ? 'scrolled':''">
+    <div class="nav-container" :class="scrolled ? 'scrolled':''">
         <div class="content">
             <ul>
                 <li v-for="(nav, index) of navs" :class="nav.isActive ? 'active':''">
@@ -54,7 +54,8 @@
                         'isActive': false
                     },
                 ],
-                toggle: false
+                toggle: false,
+                scrolled: this.isScrolled
             }
         },
         methods: {
@@ -77,8 +78,10 @@
                         this.navs[i].isActive = false
                     }
                 }
-                this.toggle = !this.toggle
-                
+                if(this.toggle == true){
+                    this.toggle = !this.toggle
+                }
+
                 this.$emit('navigate', animation);
             }
         },
@@ -87,6 +90,13 @@
                 type: Boolean,
                 default: false
             }
+        },
+        watch: {
+            toggle(newVal, oldVal) {
+                if(newVal == true){
+                    this.scrolled = false
+                }
+            },
         }
     }
 </script>
