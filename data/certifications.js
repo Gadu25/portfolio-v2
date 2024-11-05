@@ -5,6 +5,7 @@ import LearnHtmlCourse from '~/assets/pdfs/LearnHtmlCourse.pdf'
 import LearnJavaScriptCourse from '~/assets/pdfs/LearnJavaScriptCourse.pdf'
 import LearnSassCouse from '~/assets/pdfs/LearnSassCouse.pdf'
 import LearnVueJsCourse from '~/assets/pdfs/LearnVueJsCourse.pdf'
+import CrashCourseOnPython from '~/assets/pdfs/CrashCourseOnPython.pdf'
 
 import BuildAWebsiteWithHtmlCssAndGithubPagesSkillPathImage from '~/assets/images/certifications/BuildAWebsiteWithHtmlCssAndGithubPagesSkillPath.png'
 import IntroductionToUiAndUxDesignCourseImage from '~/assets/images/certifications/IntroductionToUiAndUxDesignCourse.png'
@@ -13,9 +14,17 @@ import LearnHtmlCourseImage from '~/assets/images/certifications/LearnHtmlCourse
 import LearnJavaScriptCourseImage from '~/assets/images/certifications/LearnJavaScriptCourse.png'
 import LearnSassCouseImage from '~/assets/images/certifications/LearnSassCouse.png'
 import LearnVueJsCourseImage from '~/assets/images/certifications/LearnVueJsCourse.png'
+import CrashCourseOnPythonImage from '~/assets/images/certifications/crashCourseOnPython.png'
 
 
 export default [
+    {
+        name: 'Crash Course on Python',
+        issued: 'Jul 2023',
+        provider: 'Google',
+        file: CrashCourseOnPython,
+        image: CrashCourseOnPythonImage
+    },
     {
         name: 'Build a Website with HTML, CSS, and GitHub Pages Skill Path',
         issued: 'Sep 2024',
