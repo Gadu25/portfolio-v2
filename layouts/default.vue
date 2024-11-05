@@ -39,10 +39,9 @@
         mounted() {
             window.addEventListener('scroll', this.handleScroll),
             AOS.init({
-            duration: 800, // Animation duration in ms
-            delay: 100,
-            easing: 'ease-in-out', // Animation easing style
-            once: true // Whether animation should happen only once
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
             })
         },
     }
