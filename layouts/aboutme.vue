@@ -1,7 +1,7 @@
 <template>
   <div class="about-me">
     <div class="content">
-        <div class="content-column">
+        <div class="content-column" data-aos="fade-up">
             <h3>About Me</h3>
             <p>
               Hi there! I’m Alexander Udag, a web developer enthusiastic about coding
@@ -21,7 +21,7 @@
             </p>
         </div>
         <div class="content-column">
-          <div class="images">
+          <div class="images" data-aos="fade-left">
             <div class="image-container hover-pointer" @mousemove="handleMouseMove" @mouseleave="resetTilt">
                 <img src="~/assets/images/corp.jpg" alt="my corporate image"/>
             </div>

@@ -17,6 +17,9 @@
     import Navigation from './navigation.vue';
     import Foot from './footer.vue';
     
+    import AOS from 'aos';
+    import 'aos/dist/aos.css';
+
     export default {
         components: { Cursor, Navigation, Foot},
         data() {
@@ -34,7 +37,13 @@
             },
         },
         mounted() {
-            window.addEventListener('scroll', this.handleScroll);
+            window.addEventListener('scroll', this.handleScroll),
+            AOS.init({
+            duration: 800, // Animation duration in ms
+            delay: 100,
+            easing: 'ease-in-out', // Animation easing style
+            once: true // Whether animation should happen only once
+            })
         },
     }
 </script>

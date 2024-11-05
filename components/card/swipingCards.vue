@@ -1,5 +1,5 @@
 <template>
-    <div class="swiping-cards">
+    <div class="swiping-cards" data-aos="fade-down">
         <div class="contents">
             <div class="swiper-controls">
                 <div class="control-wrapper">

@@ -4,7 +4,7 @@
             <h3>Tech Experience</h3>
             <div class="tech-wrapper">
                 <template v-for="tech in techs">
-                    <div class="tech">
+                    <div class="tech" data-aos="fade-up">
                         <a class="image-container hover-pointer" :href="tech.link" target="_blank">
                             <img :src="tech.icon" :alt="tech.name+'-icon'"/>
                         </a>
@@ -27,7 +27,7 @@
     import sass from '~/assets/images/tech/sass.png'
     import tailwind from '~/assets/images/tech/tailwind.png'
     import vue from '~/assets/images/tech/vue.png'
-
+    
     export default {
         name: 'TechStack',
         data() {
