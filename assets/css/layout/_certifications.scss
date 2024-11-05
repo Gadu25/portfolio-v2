@@ -22,25 +22,29 @@
             .cert-content {
                 display: flex;
                 flex-direction: row;
+                padding: 15px;
+                border-radius: 15px;
                 .col {
                     margin-right: 10px;
                     .image-container {
-                        background-color: var(--card-color);
+                        
                         border-radius: 12px;
                         width: 250px;
+                        overflow: hidden;
                     }
                     img {
                         object-fit: cover;
                         width: 100%;
-                        transform: scale(.9);
+                        transform: scale(1.2);
                         transition: all .2s ease;
                     }
                 }
                 &:hover{
+                    background-color: var(--card-color);
                     .col{
                         .image-container {
                             img {
-                                transform: scale(.8);
+                                transform: scale(1);
                             }
                         }
                     }
@@ -53,6 +57,9 @@
                     .col {
                         .image-container {
                             width: 100%;
+                            img {
+                                transform: scale(1);
+                            }
                         }
                     }
                 }
