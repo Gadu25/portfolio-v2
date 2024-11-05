@@ -16,7 +16,7 @@
 
         .cert-card {
             padding: 15px;
-            border-radius: 15px;
+            border-radius: 12px;
             margin: 10px 0;
 
             .cert-content {
@@ -24,10 +24,12 @@
                 flex-direction: row;
                 padding: 15px;
                 border-radius: 15px;
+                border-bottom: 2px solid var(--card-color);
+
                 .col {
                     margin-right: 10px;
                     .image-container {
-                        
+                        background-color: var(--card-color);
                         border-radius: 12px;
                         width: 250px;
                         overflow: hidden;
