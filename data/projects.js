@@ -22,7 +22,10 @@ export default [
         name: 'CatchThemAll',
         previewImage: catchThemAll,
         description: 'CatchTheMall is an interactive Pokémon-themed web application designed to provide users with an engaging experience of capturing and viewing various Pokémon. Built using Nuxt.js for server-side rendering, Tailwind CSS for a responsive layout, and SCSS for custom styling, this app offers a visually appealing and fluid user experience. The application allows users to browse, search, and filter through a collection of Pokémon while incorporating smooth, custom animations.',
-        status: 'ongoing development',
+        status: {
+            title: 'ongoing development',
+            color: '#FFA500'
+        },
         techUsed: [
             {
                 name: 'Nuxt',

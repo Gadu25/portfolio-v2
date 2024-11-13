@@ -1,0 +1,89 @@
+.projects {
+    margin-top: 61px;
+    width: 100vw;
+    .content {
+        width: 70%;
+        margin: auto;
+        .project-card {
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px 0;
+            .project-content {
+                display: flex;
+                flex-direction: row;
+                padding: 15px;
+                border-radius: 15px;
+                border-bottom: 2px solid var(--card-color);
+
+                .col {
+                    margin-right: 10px;
+                    .image-container {
+                        background-color: var(--card-color);
+                        border: 3px solid var(--card-color);
+                        border-radius: 12px;
+                        width: 300px;
+                        overflow: hidden;
+                        img {
+                            object-fit: fill;
+                            width: 100%;
+                            transform: scale(1.8);
+                            transition: all .2s ease;
+                        }
+                    }
+                    .head {
+                        margin-bottom: 20px;
+                    }
+                    .techs {
+                        display: flex;
+                        gap: 5px;
+                        flex-wrap: wrap;
+                        .tech {
+                            display: flex;
+                            align-items: center;
+                            border: 1px solid var(--card-color);
+                            margin-top: 3px;
+                            padding: 6px;
+                            border-radius: 5px;
+        
+                            img {
+                                margin-right: 5px;
+                                height: 20px;
+                            }
+                        }
+                    }
+                    .desc {
+                        margin-top: 20px;
+                    }
+                }
+                &:hover{
+                    background-color: var(--card-color);
+                    .col{
+                        .image-container {
+                            img {
+                                transform: scale(1.1);
+                            }
+                        }
+                    }
+                }
+            }
+            @media screen and (max-width: 1024px) {
+                .project-content {
+                    flex-direction: column;
+                    .col {
+                        .image-container {
+                            width: 100%;
+                            img {
+                                transform: scale(1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 480px) {
+        .content {
+            width: 90%;
+        }
+    }
+}

@@ -11,7 +11,7 @@
                                 <img :src="cert.image" :alt="'image-for-'+cert.name"/>
                             </div>
                         </div>
-                        <div clas="col">
+                        <div class="col">
                             <h4>{{ cert.name }}</h4>
                             <p>{{ cert.provider }}</p>
                             <small>Issued {{ cert.issued }}</small>

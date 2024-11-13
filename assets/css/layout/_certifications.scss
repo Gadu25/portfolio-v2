@@ -33,12 +33,12 @@
                         border-radius: 12px;
                         width: 250px;
                         overflow: hidden;
-                    }
-                    img {
-                        object-fit: cover;
-                        width: 100%;
-                        transform: scale(1.2);
-                        transition: all .2s ease;
+                        img {
+                            object-fit: fill;
+                            width: 100%;
+                            transform: scale(1.6);
+                            transition: all .2s ease;
+                        }
                     }
                 }
                 &:hover{
@@ -46,7 +46,7 @@
                     .col{
                         .image-container {
                             img {
-                                transform: scale(1);
+                                transform: scale(1.1);
                             }
                         }
                     }
