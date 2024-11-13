@@ -1,7 +1,7 @@
 <template>
     <div class="projects">
         <div class="content">
-            <h3>Projects</h3>
+            <h3>Personal</h3>
 
             <template v-for="project of projects">
                 <div class="project-card hover-pointer" data-aos="fade-up" @click="visitSite(project.url)">
