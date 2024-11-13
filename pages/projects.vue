@@ -4,7 +4,7 @@
             <h3>Projects</h3>
 
             <template v-for="project of projects">
-                <div class="project-card hover-pointer" data-aos="fade-up">
+                <div class="project-card hover-pointer" data-aos="fade-up" @click="visitSite(project.url)">
                     <div class="project-content">
                         <div class="col">
                             <div class="image-container">
@@ -46,6 +46,11 @@
         data(){
             return {
                 projects: projects
+            }
+        },
+        methods: {
+            visitSite(url) {
+                window.open(url)
             }
         }
     }
