@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Analytics/>
         <Cursor/>
         <Navigation @navigate="setDirection" :isScrolled="isScrolled"/>
         <!-- <transition> -->
@@ -13,6 +14,8 @@
 </template>
 
 <script>
+    import { Analytics } from '@vercel/analytics/nuxt';
+
     import Cursor from '~/components/cursor.vue';
     import Navigation from './navigation.vue';
     import Foot from './footer.vue';
@@ -21,7 +24,7 @@
     import 'aos/dist/aos.css';
 
     export default {
-        components: { Cursor, Navigation, Foot},
+        components: { Cursor, Navigation, Foot, Analytics },
         data() {
             return {
                 isScrolled: false,
