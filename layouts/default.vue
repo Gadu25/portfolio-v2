@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Analytics/>
+        <!-- <Analytics/> -->
         <Cursor/>
         <Navigation @navigate="setDirection" :isScrolled="isScrolled"/>
         <!-- <transition> -->
@@ -24,7 +24,7 @@
     import 'aos/dist/aos.css';
 
     export default {
-        components: { Cursor, Navigation, Foot, Analytics },
+        components: { Cursor, Navigation, Foot },
         data() {
             return {
                 isScrolled: false,
