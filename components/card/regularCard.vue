@@ -5,7 +5,7 @@
                 <div class="company-wrapper" data-aos="fade-up">
                     <div class="company-title">
                         <div class="company-logo">
-                            <img :src="work.logo" />
+                            <img :src="work.logo" :alt="work.name+'-logo'"/>
                         </div>
                         <div class="company-name">
                             <h4>{{ work.name }}</h4>

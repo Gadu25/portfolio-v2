@@ -19,7 +19,7 @@
                         <div class="company-wrapper">
                             <div class="company-title">
                                 <div class="company-logo">
-                                    <img :src="card.logo" />
+                                    <img :src="card.logo" :alt="card.name+'-logo'"/>
                                 </div>
                                 <div class="company-name">
                                     <h4>{{ card.name }}</h4>
