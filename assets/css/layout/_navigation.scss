@@ -10,7 +10,7 @@
     .content {
         display: flex;
         flex-direction: row;
-        padding: 15px 5vw;
+        padding: 2px 5vw;
         justify-content: space-between;
         align-items: center;
         transition: all .5s ease;
@@ -93,8 +93,12 @@
             flex-direction: row;
             list-style-type: none;
             justify-content: start;
+            align-items: center;
 
             li {
+                img {
+                    width: 60px;
+                }
                 font-size: $font_medium;
                 font-weight: bolder !important;
                 margin: 5px 25px 5px 0;
