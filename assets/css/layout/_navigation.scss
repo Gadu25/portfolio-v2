@@ -4,7 +4,6 @@
     top: 0;
     backdrop-filter: blur(10px);
     transition: all 0.3s;
-    
     z-index: 100;
 
     .content {
@@ -127,6 +126,8 @@
         @media screen and (max-width: 480px) {
             #menuToggle {
                 display: block;
+                padding-top: 8px;
+                padding-bottom: 8px;
             }
 
             ul {
@@ -163,8 +164,6 @@
         &.active {
             height: calc(100vh - 61px);
             opacity: 1;
-
-
         }
     }
 

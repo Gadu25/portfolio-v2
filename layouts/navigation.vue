@@ -2,7 +2,11 @@
     <div class="nav-container" :class="scrolled ? 'scrolled':''">
         <div class="content">
             <ul>
-                <li><img src="~/assets/images/memoji.webp" alt="my-memoji-icon"/></li>
+                <li>
+                    <NuxtLink to="/" @click="handleNavigation(0)">
+                        <img  src="~/assets/images/memoji.webp" alt="my-memoji-icon"/>
+                    </NuxtLink>
+                </li>
                 <li v-for="(nav, index) of navs" :class="nav.isActive ? 'active':''">
                     <NuxtLink :to="nav.route" @click="handleNavigation(index)">{{ nav.name }}</NuxtLink>
                 </li>
