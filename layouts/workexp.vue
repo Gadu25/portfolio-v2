@@ -1,10 +1,10 @@
 <template>
-    <section class="work-exp">
+    <div class="work-exp">
         <div class="content">
             <h3>Work Experience</h3>
             <SwipingCards/>
         </div>
-    </section>
+    </div>
 </template>
 
 <script>

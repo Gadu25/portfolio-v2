@@ -2,7 +2,8 @@
     min-height: 70vh;
     display: flex;
     justify-content: center;
-
+    overflow-x: hidden;
+    
     &:hover {
         h3 {
             transition: color 3s ease;

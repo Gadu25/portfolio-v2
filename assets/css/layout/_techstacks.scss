@@ -3,6 +3,8 @@
     margin: 5vh 0;
     display: flex;
     justify-content: center;
+    overflow-x: hidden;
+    
     &:hover {
         h3 {
             transition: color 3s ease;

@@ -1,5 +1,5 @@
 <template>
-    <section class="tech-stacks">
+    <div class="tech-stacks">
         <div class="content">
             <h3>Tech Experience</h3>
             <div class="tech-wrapper">
@@ -12,7 +12,7 @@
                 </template>
             </div>
         </div>
-    </section>
+    </div>
 </template>
 
 <script>
