@@ -148,10 +148,10 @@
 
         ul {
             li {
-                margin: 4vh 0;
+                margin: 0;
                 text-align: center;
-                font-size: $font_medium_large;
-                font-weight: 800;
+                font-size: 0;
+                font-weight: unset;
                 list-style-type: none;
                 &.active {
                     a {
@@ -164,6 +164,14 @@
         &.active {
             height: calc(100vh - 61px);
             opacity: 1;
+            ul {
+                li {
+                    margin: 4vh 0;
+                    
+                    font-size: $font_medium_large;
+                    font-weight: 800;
+                }
+            }
         }
     }
 

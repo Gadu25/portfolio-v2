@@ -25,7 +25,9 @@ export default defineNuxtConfig({
           rel: 'stylesheet', 
           href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap' 
         },
-        
+      ],
+      script: [
+        { src: '/node_modules/particles.js/particles.js', type: 'text/javascript' }
       ]
     },
   },
