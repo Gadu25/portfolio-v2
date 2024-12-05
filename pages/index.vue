@@ -1,15 +1,9 @@
 <template>
     <div>
         <Hero/>
-        <section>
-            <AboutMe/>
-        </section>
-        <section>
-            <TechStacks/>
-        </section>
-        <section>
-            <WorkExp/>
-        </section>
+        <AboutMe/>
+        <TechStacks/>
+        <WorkExp/>
     </div>
 </template>
 

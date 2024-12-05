@@ -1,5 +1,5 @@
 <template>
-  <div class="about-me">
+  <section class="about-me">
     <div class="content">
         <div class="content-column" data-aos="fade-up">
             <h3>About Me</h3>
@@ -31,7 +31,7 @@
           </div>
         </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
