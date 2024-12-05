@@ -23,10 +23,10 @@
         <div class="content-column">
           <div class="images" data-aos="fade-left">
             <div class="image-container hover-pointer" @mousemove="handleMouseMove" @mouseleave="resetTilt">
-                <img src="~/assets/images/night.jpg" alt="my corporate image"/>
+                <img src="~/assets/images/day.jpg" alt="my corporate image"/>
             </div>
             <div class="image-container hover-pointer" @mousemove="handleMouseMove" @mouseleave="resetTilt">
-                <img src="~/assets/images/day.jpg" alt="my corporate image"/>
+                <img src="~/assets/images/night.jpg" alt="my corporate image"/>
             </div>
           </div>
         </div>
