@@ -7,6 +7,9 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       title: "Alex's Portfolio",
+      htmlAttrs: {
+        lang: 'en'  // This sets the lang attribute of the <html> tag
+      },
       meta: [
         { charset: 'UTF-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },

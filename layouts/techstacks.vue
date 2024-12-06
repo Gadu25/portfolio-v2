@@ -5,7 +5,7 @@
             <div class="tech-wrapper">
                 <template v-for="tech in techs">
                     <div class="tech" data-aos="fade-up">
-                        <a class="image-container hover-pointer" :href="tech.link" target="_blank">
+                        <a class="image-container hover-pointer" :href="tech.link" target="_blank"  :aria-label="'Visit '+ tech.name +'website'">
                             <img :src="tech.icon" :alt="tech.name+'-icon'"/>
                         </a>
                     </div>
