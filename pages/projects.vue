@@ -39,19 +39,12 @@
     </div>
 </template>
 
-<script>
-    import projects from '~/data/projects';
-    export default {
-        name: 'Projects',
-        data(){
-            return {
-                projects: projects
-            }
-        },
-        methods: {
-            visitSite(url) {
-                window.open(url)
-            }
-        }
+<script setup>
+    import projectData from '~/data/projects';
+
+    const projects = ref(projectData)
+
+    const visitSite = (url)=> {
+        window.open(url)
     }
 </script>

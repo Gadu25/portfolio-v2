@@ -5,12 +5,7 @@
     </div>
 </template>
 
-<script>
+<script setup>
     import RegularWorkExp from '~/layouts/regularworkexp.vue';
     import Certifications from '~/layouts/certifications.vue';
-
-    export default {
-        name: 'Work',
-        components: { RegularWorkExp, Certifications }
-    }
 </script>
