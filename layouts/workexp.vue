@@ -7,11 +7,6 @@
     </div>
 </template>
 
-<script>
+<script setup>
     import SwipingCards from '~/components/card/swipingCards.vue';
-    export default {
-        name: 'WorkExp',
-        components: { SwipingCards }
-        
-    }
 </script>

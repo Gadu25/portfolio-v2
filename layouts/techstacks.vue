@@ -15,7 +15,7 @@
     </div>
 </template>
 
-<script>
+<script setup>
     import bootstrap from '~/assets/images/tech/bootstrap.png'
     import javascript from '~/assets/images/tech/javascript.png'
     import laravel from '~/assets/images/tech/laravel.png'
@@ -27,69 +27,64 @@
     import sass from '~/assets/images/tech/sass.png'
     import tailwind from '~/assets/images/tech/tailwind.png'
     import vue from '~/assets/images/tech/vue.png'
-    
-    export default {
-        name: 'TechStack',
-        data() {
-            return {
-                techs: [
-                    {
-                        name: 'javascript',
-                        icon: javascript,
-                        link: 'https://www.javascript.com/'
-                    },
-                    {
-                        name: 'vue',
-                        icon: vue,
-                        link: 'https://vuejs.org/'
-                    },
-                    {
-                        name: 'nuxt',
-                        icon: nuxt,
-                        link: 'https://nuxt.com/'
-                    },
-                    {
-                        name: 'sass',
-                        icon: sass,
-                        link: 'https://sass-lang.com/'
-                    },
-                    {
-                        name: 'tailwind',
-                        icon: tailwind,
-                        link: 'https://tailwindcss.com/'
-                    },
-                    {
-                        name: 'bootstrap',
-                        icon: bootstrap,
-                        link: 'https://getbootstrap.com/'
-                    },
-                    {
-                        name: 'nodejs',
-                        icon: nodejs,
-                        link: 'https://nodejs.org/en'
-                    },
-                    {
-                        name: 'php',
-                        icon: php,
-                        link: 'https://www.php.net/'
-                    },
-                    {
-                        name: 'laravel',
-                        icon: laravel,
-                        link: 'https://laravel.com/'
-                    },
-                    {
-                        name: 'mysql',
-                        icon: mysql,
-                        link: 'https://www.mysql.com/'
-                    },
-                    {
-                        name: 'postgresql',
-                        icon: postgresql,
-                        link: 'https://www.postgresql.org/'
-                    },
-                ]
-            }
-        }
-    }
+
+    const techs = ref(
+        [
+            {
+                name: 'javascript',
+                icon: javascript,
+                link: 'https://www.javascript.com/'
+            },
+            {
+                name: 'vue',
+                icon: vue,
+                link: 'https://vuejs.org/'
+            },
+            {
+                name: 'nuxt',
+                icon: nuxt,
+                link: 'https://nuxt.com/'
+            },
+            {
+                name: 'sass',
+                icon: sass,
+                link: 'https://sass-lang.com/'
+            },
+            {
+                name: 'tailwind',
+                icon: tailwind,
+                link: 'https://tailwindcss.com/'
+            },
+            {
+                name: 'bootstrap',
+                icon: bootstrap,
+                link: 'https://getbootstrap.com/'
+            },
+            {
+                name: 'nodejs',
+                icon: nodejs,
+                link: 'https://nodejs.org/en'
+            },
+            {
+                name: 'php',
+                icon: php,
+                link: 'https://www.php.net/'
+            },
+            {
+                name: 'laravel',
+                icon: laravel,
+                link: 'https://laravel.com/'
+            },
+            {
+                name: 'mysql',
+                icon: mysql,
+                link: 'https://www.mysql.com/'
+            },
+            {
+                name: 'postgresql',
+                icon: postgresql,
+                link: 'https://www.postgresql.org/'
+            },
+        ]
+    )
 </script>

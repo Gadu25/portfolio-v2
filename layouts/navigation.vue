@@ -33,75 +33,69 @@
     </div>
 </template>
 
-<script>
+<script setup>
     import ThemeToggle from '../components/common/themeToggle'
-    export default {
-        name: 'Navigation',
-        components: {
-            ThemeToggle,
-        },
-        data() {
-            return {
-                navs: [
-                    {
-                        'name': 'Home',
-                        'route': '/',
-                        'isActive': true
-                    },
-                    {
-                        'name': 'Work',
-                        'route': '/work',
-                        'isActive': false
-                    },
-                    {
-                        'name': 'Projects',
-                        'route': '/projects',
-                        'isActive': false
-                    },
-                ],
-                toggle: false,
-                scrolled: this.isScrolled
-            }
-        },
-        methods: {
-            handleNavigation(index) {
-                let active = 0
 
-                for(let i=0; i < this.navs.length; i++){
-                    if(this.navs[i].isActive == true){
-                        active = i
-                    }
-                }
-
-                let animation = active < index ? 'swipe-right' : 'swipe-left'
-            
-                
-                for(let i=0; i < this.navs.length; i++){
-                    if(i == index){
-                        this.navs[i].isActive = true
-                    }else{
-                        this.navs[i].isActive = false
-                    }
-                }
-                if(this.toggle == true){
-                    this.toggle = !this.toggle
-                }
-
-                this.$emit('navigate', animation);
-            }
-        },
-        props:{
-            isScrolled: {
-                type: Boolean,
-                default: false
-            }
-        },
-        watch: {
-            toggle(newVal, oldVal) {
-                if(newVal == true){
-                    this.scrolled = false
-                }
-            },
+    const props = defineProps({
+        isScrolled: {
+            type: Boolean,
+            default: false
         }
+    })
+    const emit = defineEmits();
+
+    const navs = ref(
+        [
+            {
+                'name': 'Home',
+                'route': '/',
+                'isActive': true
+            },
+            {
+                'name': 'Work',
+                'route': '/work',
+                'isActive': false
+            },
+            {
+                'name': 'Projects',
+                'route': '/projects',
+                'isActive': false
+            },
+        ]
+    )
+
+    const toggle = ref(false)
+    const scrolled = ref(props.isScrolled)
+
+    const handleNavigation = (index) => {
+        let active = 0
+
+        for(let i=0; i < navs.length; i++){
+            if(navs.value[i].isActive == true){
+                active = i
+            }
+        }
+
+        let animation = active < index ? 'swipe-right' : 'swipe-left'
+        
+        for(let i=0; i < navs.value.length; i++){
+            if(i == index){
+                navs.value[i].isActive = true
+            }else{
+                navs.value[i].isActive = false
+            }
+        }
+        
+        if(toggle == true){
+            toggle.value = !toggle.value
+        }
+
+        emit('navigate', animation);
     }
+
+    watch(toggle, (newVal, oldVal) => {
+        if (newVal === true) {
+            scrolled.value = false;
+        }
+    });
 </script>

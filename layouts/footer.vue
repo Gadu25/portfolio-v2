@@ -2,7 +2,7 @@
     <div class="footer">
         <div class="content">
             <div class="col">
-                <p>© {{ getCurrentYear }} All Rights Reserved</p>
+                <p>© {{ currentYear }} All Rights Reserved</p>
             </div>
             <div class="col">
                 <a href="https://www.linkedin.com/in/alexander-udag/" target="_blank">
@@ -22,19 +22,7 @@
     </div>
 </template>
 
-<script>
-    export default {
-        name: 'foot',
-        data() {
-            return {
-            }
-        },
-        computed: {
-            getCurrentYear(){
-                const d = new Date();
-                let year = d.getFullYear();
-                return year
-            }
-        }
-    }
+<script setup>
+    import { getCurrentYear } from '~/utls/date/currentYear';
+    const currentYear = getCurrentYear();
 </script>

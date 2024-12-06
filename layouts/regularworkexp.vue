@@ -7,12 +7,6 @@
     </div>
 </template>
 
-<script>
+<script setup>
     import RegularCard from '~/components/card/regularCard.vue';
-    export default {
-        name: 'RegularWorkExp',
-        components: {
-            RegularCard
-        }
-    }
 </script>

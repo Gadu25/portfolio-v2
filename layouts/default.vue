@@ -1,56 +1,43 @@
 <template>
     <div>
-        <!-- <Analytics/> -->
-        <Cursor/>
-        <Navigation @navigate="setDirection" :isScrolled="isScrolled"/>
-        <!-- <transition> -->
+        <cursor/>
+        <navigation @navigate="setDirection" :isScrolled="isScrolled"/>
             <NuxtPage :transition="{
                 name: transitionDirection,
                 mode: 'out-in'
-            }" />  <!-- Only the NuxtPage here -->
-        <!-- </transition> -->
-        <Foot/>
+            }" /> 
+        <foot/>
     </div>
 </template>
 
-<script>
-    import { Analytics } from '@vercel/analytics/nuxt';
-
-    import Cursor from '~/components/cursor.vue';
-    import Navigation from './navigation.vue';
-    import Foot from './footer.vue';
-    
+<script setup>
+    import navigation from './navigation.vue';
+    import foot from './footer.vue';
     import AOS from 'aos';
     import 'aos/dist/aos.css';
 
-    export default {
-        components: { Cursor, Navigation, Foot },
-        data() {
-            return {
-                isScrolled: false,
-                transitionDirection: 'swipe-right'
-            };
-        },
-        methods: {
-            setDirection(direction) {
-                this.transitionDirection = direction; // Set the direction based on navigation
-            },
-            handleScroll() {
-                this.isScrolled = window.scrollY > 0;
-            },
-        },
-        mounted() {
-            window.addEventListener('scroll', this.handleScroll),
+    let isScrolled = ref(false)
+    let transitionDirection = ref('swipe-right')
+
+    const setDirection = (direction) => {
+        transitionDirection.value = direction
+    }
+
+    const handleScroll = () => {
+        isScrolled.value = window.scrollY > 0
+    }
+
+    onMounted(() => {
+        window.addEventListener('scroll', handleScroll),
             AOS.init({
             duration: 800,
             easing: 'ease-in-out',
             once: true
-            })
-        },
-    }
+        })
+    })
 </script>
 
-<style>
+<style scoped>
     .swipe-right-enter-active,
     .swipe-right-leave-active,
     .swipe-left-enter-active,
