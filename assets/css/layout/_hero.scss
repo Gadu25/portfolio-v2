@@ -8,9 +8,14 @@
     .content {
         h1 {
             transition: all .3s ease;
-            &:hover {
-                color: var(--special-color)
-            }
+            // &:hover {
+            //     color: var(--special-color)
+            // }
+        }
+        .headline {
+            color: var(--special-color);
+            font-weight: bold;
+            margin-bottom: 20px;
         }
     }
 }

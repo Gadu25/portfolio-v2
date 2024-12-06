@@ -4,7 +4,9 @@
         <div class="content">
             <p>I am..</p>
             <h1>Alexander Udag</h1>
-            <p>Software Engineer / Web Developer 💻</p>
+            <h2 class="headline">Turning Ideas into Interactive Web Solutions</h2>
+            <small>Software Engineer / Web Developer 💻</small>
+            <!-- <p>Turning Ideas into Interactive Web Solutions</p> -->
             <SpecialButton/>
         </div>
     </div>
