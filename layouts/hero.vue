@@ -6,7 +6,6 @@
             <h1>Alexander Udag</h1>
             <h2 class="headline">Turning Ideas into Interactive Web Solutions</h2>
             <small>Software Engineer / Web Developer 💻</small>
-            <!-- <p>Turning Ideas into Interactive Web Solutions</p> -->
             <SpecialButton/>
         </div>
     </div>

@@ -1,5 +1,5 @@
 .footer {
-    height: 10vh;
+    height: 17vh;
     margin-top: 10px;
     padding-top: 30px;
     background: linear-gradient(to top, var(--card-color), transparent);
@@ -17,6 +17,18 @@
 
                 &:hover{
                     color: var(--special-color)
+                }
+            }
+            .contact {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                @media screen and (max-width: 768px) {
+                    flex-direction: column;
+                    align-items: start;
+                    p {
+                        margin-left: 15px;
+                    }
                 }
             }
         }
