@@ -64,13 +64,13 @@
         ]
     )
 
-    const toggle = ref(false)
+    let toggle = ref(false)
     const scrolled = ref(props.isScrolled)
 
     const handleNavigation = (index) => {
         let active = 0
 
-        for(let i=0; i < navs.length; i++){
+        for(let i=0; i < navs.value.length; i++){
             if(navs.value[i].isActive == true){
                 active = i
             }
@@ -85,8 +85,7 @@
                 navs.value[i].isActive = false
             }
         }
-        
-        if(toggle == true){
+        if(toggle.value == true){
             toggle.value = !toggle.value
         }
 
