@@ -45,102 +45,97 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import workexp from '~/data/workexp';
 
-export default {
-    name: 'SwipingCards',
-    data() {
-        return {
-            cards: workexp
+const cards = ref(workexp)
+
+const clickCard = (index) => {
+    let active = index
+    let left = (active - 1) < 0 ? (cards.value.length - 1) : (active - 1)
+    let right = (active + 1) > (cards.value.length - 1) ? 0 : (active + 1)
+
+    for (let i = 0; i < cards.value.length; i++) {
+        if (i == active) {
+            cards.value[i].position = 'active'
+        } else if (i == left) {
+            cards.value[i].position = 'left'
+        } else if (i == right) {
+            cards.value[i].position = 'right'
+        } else {
+            cards.value[i].position = 'none'
         }
-    },
-    methods: {
-        clickCard(index) {
-            let active = index
-            let left = (active - 1) < 0 ? (this.cards.length - 1) : (active - 1)
-            let right = (active + 1) > (this.cards.length - 1) ? 0 : (active + 1)
-
-            for (let i = 0; i < this.cards.length; i++) {
-                if (i == active) {
-                    this.cards[i].position = 'active'
-                } else if (i == left) {
-                    this.cards[i].position = 'left'
-                } else if (i == right) {
-                    this.cards[i].position = 'right'
-                } else {
-                    this.cards[i].position = 'none'
-                }
-            }
-        },
-        handleNext() {
-            let activeIndex = 0
-            for (let i = 0; i < this.cards.length; i++) {
-                if (this.cards[i].position == 'active') {
-                    activeIndex = i >= (this.cards.length - 1) ? 0 : i + 1
-                }
-            }
-
-            let active = activeIndex
-            let left = (active - 1) < 0 ? (this.cards.length - 1) : (active - 1)
-            let right = (active + 1) > (this.cards.length - 1) ? 0 : (active + 1)
-
-            for (let i = 0; i < this.cards.length; i++) {
-                if (i == active) {
-                    this.cards[i].position = 'active'
-                } else if (i == left) {
-                    this.cards[i].position = 'left'
-                } else if (i == right) {
-                    this.cards[i].position = 'right'
-                } else {
-                    this.cards[i].position = 'none'
-                }
-            }
-        },
-        handlePrev() {
-            let activeIndex = 0
-            for (let i = 0; i < this.cards.length; i++) {
-                if (this.cards[i].position == 'active') {
-                    activeIndex = i <= 0 ? (this.cards.length - 1) : i - 1
-                }
-            }
-
-            let active = activeIndex
-            let left = (active - 1) < 0 ? (this.cards.length - 1) : (active - 1)
-            let right = (active + 1) > (this.cards.length - 1) ? 0 : (active + 1)
-
-            for (let i = 0; i < this.cards.length; i++) {
-                if (i == active) {
-                    this.cards[i].position = 'active'
-                } else if (i == left) {
-                    this.cards[i].position = 'left'
-                } else if (i == right) {
-                    this.cards[i].position = 'right'
-                } else {
-                    this.cards[i].position = 'none'
-                }
-            }
-        },
-
-        handleMouseMove(event, index) {
-            const card = event.currentTarget.querySelector('.card');
-            const rect = card.getBoundingClientRect();
-
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            const rotateX = (centerY - y) / 50;
-            const rotateY = (x - centerX) / 50;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        },
-        resetTilt(event, index) {
-            const card = event.currentTarget.querySelector('.card');
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-        },
     }
+}
+
+const handleNext = () => {
+    let activeIndex = 0
+    for (let i = 0; i < cards.value.length; i++) {
+        if (cards.value[i].position == 'active') {
+            activeIndex = i >= (cards.value.length - 1) ? 0 : i + 1
+        }
+    }
+
+    let active = activeIndex
+    let left = (active - 1) < 0 ? (cards.value.length - 1) : (active - 1)
+    let right = (active + 1) > (cards.value.length - 1) ? 0 : (active + 1)
+
+    for (let i = 0; i < cards.value.length; i++) {
+        if (i == active) {
+            cards.value[i].position = 'active'
+        } else if (i == left) {
+            cards.value[i].position = 'left'
+        } else if (i == right) {
+            cards.value[i].position = 'right'
+        } else {
+            cards.value[i].position = 'none'
+        }
+    }
+}
+
+const handlePrev = () => {
+    let activeIndex = 0
+    for (let i = 0; i < cards.value.length; i++) {
+        if (cards.value[i].position == 'active') {
+            activeIndex = i <= 0 ? (cards.value.length - 1) : i - 1
+        }
+    }
+
+    let active = activeIndex
+    let left = (active - 1) < 0 ? (cards.value.length - 1) : (active - 1)
+    let right = (active + 1) > (cards.value.length - 1) ? 0 : (active + 1)
+
+    for (let i = 0; i < cards.value.length; i++) {
+        if (i == active) {
+            cards.value[i].position = 'active'
+        } else if (i == left) {
+            cards.value[i].position = 'left'
+        } else if (i == right) {
+            cards.value[i].position = 'right'
+        } else {
+            cards.value[i].position = 'none'
+        }
+    }
+}
+
+const handleMouseMove = (event) => {
+    const card = event.currentTarget.querySelector('.card');
+    const rect = card.getBoundingClientRect();
+
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = (centerY - y) / 50;
+    const rotateY = (x - centerX) / 50;
+
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+}
+
+const resetTilt = (event) => {
+    const card = event.currentTarget.querySelector('.card');
+    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
 }
 </script>

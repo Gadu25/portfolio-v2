@@ -2,10 +2,10 @@
     <div id="particles-js"></div>
   </template>
   
-  <script>
-  export default {
-    mounted() {
-        const script = document.createElement("script");
+  <script setup>
+
+  onMounted(() => {
+    const script = document.createElement("script");
         script.src = "/js/particles.js"; // Ensure the file is here
         script.onload = () => {
         window.particlesJS.load("particles-js", "/particles-config.json", () => {
@@ -16,8 +16,7 @@
         console.error("Failed to load particles.js");
         };
         document.head.appendChild(script);
-    },
-  };
+  })
   </script>
   
   <style>

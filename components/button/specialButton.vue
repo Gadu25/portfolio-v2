@@ -1,24 +1,10 @@
 <template>
-    <div class="button-container hover-pointer" @click="downloadPDF()">
+    <div class="button-container hover-pointer" @click="downloadPDF(myResume, 'Alexander Udag')">
         <p>My Resume</p>
     </div>
 </template>
 
-<script>
+<script setup>
     import myResume from '~/assets/pdfs/resume.pdf'
-
-    export default {
-        name: 'SpecialButton',
-        methods: {
-            downloadPDF(){
-                const fileUrl = myResume;
-                const link = document.createElement('a');
-                link.href = fileUrl;
-                link.download = 'AlexanderUdag.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
-        }
-    }
+    import { downloadPDF } from '~/utls/download';
 </script>

@@ -41,14 +41,8 @@
     </div>
 </template>
 
-<script>
+<script setup>
     import workexp from '~/data/workexp';
-    export default {
-        name: 'RegularCards',
-        data(){
-            return {
-                works: workexp
-            }
-        }
-    }
+
+    const works = ref(workexp)
 </script>
