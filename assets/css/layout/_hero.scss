@@ -12,4 +12,10 @@
             margin-bottom: 20px;
         }
     }
+    @media screen and (max-width: 480px){
+        padding: 0 5%;
+        h1: {
+            font-size: 40px;
+        }
+    }
 }
