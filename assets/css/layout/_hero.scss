@@ -7,15 +7,30 @@
     margin-top: 15px;
     .content {
         h1 {
-            transition: all .3s ease;
-            // &:hover {
-            //     color: var(--special-color)
-            // }
+            animation: fadeIn .5s ease-in;
+
+            @media screen and (max-width: 425px) {
+                font-size: 40px;
+            }
         }
         .headline {
             color: var(--special-color);
             font-weight: bold;
             margin-bottom: 20px;
+            animation: fadeIn 1s ease-in;
+            
+            @media screen and (max-width: 425px) {
+                font-size: 18px;
+            }
         }
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
