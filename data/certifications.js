@@ -7,14 +7,14 @@ import LearnSassCouse from '~/assets/pdfs/LearnSassCouse.pdf'
 import LearnVueJsCourse from '~/assets/pdfs/LearnVueJsCourse.pdf'
 import CrashCourseOnPython from '~/assets/pdfs/CrashCourseOnPython.pdf'
 
-import BuildAWebsiteWithHtmlCssAndGithubPagesSkillPathImage from '~/assets/images/certifications/BuildAWebsiteWithHtmlCssAndGithubPagesSkillPath.png'
-import IntroductionToUiAndUxDesignCourseImage from '~/assets/images/certifications/IntroductionToUiAndUxDesignCourse.png'
-import LearnCssCourseImage from '~/assets/images/certifications/LearnCssCourse.png'
-import LearnHtmlCourseImage from '~/assets/images/certifications/LearnHtmlCourse.png'
-import LearnJavaScriptCourseImage from '~/assets/images/certifications/LearnJavaScriptCourse.png'
-import LearnSassCouseImage from '~/assets/images/certifications/LearnSassCouse.png'
-import LearnVueJsCourseImage from '~/assets/images/certifications/LearnVueJsCourse.png'
-import CrashCourseOnPythonImage from '~/assets/images/certifications/crashCourseOnPython.png'
+import BuildAWebsiteWithHtmlCssAndGithubPagesSkillPathImage from '~/assets/images/certifications/BuildAWebsiteWithHtmlCssAndGithubPagesSkillPath.webp'
+import IntroductionToUiAndUxDesignCourseImage from '~/assets/images/certifications/IntroductionToUiAndUxDesignCourse.webp'
+import LearnCssCourseImage from '~/assets/images/certifications/LearnCssCourse.webp'
+import LearnHtmlCourseImage from '~/assets/images/certifications/LearnHtmlCourse.webp'
+import LearnJavaScriptCourseImage from '~/assets/images/certifications/LearnJavaScriptCourse.webp'
+import LearnSassCouseImage from '~/assets/images/certifications/LearnSassCouse.webp'
+import LearnVueJsCourseImage from '~/assets/images/certifications/LearnVueJsCourse.webp'
+import CrashCourseOnPythonImage from '~/assets/images/certifications/crashCourseOnPython.webp'
 
 
 export default [

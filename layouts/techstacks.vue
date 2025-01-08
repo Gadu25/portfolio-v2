@@ -16,17 +16,17 @@
 </template>
 
 <script setup>
-    import bootstrap from '~/assets/images/tech/bootstrap.png'
-    import javascript from '~/assets/images/tech/javascript.png'
-    import laravel from '~/assets/images/tech/laravel.png'
-    import mysql from '~/assets/images/tech/mysql.png'
-    import nodejs from '~/assets/images/tech/nodejs.png'
-    import nuxt from '~/assets/images/tech/nuxt.png'
-    import php from '~/assets/images/tech/php.png'
-    import postgresql from '~/assets/images/tech/postgresql.png'
-    import sass from '~/assets/images/tech/sass.png'
-    import tailwind from '~/assets/images/tech/tailwind.png'
-    import vue from '~/assets/images/tech/vue.png'
+    import bootstrap from '~/assets/images/tech/bootstrap.webp'
+    import javascript from '~/assets/images/tech/javascript.webp'
+    import laravel from '~/assets/images/tech/laravel.webp'
+    import mysql from '~/assets/images/tech/mysql.webp'
+    import nodejs from '~/assets/images/tech/nodejs.webp'
+    import nuxt from '~/assets/images/tech/nuxt.webp'
+    import php from '~/assets/images/tech/php.webp'
+    import postgresql from '~/assets/images/tech/postgresql.webp'
+    import sass from '~/assets/images/tech/sass.webp'
+    import tailwind from '~/assets/images/tech/tailwind.webp'
+    import vue from '~/assets/images/tech/vue.webp'
 
     const techs = ref(
         [
