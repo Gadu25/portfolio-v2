@@ -42,9 +42,11 @@ li {
 
 @media screen and (max-width: 480px) {
     h1 {
-        font-size: $mobile_font_large;
+        font-size: 40px;
     }
-
+    h2 {
+        font-size: 20px;
+    }
     p {
         font-size: $mobile_font_medium
     }
