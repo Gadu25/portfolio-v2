@@ -16,6 +16,7 @@ import tailwind from '~/assets/images/tech/tailwind.webp'
 import vue from '~/assets/images/tech/vue.webp'
 
 import catchThemAll from '~/assets/images/projects/catchThemAll.webp'
+import apiHub from '~/assets/images/projects/apiHub.webp'
 
 export default [
     {
@@ -27,6 +28,46 @@ export default [
             title: 'ongoing development',
             color: '#FFA500'
         },
+        contributors: [
+        ],
+        techUsed: [
+            {
+                name: 'Nuxt',
+                icon: nuxt
+            },
+            {
+                name: 'Tailwind',
+                icon: tailwind
+            },
+            {
+                name: 'Javascript',
+                icon: javascript
+            },
+            {
+                name: 'NodeJS',
+                icon: nodejs
+            },
+            {
+                name: 'Sass',
+                icon: sass
+            }
+        ]
+    },
+    {
+        name: 'API-Hub',
+        previewImage: apiHub,
+        url: 'https://api-hub-seven.vercel.app/',
+        description: 'API Hub is a versatile web application that integrates multiple APIs to deliver a seamless and interactive experience. Built using Nuxt.js with Pinia for state management, it showcases advanced skills in API fetching, styling, and dynamic data presentation. The app features real-time weather updates (OpenWeatherMap), the latest news (NewsAPI), stunning photography (Unsplash), country data (REST Countries), random user profiles (RandomUser API), daily jokes (JokeAPI), currency exchange rates (ExchangeRate API), NASA insights, and a library database (Open Library API). With a modern, responsive design, API Hub demonstrates efficient data handling and a polished user experience.',
+        status: {
+            title: 'ongoing development',
+            color: '#FFA500'
+        },
+        contributors: [
+            {
+                userName: 'Gerald Pagsuyoin',
+                link: 'https://github.com/gpagsuyoin'
+            }
+        ],
         techUsed: [
             {
                 name: 'Nuxt',

@@ -33,6 +33,10 @@
                     }
                     .head {
                         margin-bottom: 20px;
+                        transition: all .3s;
+                        &:hover {
+                            color: var(--special-color)
+                        }
                     }
                     .techs {
                         display: flex;
@@ -54,6 +58,16 @@
                     }
                     .desc {
                         margin-top: 20px;
+                    }
+                    .contributors {
+                        margin-top: 20px;
+                        a {
+                            color: var(--special-color);
+                            transition: all .3s;
+                            &:hover{
+                                color:var(--special-color-60)
+                            }
+                        }
                     }
                 }
                 &:hover{
