@@ -4,15 +4,15 @@
             <h3>Personal</h3>
 
             <template v-for="project of projects">
-                <div class="project-card hover-pointer" data-aos="fade-up" @click="visitSite(project.url)">
+                <div class="project-card" data-aos="fade-up">
                     <div class="project-content">
-                        <div class="col" @click="visitSite(project.url)">
+                        <div class="col hover-pointer" @click="visitSite(project.url)">
                             <div class="image-container">
                                 <img :src="project.previewImage" :alt="project.name+'-preview'"/>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="head" @click="visitSite(project.url)">
+                            <div class="head hover-pointer" @click="visitSite(project.url)">
                                 <h4>{{ project.name }}</h4>
                                 <small>
                                     <i class="fa fa-circle" style="font-size: 9px;" :style="'color:'+project.status.color"></i> 
