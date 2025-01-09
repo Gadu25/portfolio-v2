@@ -36,7 +36,7 @@
                                     <small><strong>Contributor(s)</strong></small>
                                 </p>
                                 <template v-for="item in project.contributors">
-                                    <a :href="item.link">🤝 {{ item.userName }}</a>
+                                    <a :href="item.link" target="_blank">🤝 {{ item.userName }}</a>
                                 </template>
                             </div>
                         </div>
