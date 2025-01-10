@@ -8,7 +8,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup="ts">
     import Hero from '../layouts/hero'
     import AboutMe from '../layouts/aboutme.vue';
     import TechStacks from '~/layouts/techstacks.vue';
