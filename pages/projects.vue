@@ -1,8 +1,7 @@
 <template>
     <div class="projects">
         <div class="content">
-            <h3>Personal</h3>
-
+            <h4>Personal</h4>
             <template v-for="project of projects">
                 <div class="project-card" data-aos="fade-up">
                     <div class="project-content">

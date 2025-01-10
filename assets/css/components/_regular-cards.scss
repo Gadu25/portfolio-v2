@@ -1,11 +1,12 @@
 .regular-card {
     margin: 10px 0;
-    
     .card {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
         .company-wrapper {
             display: flex;
             flex-direction: column;
-            margin-bottom: 15px;
             border-bottom: 2px solid var(--card-color);
             border-radius: 12px;
             padding: 25px;

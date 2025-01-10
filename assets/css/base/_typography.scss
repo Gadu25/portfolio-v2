@@ -1,11 +1,11 @@
 $font_large: 50px;
 $font_medium_large: 30px;
-$font_medium: 18px;
+$font_medium: 16px;
 $font_small: 12px;
 
 $mobile_font_large: 50px;
 $mobile_font_medium_large: 24px; 
-$mobile_font_medium: 12px;
+$mobile_font_medium: 14px;
 $mobile_font_small: 8px;
 
 
@@ -52,7 +52,7 @@ li {
     }
 
     h4 {
-        font-size: $mobile_font_medium_large;
+        font-size: $font_medium;
     }
 
     li {

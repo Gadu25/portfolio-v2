@@ -1,7 +1,7 @@
 <template>
     <div class="regular-work-exp">
         <div class="content">
-            <h3>Experience</h3>
+            <h4>Experience</h4>
             <RegularCard/>
         </div>
     </div>
