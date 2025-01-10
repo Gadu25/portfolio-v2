@@ -23,6 +23,7 @@ export default [
         name: 'CatchThemAll',
         previewImage: catchThemAll,
         url: 'https://catch-them-all-eta.vercel.app/',
+        gitHubUrl: 'https://github.com/Gadu25/catchThemAll',
         description: 'CatchTheMall is an interactive Pokémon-themed web application designed to provide users with an engaging experience of capturing and viewing various Pokémon. Built using Nuxt.js for server-side rendering, Tailwind CSS for a responsive layout, and SCSS for custom styling, this app offers a visually appealing and fluid user experience. The application allows users to browse, search, and filter through a collection of Pokémon while incorporating smooth, custom animations.',
         status: {
             title: 'ongoing development',
@@ -57,6 +58,7 @@ export default [
         name: 'API-Hub',
         previewImage: apiHub,
         url: 'https://api-hub-seven.vercel.app/',
+        gitHubUrl: 'https://github.com/Gadu25/api-hub',
         description: 'API Hub is a versatile web application that integrates multiple APIs to deliver a seamless and interactive experience. Built using Nuxt.js with Pinia for state management, it showcases advanced skills in API fetching, styling, and dynamic data presentation. The app features real-time weather updates (OpenWeatherMap), the latest news (NewsAPI), stunning photography (Unsplash), country data (REST Countries), random user profiles (RandomUser API), daily jokes (JokeAPI), currency exchange rates (ExchangeRate API), NASA insights, and a library database (Open Library API). With a modern, responsive design, API Hub demonstrates efficient data handling and a polished user experience.',
         status: {
             title: 'ongoing development',

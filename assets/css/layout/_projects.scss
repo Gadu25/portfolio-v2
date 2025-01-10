@@ -33,9 +33,6 @@
                     .head {
                         margin-bottom: 20px;
                         transition: all .3s;
-                        &:hover {
-                            color: var(--special-color)
-                        }
                     }
                     .techs {
                         display: flex;
@@ -68,9 +65,38 @@
                             }
                         }
                     }
+                    .buttons {
+                        margin-top: 30px;
+                        display: flex;
+                        gap: 14px;
+                        .github {
+                            padding: 4px 10px;
+                            border-radius: 5px;
+                            color: #333333;
+                            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                            display: flex;
+                            background-color: #ffffff;
+                            gap: 5px;
+                            img {
+                                width: 30px;
+                            }
+                        }
+                        .visit {
+                            display: flex;
+                            gap: 8px;
+                            align-items: center;
+                            padding: 4px 10px;
+                            border-radius: 5px;
+                            background-color: var(--special-color);
+                            color: var(--background-color);
+                        }
+                    }
                 }
                 &:hover{
                     background-color: var(--card-color);
+                    .head {
+                        color: var(--special-color)
+                    }
                     .col{
                         .image-container {
                             img {

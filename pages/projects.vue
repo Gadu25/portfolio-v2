@@ -5,13 +5,13 @@
             <template v-for="project of projects">
                 <div class="project-card" data-aos="fade-up">
                     <div class="project-content">
-                        <div class="col hover-pointer" @click="visitSite(project.url)">
+                        <div class="col hover-pointer">
                             <div class="image-container">
                                 <img :src="project.previewImage" :alt="project.name+'-preview'"/>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="head hover-pointer" @click="visitSite(project.url)">
+                            <div class="head hover-pointer">
                                 <h4>{{ project.name }}</h4>
                                 <small>
                                     <i class="fa fa-circle" style="font-size: 9px;" :style="'color:'+project.status.color"></i> 
@@ -38,6 +38,16 @@
                                     <a :href="item.link" target="_blank">🤝 {{ item.userName }}</a>
                                 </template>
                             </div>
+                            <div class="buttons">
+                                <div class="github hover-pointer" @click="visitSite(project.gitHubUrl)">
+                                    <img :src="github" alt="github-icon"/>
+                                    <p>Github</p>
+                                </div>
+                                <div class="visit hover-pointer" @click="visitSite(project.url)">
+                                    <p>Visit Demo</p>
+                                    <i class="fa fa-chevron-right"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -48,6 +58,7 @@
 
 <script setup>
     import projectData from '~/data/projects';
+    import github from '~/assets/images/tech/github.webp'
 
     const projects = ref(projectData)
 
