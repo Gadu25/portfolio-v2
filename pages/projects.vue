@@ -1,7 +1,7 @@
 <template>
     <div class="projects">
         <div class="content">
-            <h4>Personal</h4>
+            <h4>Personal <span class="item-count">({{ projects.length }})</span></h4>
             <template v-for="project of projects">
                 <div class="project-card" data-aos="fade-up">
                     <div class="project-content">

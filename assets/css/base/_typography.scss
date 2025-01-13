@@ -39,6 +39,10 @@ li {
     font-size: $font_medium;
 }
 
+.item-count {
+    color: var(--special-color)
+}
+
 
 @media screen and (max-width: 480px) {
     h1 {
@@ -68,4 +72,3 @@ li {
         font-size: $mobile_font_medium;
     }
 }
-

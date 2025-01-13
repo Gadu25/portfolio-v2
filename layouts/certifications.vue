@@ -1,7 +1,7 @@
 <template>
     <div class="certifications">
         <div class="content">
-            <h4>Certificates</h4>
+            <h4>Certificates <span class="item-count">({{ certs.length }})</span></h4>
 
             <template v-for="cert of (showAll ? certs : certs.slice(0, 3))">
                 <div class="cert-card hover-pointer" data-aos="fade-up" @click="downloadPDF(cert.file, cert.name)">
