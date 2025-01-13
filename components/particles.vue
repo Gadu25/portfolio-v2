@@ -9,7 +9,7 @@
         script.src = "/js/particles.js"; // Ensure the file is here
         script.onload = () => {
         window.particlesJS.load("particles-js", "/particles-config.json", () => {
-            console.log("Particles.js loaded successfully.");
+            // console.log("Particles.js loaded successfully.");
         });
         };
         script.onerror = () => {

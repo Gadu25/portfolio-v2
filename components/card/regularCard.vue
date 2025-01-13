@@ -5,7 +5,7 @@
                 <div class="company-wrapper" data-aos="fade-up">
                     <div class="company-title">
                         <div class="company-logo">
-                            <img :src="work.logo" :alt="work.name+'-logo'"/>
+                            <img :src="work.logo" :alt="work.name + '-logo'" />
                         </div>
                         <div class="company-name">
                             <h4>{{ work.name }}</h4>
@@ -13,22 +13,23 @@
                     </div>
                     <div class="my-role">
                         <h4>{{ work.jobTitle }}</h4>
-                        <small>{{ work.date }} <i v-if="work.duration.length > 0">. {{ work.duration
-                                }}</i></small>
+                        <small>{{ work.start }} - {{ work.end || 'present' }} <i>.({{ getStayDuration(work) }})</i></small>
                     </div>
                     <small><strong>Tech stacks</strong></small>
                     <div class="techs">
                         <template v-for="item in work.techUsed">
                             <div class="tech">
-                                <img :src="item.icon" :alt="'icon-for-'+item.tech"/>
+                                <img :src="item.icon" :alt="'icon-for-' + item.tech" />
                                 <span class="tech-name"><small>{{ item.name }}</small></span>
                             </div>
                         </template>
                     </div>
                     <div class="show-more hover-pointer" @click="work.isRolesShown = !work.isRolesShown">
-                        <small><i class="fa" :class="work.isRolesShown ? 'fa-chevron-up':'fa-chevron-down'"></i> show {{ work.isRolesShown ? 'less':'more' }}..</small>
+                        <small><i class="fa" :class="work.isRolesShown ? 'fa-chevron-up' : 'fa-chevron-down'"></i> show {{
+                            work.isRolesShown ?
+                            'less':'more' }}..</small>
                     </div>
-                    <div class="role-tasks" :class="work.isRolesShown ? 'active':''">
+                    <div class="role-tasks" :class="work.isRolesShown ? 'active' : ''">
                         <ul>
                             <template v-for="item in work.roles">
                                 <li><small>{{ item }}</small></li>
@@ -42,7 +43,48 @@
 </template>
 
 <script setup>
-    import workexp from '~/data/workexp';
+import workexp from '~/data/workexp';
 
-    const works = ref(workexp)
+const works = ref(workexp)
+
+const getStayDuration = (work) => {
+    const currentDate = new Date();
+    const end = work.end 
+        ? work.end.split("/")
+        : [currentDate.getMonth() + 1, currentDate.getFullYear()]; // Use current date if no end date
+    const start = work.start.split("/");
+
+    const startMonth = parseInt(start[0]);
+    const startYear = parseInt(start[1]);
+
+    const endMonth = parseInt(end[0]);
+    const endYear = parseInt(end[1]);
+
+    // Calculate year and month difference
+    let yearDiff = endYear - startYear;
+    let monthDiff = endMonth - startMonth;
+
+    // Adjust for negative month difference
+    if (monthDiff < 0) {
+        yearDiff -= 1;
+        monthDiff += 12;
+    }
+
+    // Build the result phrases
+    const yearPhrase = yearDiff > 1 ? `${yearDiff} years` : yearDiff === 1 ? "1 year" : "";
+    const monthPhrase = monthDiff > 1 ? `${monthDiff} months` : monthDiff === 1 ? "1 month" : "";
+
+    // Combine the phrases
+    if (yearPhrase && monthPhrase) {
+        return `${yearPhrase} and ${monthPhrase}`;
+    } else if (yearPhrase) {
+        return yearPhrase;
+    } else if (monthPhrase) {
+        return monthPhrase;
+    } else {
+        return "0 months";
+    }
+};
+
+
 </script>
