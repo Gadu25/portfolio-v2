@@ -6,6 +6,7 @@ import LearnJavaScriptCourse from '~/assets/pdfs/LearnJavaScriptCourse.pdf'
 import LearnSassCouse from '~/assets/pdfs/LearnSassCouse.pdf'
 import LearnVueJsCourse from '~/assets/pdfs/LearnVueJsCourse.pdf'
 import CrashCourseOnPython from '~/assets/pdfs/CrashCourseOnPython.pdf'
+import AdvanceCSS from '~/assets/pdfs/AdvanceCSS.pdf'
 
 import BuildAWebsiteWithHtmlCssAndGithubPagesSkillPathImage from '~/assets/images/certifications/BuildAWebsiteWithHtmlCssAndGithubPagesSkillPath.webp'
 import IntroductionToUiAndUxDesignCourseImage from '~/assets/images/certifications/IntroductionToUiAndUxDesignCourse.webp'
@@ -15,9 +16,17 @@ import LearnJavaScriptCourseImage from '~/assets/images/certifications/LearnJava
 import LearnSassCouseImage from '~/assets/images/certifications/LearnSassCouse.webp'
 import LearnVueJsCourseImage from '~/assets/images/certifications/LearnVueJsCourse.webp'
 import CrashCourseOnPythonImage from '~/assets/images/certifications/crashCourseOnPython.webp'
+import AdvanceCSSImage from '~/assets/images/certifications/AdvanceCSS.webp'
 
 
 export default [
+    {
+        name: 'Advance CSS an Sass',
+        issued: 'Jan 2025',
+        provider: 'Udemy',
+        file: AdvanceCSS,
+        image: AdvanceCSSImage
+    },
     {
         name: 'Crash Course on Python',
         issued: 'Jul 2023',
