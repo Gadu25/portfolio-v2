@@ -7,6 +7,7 @@
                     <div class="tech" data-aos="fade-up">
                         <a class="image-container hover-pointer" :href="tech.link" target="_blank"  :aria-label="'Visit '+ tech.name +'website'">
                             <img :src="tech.icon" :alt="tech.name+'-icon'"/>
+                            <span class="tech-title"><small>{{ tech.name }}</small></span>
                         </a>
                     </div>
                 </template>
