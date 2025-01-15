@@ -73,6 +73,9 @@
                 .tech {
                     .image-container {
                         width: 40px;
+                        img {
+                            filter: grayscale(0%);
+                        }
                     }
                 }
             }
