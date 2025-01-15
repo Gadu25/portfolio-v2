@@ -13,7 +13,7 @@
                     </div>
                     <div class="my-role">
                         <h4>{{ work.jobTitle }}</h4>
-                        <small>{{ work.start }} - {{ work.end || 'present' }} <i>.({{ getStayDuration(work) }})</i></small>
+                        <small>{{ work.start }} - {{ work.end || 'present' }} <i>({{ getStayDuration(work) }})</i></small>
                     </div>
                     <small><strong>Tech stacks</strong></small>
                     <div class="techs">
@@ -44,47 +44,9 @@
 
 <script setup>
 import workexp from '~/data/workexp';
+import { useStayDuration } from "~/composables/useStayDuration";
 
+const { getStayDuration } = useStayDuration();
 const works = ref(workexp)
-
-const getStayDuration = (work) => {
-    const currentDate = new Date();
-    const end = work.end 
-        ? work.end.split("/")
-        : [currentDate.getMonth() + 1, currentDate.getFullYear()]; // Use current date if no end date
-    const start = work.start.split("/");
-
-    const startMonth = parseInt(start[0]);
-    const startYear = parseInt(start[1]);
-
-    const endMonth = parseInt(end[0]);
-    const endYear = parseInt(end[1]);
-
-    // Calculate year and month difference
-    let yearDiff = endYear - startYear;
-    let monthDiff = endMonth - startMonth;
-
-    // Adjust for negative month difference
-    if (monthDiff < 0) {
-        yearDiff -= 1;
-        monthDiff += 12;
-    }
-
-    // Build the result phrases
-    const yearPhrase = yearDiff > 1 ? `${yearDiff} years` : yearDiff === 1 ? "1 year" : "";
-    const monthPhrase = monthDiff > 1 ? `${monthDiff} months` : monthDiff === 1 ? "1 month" : "";
-
-    // Combine the phrases
-    if (yearPhrase && monthPhrase) {
-        return `${yearPhrase} and ${monthPhrase}`;
-    } else if (yearPhrase) {
-        return yearPhrase;
-    } else if (monthPhrase) {
-        return monthPhrase;
-    } else {
-        return "0 months";
-    }
-};
-
 
 </script>

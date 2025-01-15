@@ -27,8 +27,7 @@
                             </div>
                             <div class="my-role">
                                 <h4>{{ card.jobTitle }}</h4>
-                                <small>{{ card.date }} <i v-if="card.duration.length > 0">. {{ card.duration
-                                        }}</i></small>
+                                <small>{{ card.date }} <i> ({{ getStayDuration(card) }})</i></small>
                             </div>
                             <div class="role-tasks">
                                 <ul>
@@ -47,7 +46,9 @@
 
 <script setup>
 import workexp from '~/data/workexp';
+import { useStayDuration } from "~/composables/useStayDuration";
 
+const { getStayDuration } = useStayDuration();
 const cards = ref(workexp)
 
 const clickCard = (index) => {
