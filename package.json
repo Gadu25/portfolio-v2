@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxtjs/i18n": "9.1.2",
     "@vercel/analytics": "^1.4.1",
     "aos": "^2.3.4",
     "nuxt": "^3.13.0",
