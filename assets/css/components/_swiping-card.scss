@@ -65,8 +65,10 @@
                             img {
                                 width: 40px;
                                 object-fit:cover;
-                                filter: grayscale(100%);
                                 transition: all .3s ease-in;
+                                @media screen and (min-width: 1000px){
+                                    filter: grayscale(100%);
+                                }
                             }
                         }
                         .company-name {
