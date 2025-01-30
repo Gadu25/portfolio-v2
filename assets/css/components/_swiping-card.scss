@@ -46,6 +46,13 @@
                 border-radius: 12px;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
                 transition: transform 0.6s ease, z-index 0.2s ease;
+                &:hover {
+                    .company-logo {
+                        img {
+                            filter: grayscale(0%) !important;
+                        }
+                    }
+                }
         
                 .company-wrapper {
                     display: flex;
@@ -58,6 +65,8 @@
                             img {
                                 width: 40px;
                                 object-fit:cover;
+                                filter: grayscale(100%);
+                                transition: all .3s ease-in;
                             }
                         }
                         .company-name {

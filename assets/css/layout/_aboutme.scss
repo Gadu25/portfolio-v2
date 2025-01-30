@@ -77,9 +77,12 @@
                         object-fit: cover;
                         width: 100%;
                         transition: box-shadow .3s ease;
-                        
+                        @media screen and (min-width: 1000px) {
+                            filter: grayscale(100%);
+                        }
                         &:hover {
-                            box-shadow: var(--glowing-card)
+                            box-shadow: var(--glowing-card);
+                            filter: unset;
                         }
                     }
                 }
