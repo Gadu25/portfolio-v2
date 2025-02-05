@@ -5,13 +5,13 @@
             <template v-for="project of projects">
                 <div class="project-card" data-aos="fade-up">
                     <div class="project-content">
-                        <div class="col hover-pointer">
+                        <div class="col">
                             <div class="image-container">
                                 <img :src="project.previewImage" :alt="project.name+'-preview'"/>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="head hover-pointer">
+                            <div class="head">
                                 <h4>{{ project.name }}</h4>
                                 <small>
                                     <i class="fa fa-circle" style="font-size: 9px;" :style="'color:'+project.status.color"></i> 
