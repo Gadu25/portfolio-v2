@@ -1,7 +1,7 @@
 import { ref, onMounted } from 'vue'
 
 export function useTheme() {
-  const theme = ref('light') // Default theme
+  const theme = ref('dark') // Default theme
 
   onMounted(() => {
     // Retrieve the saved theme from localStorage
