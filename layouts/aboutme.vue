@@ -2,7 +2,10 @@
   <div class="about-me">
     <div class="content">
       <div class="content-column" data-aos="fade-up">
-        <h3>About Me</h3>
+        <div class="about-me-title">
+          <h3>About Me</h3>
+          <img class="memoji-hi" src="~/assets/images/memoji/hi.webp" alt="Alex on mac"/>
+        </div>
         <p>
           Hi there! I’m Alexander Udag, a web developer enthusiastic about
           coding and continuous improvement. I work with

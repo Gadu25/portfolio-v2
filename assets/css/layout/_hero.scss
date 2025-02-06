@@ -6,11 +6,29 @@
     min-height: 90vh;
     margin-top: 15px;
     .content {
+        position: relative;
+        text-align: center;
+        margin-top: 48px;
         .headline {
             color: var(--special-color);
             font-weight: bold;
             margin-bottom: 20px;
         }
+        img {
+            display: none;
+            @media screen and (min-width: 480px) {
+                display: block;
+                position: absolute;
+                height: 180px;
+                margin: auto;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%) translateY(-156px);
+            }
+        }
+    }
+    .special-button {
+        margin: 20px auto;
     }
 }
 

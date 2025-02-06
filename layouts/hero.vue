@@ -2,11 +2,12 @@
     <div class="hero">
         <Particles />
         <div class="content">
-            <p>I am..</p>
+            <img src="~/assets/images/memoji/mac.webp" alt="Alex on mac"/>
+            <!-- <p>I am..</p> -->
             <h1>Alexander Udag</h1>
             <h2 class="headline">Turning Ideas into Interactive Web Solutions</h2>
             <small>Software Engineer / Web Developer 💻</small>
-            <SpecialButton/>
+            <SpecialButton class="special-button"/>
         </div>
     </div>
 </template>

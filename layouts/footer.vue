@@ -6,7 +6,10 @@
             </div>
             <div class="col">
                 <div class="contact">
-                    <p>Get in Touch |</p>
+                    <div class="get-in-touch">
+                        <img class="call" src="~/assets/images/memoji/call.webp" alt="Alex call memoji"/>
+                        <p>Get in Touch |</p>
+                    </div>
                     <div class="socials">
                         <a href="https://www.linkedin.com/in/alexander-udag/" target="_blank" aria-label="Visit my linkedIn profile">
                             <i class="fa-brands fa-linkedin-in hover-pointer"></i>
