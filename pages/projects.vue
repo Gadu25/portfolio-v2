@@ -13,7 +13,7 @@
                         <div class="col">
                             <div class="head">
                                 <h4>{{ project.name }}</h4>
-                                <small>
+                                <small class="text-secondary">
                                     <i class="fa fa-circle" style="font-size: 9px;" :style="'color:'+project.status.color"></i> 
                                     {{ project.status.title }}
                                 </small>

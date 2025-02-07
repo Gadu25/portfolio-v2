@@ -20,7 +20,7 @@
                 </div>
             </template>
 
-            <div class="show-more hover-pointer" @click="showAll = !showAll">
+            <div class="show-more hover-pointer text-secondary" @click="showAll = !showAll">
                 <small><i class="fa" :class="showAll ? 'fa-chevron-up':'fa-chevron-down'"></i> show {{ showAll ? 'less':'all' }}..</small>
             </div>
         </div>

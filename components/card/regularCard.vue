@@ -13,7 +13,7 @@
                     </div>
                     <div class="my-role">
                         <h4>{{ work.jobTitle }}</h4>
-                        <small>{{ work.start }} - {{ work.end || 'present' }} <i>({{ getStayDuration(work) }})</i></small>
+                        <small class="text-secondary">{{ work.start }} - {{ work.end || 'present' }} <i>({{ getStayDuration(work) }})</i></small>
                     </div>
                     <small><strong>Tech stacks</strong></small>
                     <div class="techs">
@@ -24,7 +24,7 @@
                             </div>
                         </template>
                     </div>
-                    <div class="show-more hover-pointer" @click="work.isRolesShown = !work.isRolesShown">
+                    <div class="show-more hover-pointer text-secondary" @click="work.isRolesShown = !work.isRolesShown">
                         <small><i class="fa" :class="work.isRolesShown ? 'fa-chevron-up' : 'fa-chevron-down'"></i> show {{
                             work.isRolesShown ?
                             'less':'more' }}..</small>

@@ -27,7 +27,7 @@
                             </div>
                             <div class="my-role">
                                 <h4>{{ card.jobTitle }}</h4>
-                                <small>{{ card.date }} <i> ({{ getStayDuration(card) }})</i></small>
+                                <small class="text-secondary">{{ card.date }} <i> ({{ getStayDuration(card) }})</i></small>
                             </div>
                             <div class="role-tasks">
                                 <ul>

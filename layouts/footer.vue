@@ -2,7 +2,7 @@
     <div class="footer">
         <div class="content">
             <div class="col">
-                <p>© {{ currentYear }} All Rights Reserved</p>
+                <p class="text-secondary">© {{ currentYear }} All Rights Reserved</p>
             </div>
             <div class="col">
                 <div class="contact">
