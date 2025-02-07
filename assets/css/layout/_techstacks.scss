@@ -1,10 +1,5 @@
 .tech-stacks {
     min-height: 40vh;
-    margin: 5vh 0;
-    display: flex;
-    justify-content: center;
-    overflow-x: hidden;
-    
     &:hover {
         h3 {
             transition: color 3s ease;
@@ -12,8 +7,9 @@
         }
     }
     .content {
-        width: 90%;
-
+        max-width: 1200px;
+        padding: 0 15px;
+        margin: auto;
         .tech-wrapper {
             display: flex;
             flex-wrap: wrap;
@@ -54,7 +50,6 @@
                     &:hover {
                         background-color: var(--card-color);
                         img {
-                            // filter: grayscale(0%);
                             transform: scale(1);
                         }
                         .tech-title {
@@ -67,16 +62,10 @@
     }
 
     @media screen and (max-width: 480px) {
-        .content {
-            width: 90%;
-            .tech-wrapper {
-                .tech {
-                    .image-container {
-                        img {
-                            // filter: grayscale(0%);
-                            width: 100%;
-                        }
-                    }
+        .tech {
+            .image-container {
+                img {
+                    width: 100%;
                 }
             }
         }

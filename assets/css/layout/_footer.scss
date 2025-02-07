@@ -5,7 +5,9 @@
     background: linear-gradient(to top, var(--card-color), transparent);
     .content {
         height: 100%;
-        padding: 0 10vw;
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;

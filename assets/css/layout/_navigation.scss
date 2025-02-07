@@ -9,7 +9,9 @@
     .content {
         display: flex;
         flex-direction: row;
-        padding: 2px 5vw;
+        padding: 2px 8px;
+        margin: auto;
+        max-width: 1200px;
         justify-content: space-between;
         align-items: center;
         transition: all .5s ease;
@@ -124,12 +126,12 @@
         }
 
         @media screen and (max-width: 480px) {
+            margin: 0 15px;
             #menuToggle {
                 display: block;
                 padding-top: 8px;
                 padding-bottom: 8px;
             }
-
             ul {
                 display: none;
             }

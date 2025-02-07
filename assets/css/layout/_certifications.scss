@@ -3,7 +3,8 @@
     width: 100vw;
 
     .content {
-        width: 90%;
+        max-width: 1200px;
+        padding: 0 15px;
         margin: auto;
 
         .show-more {
@@ -66,12 +67,6 @@
                     }
                 }
             }
-        }
-    }
-
-    @media screen and (max-width: 480px) {
-        .content {
-            width: 90%;
         }
     }
 }

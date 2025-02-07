@@ -2,8 +2,9 @@
     margin-top: 80px;
     width: 100vw;
     .content {
-        width: 90%;
+        max-width: 1200px;
         margin: auto;
+        padding: 0 15px;
     }
 
     @media screen and (max-width: 480px) {
