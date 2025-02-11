@@ -21,7 +21,7 @@
                     </label>
                 </div>
             </div>
-            <ThemeToggle/>
+            <ThemeToggle class="toggle-wrapper"/>
         </div> 
         <div class="mobile-nav" :class="toggle == true ? 'active': ''">
             <ul>

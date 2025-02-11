@@ -9,12 +9,17 @@
     .content {
         display: flex;
         flex-direction: row;
-        padding: 2px 8px;
+        padding: 2px 0;
+        // width: 100%;
         margin: auto;
         max-width: 1200px;
         justify-content: space-between;
         align-items: center;
         transition: all .5s ease;
+
+        .toggle-wrapper, ul {
+            margin: 0 8px;
+        }
 
         #menuToggle {
             display: none;
@@ -140,6 +145,7 @@
 
     .mobile-nav {
         height: 0;
+        width: 0;
         opacity: 0;
         // background: var(--background-color);
         display: flex;
