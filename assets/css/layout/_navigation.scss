@@ -167,6 +167,7 @@
         }
         &.active {
             height: calc(100vh - 58px);
+            width: auto;
             opacity: 1;
             ul {
                 li {
