@@ -23,7 +23,7 @@ export default [
     {
         logo: galaticLogo,
         name: 'Galatic Events',
-        jobTitle: 'Software Engineer',
+        jobTitle: 'Frontend - Software Engineer',
         start: '09/2024',
         end: null,
         date: '09/2024 - present',
