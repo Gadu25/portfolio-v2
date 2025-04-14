@@ -1,0 +1,22 @@
+.error-wrapper {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+
+    .head-message {
+        color: var(--special-color);
+        text-align: center;
+    }
+
+    .error-message {
+        text-align: center;
+    }
+
+    .back {
+        .button-container {
+            margin: 12px auto;
+        }
+    }
+}
