@@ -112,16 +112,10 @@
     }
 }
 
-// @media screen and (max-height: 700px) {
-//     .about-j{
-//         min-height: 100vh;
-//     }
-// }
-
 @media screen and (max-width: 1000px) {
     .about-me {
-        .content {
-            flex-direction: column;
+        .content .content-column:nth-child(2) {
+            display: none;
         }
     }
 }

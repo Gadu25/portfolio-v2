@@ -62,10 +62,37 @@
     }
 
     @media screen and (max-width: 480px) {
-        .tech {
+        margin-bottom: 24px;
+        .content .tech-wrapper {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: unset;
+            .tech {
+                justify-content: flex-start;
+                background: var(--card-color);
+                padding: 8px;
+                margin-bottom: 4px;
+                border-radius: 8px;
+            }
+        }
+        .content .tech-wrapper .tech .image-container {
+            flex-direction: row;
+            width: unset;
+            height: unset;
+            padding: unset;
+            .tech-title {
+                opacity: 1;
+                margin-top: unset;
+            }
+        }
+        .content .tech-wrapper .tech {
             .image-container {
+                gap: 10px;
                 img {
-                    width: 100%;
+                    height: 40px;
+                    object-fit: contain;
+                    width: 40px;
+                    transform: unset;
                 }
             }
         }
