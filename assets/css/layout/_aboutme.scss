@@ -114,6 +114,7 @@
 
 @media screen and (max-width: 1000px) {
     .about-me {
+        min-height: unset;
         .content .content-column:nth-child(2) {
             display: none;
         }
