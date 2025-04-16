@@ -48,20 +48,22 @@
                         .image-container {
                             img {
                                 transform: scale(1.1);
+                                @media screen and (max-width: 480px) {
+                                    transform: unset;
+                                }
                             }
                         }
                     }
                 }
-
-            }
-            @media screen and (max-width: 480px) {
-                .cert-content {
+                @media screen and (max-width: 480px) {
                     flex-direction: column;
+                    background-color: var(--card-color);
                     .col {
                         .image-container {
+                            margin-bottom: 8px;
                             width: 100%;
                             img {
-                                transform: scale(1);
+                                transform: scale(1.2);
                             }
                         }
                     }
