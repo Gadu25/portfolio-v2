@@ -1,4 +1,5 @@
 import galaticLogo from '~/assets/images/galatic_logo.webp'
+import flexiconLogo from '~/assets/images/flexicon_logo.webp'
 import xtendlyLogo from '~/assets/images/xtendly_logo.webp'
 import seiLogo from '~/assets/images/sei_logo.webp'
 
@@ -21,8 +22,8 @@ import vue from '~/assets/images/tech/vue.webp'
 
 export default [
     {
-        logo: galaticLogo,
-        name: 'Galatic Events',
+        logo: flexiconLogo,
+        name: 'Flexicon Solution Inc.',
         jobTitle: 'Frontend - Software Engineer',
         start: '09/2024',
         end: null,
