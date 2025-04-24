@@ -11,7 +11,7 @@ $moonWidth: $width / 5;
     width: $width;
     height: $height;
     background-color: $color;
-    border-radius: $height/2;
+    border-radius: calc($height/2);
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -32,8 +32,8 @@ $moonWidth: $width / 5;
 
             &::after{
                 content:"";
-                width: $height - $height*.2;
-                height: $height - $height*.2;
+                width: $height - calc($height*.2);
+                height: $height - calc($height*.2);
                 background-color: $color;
                 position: absolute;
                 border-radius: 50%;

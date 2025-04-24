@@ -6,7 +6,7 @@ $height: 40px;
     width: $width;
     margin: 5px 0;
     // cursor: pointer;
-    border-radius: $height/4;
+    border-radius: calc($height/4);
     border: 1px solid var(--text-color);
 
     
