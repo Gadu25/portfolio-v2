@@ -59,10 +59,28 @@
 <script setup>
     import projectData from '~/data/projects';
     import github from '~/assets/images/tech/github.webp'
+    import ogImage from '~/assets/images/memoji/hi.webp';
 
     const projects = ref(projectData)
 
     const visitSite = (url)=> {
         window.open(url)
     }
+
+    useSeoMeta({
+        description: 'Browse the personal projects and web app demos created by Alexander Udag using Vue, Nuxt, Laravel, and more.',
+        ogTitle: 'Personal Projects & Demos – Alexander Udag',
+        ogDescription: 'Discover personal experiments and side projects by Alexander that reflect his creativity and technical skills.',
+        ogImage: ogImage,
+        ogUrl: 'https://alexander-udag.vercel.apps/projects',
+        twitterTitle: 'Personal Projects & Demos – Alexander Udag',
+        twitterDescription: 'Explore side projects and interactive demos crafted with love and code by Alexander Udag.',
+        twitterImage: ogImage,
+        twitterCard: 'summary'
+    })
+
+    useHead({
+        htmlAttrs: { lang: 'en' },
+        link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }]
+    })
 </script>
