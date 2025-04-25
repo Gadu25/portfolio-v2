@@ -15,6 +15,7 @@
 <script setup>
     import SpecialButton from '~/components/button/specialButton.vue';
     import Particles from '~/components/particles.vue';
+    import myResume from '~/assets/pdfs/resume.pdf';
 
     import { downloadPDF } from '~/utls/download';
 </script>
