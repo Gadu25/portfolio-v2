@@ -8,7 +8,7 @@
 <script setup>
     import RegularWorkExp from '~/layouts/regularworkexp.vue';
     import Certifications from '~/layouts/certifications.vue';
-    import ogImage from '~/assets/images/memoji/hi.webp';
+    import ogImage from '~/assets/images/memoji/hired.webp';
 
     useSeoMeta({
         description: 'Explore the work experience and certifications of Alexander Udag, a software engineer passionate about modern web technologies.',

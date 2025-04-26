@@ -59,7 +59,7 @@
 <script setup>
     import projectData from '~/data/projects';
     import github from '~/assets/images/tech/github.webp'
-    import ogImage from '~/assets/images/memoji/hi.webp';
+    import ogImage from '~/assets/images/memoji/tablet.webp';
 
     const projects = ref(projectData)
 
