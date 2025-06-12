@@ -30,6 +30,16 @@
                             <div class="desc">
                                 <p>{{ project.description }}</p>
                             </div>
+                            <!-- Tags section -->
+                            <div class="tags">
+                                <small><strong>Tags</strong></small>
+                                <div class="tag-list">
+                                    <template v-for="tag in project.tags">
+                                        <span class="tag">{{ tag }}</span>
+                                    </template>
+                                </div>
+                            </div>
+                            <!-- End of Tags section -->
                             <div v-if="project.contributors.length" class="contributors">
                                 <p>
                                     <small><strong>Contributor(s)</strong></small>
@@ -39,7 +49,7 @@
                                 </template>
                             </div>
                             <div class="buttons">
-                                <div class="github hover-pointer" @click="visitSite(project.gitHubUrl)">
+                                <div v-if="project.gitHubUrl" class="github hover-pointer" @click="visitSite(project.gitHubUrl)">
                                     <img :src="github" alt="github-icon"/>
                                     <p>Github</p>
                                 </div>

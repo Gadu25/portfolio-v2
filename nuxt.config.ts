@@ -32,11 +32,11 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['nuxt-vitalizer', '@nuxtjs/i18n'],
-  i18n: {
-    vueI18n: './i18n.config.ts' // if you are using custom path, default
-  },
+  modules: ['nuxt-vitalizer',],
+  // i18n: {
+  //   vueI18n: './i18n.config.ts' // if you are using custom path, default
+  // },
   vitalizer: {
-    disableStylesheets: 'entry'
+    disableStylesheets: 'entry',
   }
 })

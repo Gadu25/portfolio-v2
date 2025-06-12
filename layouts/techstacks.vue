@@ -28,6 +28,7 @@
     import sass from '~/assets/images/tech/sass.webp'
     import tailwind from '~/assets/images/tech/tailwind.webp'
     import vue from '~/assets/images/tech/vue.webp'
+    import wordpress from '~/assets/images/tech/wordpress.webp'
 
     const techs = ref(
         [
@@ -86,6 +87,11 @@
                 icon: postgresql,
                 link: 'https://www.postgresql.org/'
             },
+            {
+                name: 'wordpress',
+                icon:wordpress,
+                link: 'https://wordpress.org/'
+            }
         ]
     )
 </script>

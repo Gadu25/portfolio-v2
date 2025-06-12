@@ -14,11 +14,57 @@ import postgresql from '~/assets/images/tech/postgresql.webp'
 import sass from '~/assets/images/tech/sass.webp'
 import tailwind from '~/assets/images/tech/tailwind.webp'
 import vue from '~/assets/images/tech/vue.webp'
+import wordpress from '~/assets/images/tech/wordpress.webp'
 
 import catchThemAll from '~/assets/images/projects/catchThemAll.webp'
 import apiHub from '~/assets/images/projects/apiHub.webp'
+import gep from '~/assets/images/projects/gep.webp'
 
 export default [
+    {
+        name: 'Geodetic Engineers of the Philippines Website',
+        previewImage: gep, // make sure to import or define this image
+        url: 'https://nationalgep.org',
+        gitHubUrl: '', // leave empty or null if private or not available
+        description: 'The official website of the Geodetic Engineers of the Philippines (GEP), built to centralize important updates, news, and events for geodetic professionals across the country. The site supports dynamic content management through WordPress, including custom post types, image galleries, and announcement features. It provides a responsive, user-friendly experience tailored for both desktop and mobile users.',
+        status: {
+            title: 'Live',
+            color: '#28a745' // green for "live"
+        },
+        tags: [
+            'Client',
+            'Organizational',
+            'Content Management'
+        ],
+        contributors: [
+            {
+                userName: 'chrischase011',
+                link: 'https://github.com/chrischase011'
+            }
+        ],
+        techUsed: [
+            {
+                name: 'WordPress',
+                icon: wordpress // define or import the icon
+            },
+            {
+                name: 'PHP',
+                icon: php
+            },
+            {
+                name: 'SCSS',
+                icon: sass
+            },
+            {
+                name: 'Javascript',
+                icon: javascript
+            },
+            {
+                name: 'MySQL',
+                icon: mysql
+            }
+        ]
+    },
     {
         name: 'CatchThemAll',
         previewImage: catchThemAll,
@@ -29,6 +75,11 @@ export default [
             title: 'BETA',
             color: '#FFA500'
         },
+        tags: [
+            'For Fun',
+            'Hobby',
+            'API Integration'
+        ],
         contributors: [
         ],
         techUsed: [
@@ -64,6 +115,11 @@ export default [
             title: 'ongoing development',
             color: '#FFA500'
         },
+        tags: [
+            'Experimental',
+            'Hobby',
+            'API Integration'
+        ],
         contributors: [
             {
                 userName: 'Gerald Pagsuyoin',

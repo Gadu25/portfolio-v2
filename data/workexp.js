@@ -19,6 +19,7 @@ import postgresql from '~/assets/images/tech/postgresql.webp'
 import sass from '~/assets/images/tech/sass.webp'
 import tailwind from '~/assets/images/tech/tailwind.webp'
 import vue from '~/assets/images/tech/vue.webp'
+import wordpress from '~/assets/images/tech/wordpress.webp'
 
 export default [
     {
@@ -168,6 +169,10 @@ export default [
             {
                 name: 'NodeJS',
                 icon: nodejs
+            },
+            {
+                name: 'Wordpress',
+                icon: wordpress
             }
         ]
     }
