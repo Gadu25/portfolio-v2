@@ -13,6 +13,7 @@
     "@nuxtjs/i18n": "9.1.2",
     "@vercel/analytics": "^1.4.1",
     "aos": "^2.3.4",
+    "bun": "^1.2.15",
     "nuxt": "^3.13.0",
     "nuxt-vitalizer": "^0.10.0",
     "particles.js": "^2.0.0",
