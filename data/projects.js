@@ -15,10 +15,13 @@ import sass from '~/assets/images/tech/sass.webp'
 import tailwind from '~/assets/images/tech/tailwind.webp'
 import vue from '~/assets/images/tech/vue.webp'
 import wordpress from '~/assets/images/tech/wordpress.webp'
+import nextjs from '~/assets/images/tech/nextjs.webp'
+import firebase from '~/assets/images/tech/firebase.webp'
 
 import catchThemAll from '~/assets/images/projects/catchThemAll.webp'
 import apiHub from '~/assets/images/projects/apiHub.webp'
 import gep from '~/assets/images/projects/gep.webp'
+import passkeep from '~/assets/images/projects/passkeep.webp'
 
 export default [
     {
@@ -146,6 +149,37 @@ export default [
             {
                 name: 'Sass',
                 icon: sass
+            }
+        ]
+    },
+    {
+        name: 'Passkeep',
+        previewImage: passkeep, // import or define this image
+        url: 'https://passkeep-five.vercel.app/',
+        gitHubUrl: '', // leave blank if private or not yet available
+        description: 'Passkeep is a minimalist and elegant password manager built using modern web technologies. It features Google authentication, secure password storage with hashing, and real-time updates powered by Firebase. Designed with a macOS-style UI, Passkeep provides users with a smooth, responsive, and clutter-free experience for managing their credentials securely.',
+        status: {
+            title: 'Live',
+            color: '#28a745' // green
+        },
+        tags: [
+            'Personal Project',
+            'Security',
+            'Password Manager'
+        ],
+        contributors: [],
+        techUsed: [
+            {
+                name: 'Next.js',
+                icon: nextjs // make sure to import or define
+            },
+            {
+                name: 'Tailwind CSS',
+                icon: tailwind // import or define
+            },
+            {
+                name: 'Firebase',
+                icon: firebase // import or define
             }
         ]
     }
