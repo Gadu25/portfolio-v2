@@ -4,6 +4,7 @@ import quasar from '~/assets/images/tech/quasar.webp'
 import css from '~/assets/images/tech/css.webp'
 import bootstrap from '~/assets/images/tech/bootstrap.webp'
 import javascript from '~/assets/images/tech/javascript.webp'
+import typescript from '~/assets/images/tech/typescript.webp'
 import laravel from '~/assets/images/tech/laravel.webp'
 import react from '~/assets/images/tech/react.webp'
 import mysql from '~/assets/images/tech/mysql.webp'
@@ -22,6 +23,7 @@ import catchThemAll from '~/assets/images/projects/catchThemAll.webp'
 import apiHub from '~/assets/images/projects/apiHub.webp'
 import gep from '~/assets/images/projects/gep.webp'
 import passkeep from '~/assets/images/projects/passkeep.webp'
+import mojitoCocktail from '~/assets/images/projects/mojito.webp'
 
 export default [
     {
@@ -66,6 +68,37 @@ export default [
                 name: 'MySQL',
                 icon: mysql
             }
+        ]
+    },
+    {
+        name: 'Mojito Cocktail',
+        previewImage: mojitoCocktail,
+        url: 'https://mojito-cocktail-fe7xggurx-alexanders-projects-91906c70.vercel.app/',
+        gitHubUrl: 'https://github.com/Gadu25/gsap-mojito-cocktail',
+        description: 'Mojito Cocktail is a playful front-end project built as a hobby experiment to explore GSAP animations in a React + TypeScript environment. It focuses on practicing smooth motion effects, creative transitions, and interactive UI behavior. The project showcases animation sequencing, component-based design, and responsive layout handling, emphasizing visual polish and code structure discipline.',
+        status: {
+            title: 'DONE',
+            color: '#28a745'
+        },
+        tags: [
+            'For Fun',
+            'Hobby',
+            'GSAP Practice'
+        ],
+        contributors: [],
+        techUsed: [
+            {
+                name: 'React',
+                icon: react
+            },
+            {
+                name: 'TypeScript',
+                icon: typescript
+            },
+            {
+                name: 'Tailwind CSS',
+                icon: tailwind
+            },
         ]
     },
     {
@@ -154,13 +187,13 @@ export default [
     },
     {
         name: 'Passkeep',
-        previewImage: passkeep, // import or define this image
+        previewImage: passkeep,
         url: 'https://passkeep-five.vercel.app/',
-        gitHubUrl: '', // leave blank if private or not yet available
-        description: 'Passkeep is a minimalist and elegant password manager built using modern web technologies. It features Google authentication, secure password storage with hashing, and real-time updates powered by Firebase. Designed with a macOS-style UI, Passkeep provides users with a smooth, responsive, and clutter-free experience for managing their credentials securely.',
+        gitHubUrl: '',
+        description: 'Passkeep is a secure, cloud-synced password manager focused on simplicity and reliability. It integrates Firebase for real-time data handling and authentication, ensuring user credentials remain protected through encryption. Built with Next.js and Tailwind CSS.',
         status: {
-            title: 'Live',
-            color: '#28a745' // green
+            title: 'LIVE',
+            color: '#28a745'
         },
         tags: [
             'Personal Project',
@@ -171,16 +204,16 @@ export default [
         techUsed: [
             {
                 name: 'Next.js',
-                icon: nextjs // make sure to import or define
+                icon: nextjs
             },
             {
                 name: 'Tailwind CSS',
-                icon: tailwind // import or define
+                icon: tailwind
             },
             {
                 name: 'Firebase',
-                icon: firebase // import or define
+                icon: firebase
             }
         ]
-    }
+    },
 ]
