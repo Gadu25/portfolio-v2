@@ -10,6 +10,7 @@ import sass from '~/assets/images/tech/sass.webp'
 import tailwind from '~/assets/images/tech/tailwind.webp'
 import vue from '~/assets/images/tech/vue.webp'
 import wordpress from '~/assets/images/tech/wordpress.webp'
+import go from '~/assets/images/tech/go.webp'
 
 export default [
             {
@@ -69,7 +70,12 @@ export default [
             },
             {
                 name: 'wordpress',
-                icon:wordpress,
+                icon: wordpress,
                 link: 'https://wordpress.org/'
+            },
+            {
+                name: 'go',
+                icon: go,
+                link: 'https://go.dev/'
             },
         ]
