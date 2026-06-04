@@ -18,4 +18,15 @@
     import myResume from '~/assets/pdfs/resume.pdf';
 
     import { downloadPDF } from '~/utls/download';
+
+    // 1. initialize composable
+    const { getProfile } = useProfile()
+
+    // 2. call API (example: on mount)
+    const profile = ref(null)
+
+    onMounted(async () => {
+    profile.value = await getProfile()
+    console.log(profile.value)
+})
 </script>

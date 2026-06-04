@@ -31,7 +31,12 @@ export default defineNuxtConfig({
       ]
     },
   },
-
+  runtimeConfig: {
+    public: {
+      megomeAccessKey: process.env.MEGOME_ACCESS_KEY,
+      megomeUrl: process.env.MEGOME_URL
+    }
+  },
   modules: ['nuxt-vitalizer',],
   // i18n: {
   //   vueI18n: './i18n.config.ts' // if you are using custom path, default
