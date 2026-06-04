@@ -27,6 +27,6 @@
 
     onMounted(async () => {
     profile.value = await getProfile()
-    console.log(profile.value)
+    // console.log(profile.value)
 })
 </script>
