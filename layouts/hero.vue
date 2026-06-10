@@ -26,7 +26,7 @@
     const profile = ref(null)
 
     onMounted(async () => {
-    profile.value = await getProfile()
+    // profile.value = await getProfile()
     // console.log(profile.value)
 })
 </script>
