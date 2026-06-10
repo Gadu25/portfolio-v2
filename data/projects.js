@@ -18,14 +18,56 @@ import vue from '~/assets/images/tech/vue.webp'
 import wordpress from '~/assets/images/tech/wordpress.webp'
 import nextjs from '~/assets/images/tech/nextjs.webp'
 import firebase from '~/assets/images/tech/firebase.webp'
+import go from '~/assets/images/tech/go.webp'
 
 import catchThemAll from '~/assets/images/projects/catchThemAll.webp'
 import apiHub from '~/assets/images/projects/apiHub.webp'
 import gep from '~/assets/images/projects/gep.webp'
 import passkeep from '~/assets/images/projects/passkeep.webp'
 import mojitoCocktail from '~/assets/images/projects/mojito.webp'
+import megome from '~/assets/images/projects/megome.webp'
 
 export default [
+    {
+        name: 'Megome',
+        previewImage: megome,
+        url: 'https://megome-beta.udaglab.com',
+        gitHubUrl: '',
+        description: 'Megome is an API-first portfolio infrastructure platform that allows developers to store, manage, and expose structured career data through a secure REST API. It transforms personal portfolios into dynamic data sources that can be consumed by websites, CLI tools, and applications. The system is built around a strict schema-based data model, enabling consistent, predictable JSON responses across all clients. Megome includes an integrated dashboard for profile management, API key generation, and real-time API testing through an embedded playground.',
+        status: {
+            title: 'Ongoing Development',
+            color: '#FFA500'
+        },
+        tags: [
+            'SaaS',
+            'API Platform',
+            'Developer Tool',
+            'Experimental Product'
+        ],
+        contributors: [],
+        techUsed: [
+            {
+                name: 'Next.js',
+                icon: nextjs
+            },
+            {
+                name: 'TypeScript',
+                icon: typescript
+            },
+            {
+                name: 'Tailwind CSS',
+                icon: tailwind
+            },
+            {
+                name: 'Go',
+                icon: go,
+            },
+            {
+                name: 'MySQL',
+                icon: mysql
+            }
+        ]
+    },
     {
         name: 'Geodetic Engineers of the Philippines Website',
         previewImage: gep, // make sure to import or define this image
@@ -148,7 +190,7 @@ export default [
         gitHubUrl: 'https://github.com/Gadu25/api-hub',
         description: 'API Hub is a versatile web application that integrates multiple APIs to deliver a seamless and interactive experience. Built using Nuxt.js with Pinia for state management, it showcases advanced skills in API fetching, styling, and dynamic data presentation. The app features real-time weather updates (OpenWeatherMap), the latest news (NewsAPI), stunning photography (Unsplash), country data (REST Countries), random user profiles (RandomUser API), daily jokes (JokeAPI), currency exchange rates (ExchangeRate API), NASA insights, and a library database (Open Library API). With a modern, responsive design, API Hub demonstrates efficient data handling and a polished user experience.',
         status: {
-            title: 'ongoing development',
+            title: 'Stale',
             color: '#FFA500'
         },
         tags: [
