@@ -3,10 +3,9 @@
         <Particles />
         <div class="content">
             <img src="~/assets/images/memoji/mac.webp" alt="Alex on mac"/>
-            <!-- <p>I am..</p> -->
-            <h1>Alexander Udag</h1>
-            <h2 class="headline">Turning Ideas into Interactive Web Solutions</h2>
-            <small>Software Engineer / Web Developer 💻</small>
+            <h1>{{ profile ? `${profile.firstName} ${profile.lastName}` : 'Alexander Udag' }}</h1>
+            <h2 class="headline">{{ profile?.tagline || 'Turning Ideas into Interactive Web Solutions' }}</h2>
+            <small>{{ profile?.title || 'Software Engineer / Web Developer' }}</small>
             <SpecialButton class="special-button" buttonText="My Resume"  @click="downloadPDF(myResume, 'Alexander Udag')"/>
         </div>
     </div>
@@ -19,14 +18,14 @@
 
     import { downloadPDF } from '~/utls/download';
 
-    // 1. initialize composable
     const { getProfile } = useProfile()
-
-    // 2. call API (example: on mount)
     const profile = ref(null)
 
     onMounted(async () => {
-    profile.value = await getProfile()
-    console.log(profile.value)
-})
+      try {
+        profile.value = await getProfile()
+      } catch (e) {
+        console.error('Failed to fetch profile:', e)
+      }
+    })
 </script>
