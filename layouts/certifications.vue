@@ -28,6 +28,7 @@
 </template>
 
 <script setup>
+    // FIX ME: Replace with getCertificates() from useMegome once credentialUrl and certificateImage are confirmed to match the UI needs
     import certifications from '~/data/certifications';
     import { downloadPDF } from '~/utls/download';
     

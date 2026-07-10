@@ -67,6 +67,7 @@
 </template>
 
 <script setup>
+    // FIX ME: Replace with getProjects() from useMegome once tags, contributors, and tech icons are available via API
     import projectData from '~/data/projects';
     import github from '~/assets/images/tech/github.webp'
     import ogImage from '~/assets/images/memoji/tablet.webp';

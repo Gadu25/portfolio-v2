@@ -22,11 +22,11 @@
         flex-wrap: wrap;
         gap: 16px;
         margin-bottom: 20px;
-        
         .content-column {
             flex: 1;
             padding: 0 15px;
             min-height: 300px;
+            width: 800px;
             position: relative;
             .about-me-title {
                 display: flex;

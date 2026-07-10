@@ -45,6 +45,7 @@
 </template>
 
 <script setup>
+// FIX ME: Accept experiences from API (getExperiences()) as a prop once role descriptions and tech icons are available
 import workexp from '~/data/workexp';
 import { useStayDuration } from "~/composables/useStayDuration";
 

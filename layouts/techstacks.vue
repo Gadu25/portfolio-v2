@@ -17,6 +17,7 @@
 </template>
 
 <script setup>
+// FIX ME: Replace with getSkills() from useMegome once skill icons and links are available via API
 import techstacks from '~/data/techs';
 const techs = ref(techstacks)
 </script>

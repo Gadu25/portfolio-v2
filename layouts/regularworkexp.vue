@@ -8,6 +8,7 @@
 </template>
 
 <script setup>
+    // FIX ME: Replace with getExperiences() from useMegome once role descriptions and tech icons are available via API
     import RegularCard from '~/components/card/regularCard.vue';
     import workexp from '~/data/workexp';
 
