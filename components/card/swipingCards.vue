@@ -19,22 +19,18 @@
                         <div class="company-wrapper">
                             <div class="company-title">
                                 <div class="company-logo">
-                                    <img :src="card.logo" :alt="card.name+'-logo'"/>
+                                    <img v-if="card.logo" :src="card.logo" :alt="card.company+'-logo'"/>
                                 </div>
                                 <div class="company-name">
-                                    <h4>{{ card.name }}</h4>
+                                    <h4>{{ card.company }}</h4>
                                 </div>
                             </div>
                             <div class="my-role">
-                                <h4>{{ card.jobTitle }}</h4>
-                                <small class="text-secondary">{{ card.date }} <i> ({{ getStayDuration(card) }})</i></small>
+                                <h4>{{ card.title }}</h4>
+                                <small class="text-secondary">{{ formatDate(card.startDate) }} - {{ card.isPresent ? 'present' : formatDate(card.endDate) }} <i> ({{ getStayDuration({ start: card.startDate, end: card.endDate }) }})</i></small>
                             </div>
                             <div class="role-tasks">
-                                <ul>
-                                    <template v-for="item in card.roles">
-                                        <li>{{ item }}</li>
-                                    </template>
-                                </ul>
+                                <div v-html="card.description"></div>
                             </div>
                         </div>
                     </div>
@@ -45,12 +41,30 @@
 </template>
 
 <script setup>
-// FIX ME: Accept experiences from API (getExperiences()) as a prop once role descriptions and tech icons are available
 import workexp from '~/data/workexp';
 import { useStayDuration } from "~/composables/useStayDuration";
 
 const { getStayDuration } = useStayDuration();
-const cards = ref(workexp)
+const { formatDate } = useFormatDate();
+const { getExperiences } = useMegome();
+const cards = ref(workexp.map((card, i) => ({
+    ...card,
+    position: i === 0 ? 'active' : i === 1 ? 'right' : 'left'
+})))
+
+onMounted(async () => {
+    try {
+        const apiCards = await getExperiences()
+        if (apiCards && apiCards.length > 0) {
+            cards.value = apiCards.map((card, i) => ({
+                ...card,
+                position: i === 0 ? 'active' : i === 1 ? 'right' : 'left'
+            }))
+        }
+    } catch (e) {
+        console.error('Failed to fetch experiences:', e)
+    }
+})
 
 const clickCard = (index) => {
     let active = index

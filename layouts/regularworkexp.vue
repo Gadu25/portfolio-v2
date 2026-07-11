@@ -2,15 +2,26 @@
     <div class="regular-work-exp">
         <div class="content">
             <h4>Experience <span class="item-count">({{ works.length }})</span></h4>
-            <RegularCard/>
+            <RegularCard :works="works"/>
         </div>
     </div>
 </template>
 
 <script setup>
-    // FIX ME: Replace with getExperiences() from useMegome once role descriptions and tech icons are available via API
-    import RegularCard from '~/components/card/regularCard.vue';
     import workexp from '~/data/workexp';
+    import RegularCard from '~/components/card/regularCard.vue';
 
-    const works = ref(workexp)
+    const { getExperiences } = useMegome();
+    const works = ref(workexp);
+
+    onMounted(async () => {
+        try {
+            const apiWorks = await getExperiences()
+            if (apiWorks && apiWorks.length > 0) {
+                works.value = apiWorks
+            }
+        } catch (e) {
+            console.error('Failed to fetch experiences:', e)
+        }
+    })
 </script>

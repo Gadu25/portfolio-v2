@@ -4,37 +4,28 @@
             <template v-for="work in works">
                 <div class="company-wrapper" data-aos="fade-up">
                     <div class="company-title">
-                        <div class="company-logo">
-                            <img :src="work.logo" :alt="work.name + '-logo'" />
+                        <div v-if="work.logo" class="company-logo">
+                            <img :src="work.logo" :alt="work.company + '-logo'" />
                         </div>
                         <div class="company-name">
-                            <h4>{{ work.name }}</h4>
+                            <h4>{{ work.company }}</h4>
                         </div>
                     </div>
                     <div class="my-role">
-                        <h4>{{ work.jobTitle }}</h4>
-                        <small class="text-secondary">{{ work.start }} - {{ work.end || 'present' }} <i>({{ getStayDuration(work) }})</i></small>
+                        <h4>{{ work.title }}</h4>
+                        <small class="text-secondary">{{ formatDate(work.startDate) }} - {{ work.isPresent ? 'present' : formatDate(work.endDate) }} <i>({{ getStayDuration({ start: work.startDate, end: work.endDate }) }})</i></small>
                     </div>
                     <small><strong>Tech stacks</strong></small>
                     <div class="techs">
-                        <template v-for="item in work.techUsed">
+                        <template v-for="item in work.technologies">
                             <div class="tech">
-                                <img :src="item.icon" :alt="'icon-for-' + item.tech" />
+                                <!-- <img :src="item.icon" :alt="'icon-for-' + item.name" /> -->
                                 <span class="tech-name"><small>{{ item.name }}</small></span>
                             </div>
                         </template>
                     </div>
-                    <div class="show-more hover-pointer text-secondary" @click="work.isRolesShown = !work.isRolesShown">
-                        <small><i class="fa" :class="work.isRolesShown ? 'fa-chevron-up' : 'fa-chevron-down'"></i> show {{
-                            work.isRolesShown ?
-                            'less':'more' }}..</small>
-                    </div>
-                    <div class="role-tasks" :class="work.isRolesShown ? 'active' : ''">
-                        <ul>
-                            <template v-for="item in work.roles">
-                                <li><small>{{ item }}</small></li>
-                            </template>
-                        </ul>
+                    <div class="role-tasks">
+                        <div v-html="work.description"></div>
                     </div>
                 </div>
             </template>
@@ -43,11 +34,15 @@
 </template>
 
 <script setup>
-// FIX ME: Accept experiences from API (getExperiences()) as a prop once role descriptions and tech icons are available
-import workexp from '~/data/workexp';
 import { useStayDuration } from "~/composables/useStayDuration";
 
-const { getStayDuration } = useStayDuration();
-const works = ref(workexp)
+const props = defineProps({
+    works: {
+        type: Array,
+        required: true
+    }
+});
 
+const { getStayDuration } = useStayDuration();
+const { formatDate } = useFormatDate();
 </script>

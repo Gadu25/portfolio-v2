@@ -60,18 +60,17 @@
                                 width: 40px;
                                 object-fit:cover;
                                 transition: all .3s ease-in;
+                                margin-right: 8px;
                             }
                         }
                         .company-name {
                             font-weight: bold;
-                            margin: 0 5px;
                         }
                     }
                     .my-role {
                         margin: 15px 0;
                     }
                     .role-tasks {
-                        margin-left: 15px;
                         li {
                             margin: 15px 0;
                         }
