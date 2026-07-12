@@ -7,56 +7,41 @@
                     <div class="project-content">
                         <div class="col">
                             <div class="image-container">
-                                <img :src="project.previewImage" :alt="project.name+'-preview'"/>
+                                <img :src="project.images.cover" :alt="project.title+'-preview'"/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="head">
-                                <h4>{{ project.name }}</h4>
+                                <h4>{{ project.title }}</h4>
                                 <small class="text-secondary">
-                                    <i class="fa fa-circle" style="font-size: 9px;" :style="'color:'+project.status.color"></i> 
-                                    {{ project.status.title }}
+                                    <i class="fa fa-circle" style="font-size: 9px;"></i> 
+                                    {{ project.status }}
                                 </small>
                             </div>
                             <small><strong>Tech stacks</strong></small>
                             <div class="techs">
-                                <template v-for="item in project.techUsed">
+                                <template v-for="tech in project.technologies">
                                     <div class="tech">
-                                        <img :src="item.icon" :alt="'icon-for-'+item.tech"/>
-                                        <span class="tech-name"><small>{{ item.name }}</small></span>
+                                        <span class="tech-name"><small>{{ tech.name }}</small></span>
                                     </div>
                                 </template>
                             </div>
                             <div class="desc">
                                 <p>{{ project.description }}</p>
                             </div>
-                            <!-- Tags section -->
-                            <div class="tags">
-                                <small><strong>Tags</strong></small>
-                                <div class="tag-list">
-                                    <template v-for="tag in project.tags">
-                                        <span class="tag">{{ tag }}</span>
-                                    </template>
-                                </div>
-                            </div>
-                            <!-- End of Tags section -->
-                            <div v-if="project.contributors.length" class="contributors">
-                                <p>
-                                    <small><strong>Contributor(s)</strong></small>
-                                </p>
-                                <template v-for="item in project.contributors">
-                                    <a :href="item.link" target="_blank">🤝 {{ item.userName }}</a>
-                                </template>
-                            </div>
                             <div class="buttons">
-                                <div v-if="project.gitHubUrl" class="github hover-pointer" @click="visitSite(project.gitHubUrl)">
+                                <div v-if="project.githubLink" class="github hover-pointer" @click="visitSite(project.githubLink)">
                                     <img :src="github" alt="github-icon"/>
                                     <p>Github</p>
                                 </div>
-                                <div class="visit hover-pointer" @click="visitSite(project.url)">
+                                <div class="visit hover-pointer" @click="visitSite(project.link)">
                                     <p>Visit Demo</p>
                                     <i class="fa fa-chevron-right"></i>
                                 </div>
+                                <NuxtLink :to="'/projects/'+project.id" class="details hover-pointer">
+                                    <p>View Details</p>
+                                    <i class="fa fa-chevron-right"></i>
+                                </NuxtLink>
                             </div>
                         </div>
                     </div>
@@ -67,12 +52,24 @@
 </template>
 
 <script setup>
-    // FIX ME: Replace with getProjects() from useMegome once tags, contributors, and tech icons are available via API
     import projectData from '~/data/projects';
     import github from '~/assets/images/tech/github.webp'
     import ogImage from '~/assets/images/memoji/tablet.webp';
 
+    const { getProjects } = useMegome()
+
     const projects = ref(projectData)
+
+    onMounted(async () => {
+        try {
+            const apiProjects = await getProjects()
+            if (apiProjects && apiProjects.length > 0) {
+                projects.value = apiProjects
+            }
+        } catch (e) {
+            console.error('Failed to fetch projects:', e)
+        }
+    })
 
     const visitSite = (url)=> {
         window.open(url)
