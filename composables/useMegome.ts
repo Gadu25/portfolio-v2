@@ -34,7 +34,7 @@ export const useMegome = () => {
   }
 
   const getCertificates = async (): Promise<Certification[]> => {
-    const res = await fetch(`${baseUrl}/certificate`, { headers: headers() })
+    const res = await fetch(`${baseUrl}/certification`, { headers: headers() })
     const json = await res.json()
     return json.certificates as Certification[]
   }
@@ -51,6 +51,18 @@ export const useMegome = () => {
     return json.project as ProjectFull
   }
 
+  const getExperienceById = async (id: number): Promise<Experience> => {
+    const res = await fetch(`${baseUrl}/experience/${id}`, { headers: headers() })
+    const json = await res.json()
+    return json.experience as Experience
+  }
+
+  const getCertificateById = async (id: number): Promise<Certification> => {
+    const res = await fetch(`${baseUrl}/certification/${id}`, { headers: headers() })
+    const json = await res.json()
+    return json.certificate as Certification
+  }
+
   return {
     getProfile,
     getSkills,
@@ -59,6 +71,8 @@ export const useMegome = () => {
     getCertificates,
     getProjects,
     getProjectById,
+    getExperienceById,
+    getCertificateById,
   }
 }
 

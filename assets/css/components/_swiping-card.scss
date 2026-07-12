@@ -75,6 +75,17 @@
                             margin: 15px 0;
                         }
                     }
+                    .card-actions {
+                        margin-top: 15px;
+                        .view-details {
+                            color: var(--special-color);
+                            text-decoration: none;
+                            transition: opacity 0.2s;
+                            &:hover {
+                                opacity: 0.8;
+                            }
+                        }
+                    }
                 }
             }
             &.active {

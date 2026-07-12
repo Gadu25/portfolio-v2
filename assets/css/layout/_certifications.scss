@@ -40,6 +40,17 @@
                             transition: all .2s ease;
                         }
                     }
+                    .cert-actions {
+                        margin-top: 10px;
+                        .view-details {
+                            color: var(--special-color);
+                            text-decoration: none;
+                            transition: opacity 0.2s;
+                            &:hover {
+                                opacity: 0.8;
+                            }
+                        }
+                    }
                 }
                 &:hover{
                     background-color: var(--card-color);

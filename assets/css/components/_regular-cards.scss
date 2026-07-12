@@ -20,7 +20,15 @@
             &:hover {
                 background-color: var(--card-color);
             }
-
+            .view-details {
+              margin-top: 12px;
+              color: var(--special-color);
+              text-decoration: none;
+              transition: opacity 0.2s;
+              &:hover {
+                opacity: 0.8;
+              }
+            }
             .company-title{
                 display: inline-flex;
                 align-items: center;
