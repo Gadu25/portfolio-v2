@@ -14,13 +14,13 @@
                         <div class="col">
                             <h4>{{ cert.name }}</h4>
                             <p>{{ cert.provider }}</p>
-                            <small>Issued {{ cert.issued }}</small>
+                            <small>Issued {{ formatDate(cert.issued) }}</small>
                         </div>
                     </div>
                 </div>
             </template>
 
-            <div class="show-more hover-pointer text-secondary" @click="showAll = !showAll">
+            <div v-if="certs.length > 3" class="show-more hover-pointer text-secondary" @click="showAll = !showAll">
                 <small><i class="fa" :class="showAll ? 'fa-chevron-up':'fa-chevron-down'"></i> show {{ showAll ? 'less':'all' }}..</small>
             </div>
         </div>
@@ -28,10 +28,29 @@
 </template>
 
 <script setup>
-    // FIX ME: Replace with getCertificates() from useMegome once credentialUrl and certificateImage are confirmed to match the UI needs
     import certifications from '~/data/certifications';
     import { downloadPDF } from '~/utls/download';
-    
+
+    const { getCertificates } = useMegome()
+    const { formatDate } = useFormatDate()
+
     const certs = ref(certifications)
     const showAll = ref(false)
+
+    onMounted(async () => {
+        try {
+            const apiCerts = await getCertificates()
+            if (apiCerts && apiCerts.length > 0) {
+                certs.value = apiCerts.map(cert => ({
+                    name: cert.title,
+                    provider: cert.issuer,
+                    issued: cert.issueDate,
+                    image: cert.certificateImage,
+                    file: cert.credentialUrl,
+                }))
+            }
+        } catch (e) {
+            console.error('Failed to fetch certifications:', e)
+        }
+    })
 </script>
