@@ -1,5 +1,4 @@
 .work {
-  min-height: 70vh;
   padding: $space-2xl 0;
 
   &:hover {
@@ -24,11 +23,5 @@
     max-width: $max-width;
     margin: 0 auto;
     padding: 0 $space-lg;
-  }
-}
-
-@media screen and (max-height: 700px) {
-  .work__container {
-    min-height: 100vh;
   }
 }

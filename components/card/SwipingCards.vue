@@ -1,16 +1,6 @@
 <template>
     <div class="swiping-cards" data-aos="fade-down">
         <div class="contents">
-            <div class="swiper-controls">
-                <div class="control-wrapper">
-                    <div class="swiper-left hover-pointer" @click="handlePrev()">
-                        <i class="fa fa-chevron-left"></i>
-                    </div>
-                    <div class="swiper-right hover-pointer" @click="handleNext()">
-                        <i class="fa fa-chevron-right"></i>
-                    </div>
-                </div>
-            </div>
             <template v-for="(card, index) in cards">
                 <div class="card-wrapper" :class="card.position"
                     @mousemove="(event) => handleMouseMove(event, card.position)"
@@ -41,6 +31,15 @@
                     </div>
                 </div>
             </template>
+            <div class="swiper-controls">
+                <button class="swiper-btn hover-pointer" @click="handlePrev()" aria-label="Previous experience">
+                    <i class="fa fa-chevron-left"></i>
+                </button>
+                <span class="swiper-counter">{{ activeIndex + 1 }} / {{ cards.length }}</span>
+                <button class="swiper-btn hover-pointer" @click="handleNext()" aria-label="Next experience">
+                    <i class="fa fa-chevron-right"></i>
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -56,6 +55,11 @@ const cards = ref(workexp.map((card, i) => ({
     ...card,
     position: i === 0 ? 'active' : i === 1 ? 'right' : 'left'
 })))
+
+const activeIndex = computed(() => {
+    const idx = cards.value.findIndex(c => c.position === 'active')
+    return idx >= 0 ? idx : 0
+})
 
 onMounted(async () => {
     try {

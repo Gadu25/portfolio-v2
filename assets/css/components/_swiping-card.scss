@@ -7,45 +7,48 @@
   .contents {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    min-height: 600px;
 
     .swiper-controls {
       display: none;
+      align-items: center;
+      gap: $space-md;
+      margin-top: $space-lg;
 
-      &.visible {
-        display: block;
-      }
-
-      position: absolute;
-      top: 0;
-      right: 0;
-
-      .control-wrapper {
-        position: relative;
+      @media screen and (max-width: $bp-tablet) {
         display: flex;
-        justify-content: space-between;
-        gap: $space-sm;
-
-        .swiper-left,
-        .swiper-right {
-          text-align: center;
-          padding: $space-sm $space-md;
-          background-color: var(--card-color);
-          font-size: $font-size-md;
-          border-radius: $radius-sm;
-          border: 1px solid var(--card-border);
-          transition: all $transition-base;
-          cursor: pointer;
-
-          &:hover {
-            background-color: var(--special-color);
-            color: var(--surface-color);
-          }
-
-          i {
-            margin: auto;
-          }
-        }
       }
+    }
+
+    .swiper-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--card-color);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      font-size: $font-size-sm;
+      transition: all $transition-base;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--special-color);
+        color: var(--background-color);
+        border-color: var(--special-color);
+      }
+    }
+
+    .swiper-counter {
+      font-size: $font-size-sm;
+      color: var(--secondary-text-color);
+      min-width: 40px;
+      text-align: center;
+      user-select: none;
     }
 
     .card-wrapper {
@@ -58,7 +61,7 @@
       transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s ease;
 
       .card {
-        padding: $space-lg;
+        padding: 24px 36px;
         background-color: var(--surface-color);
         border-radius: $radius-md;
         border: 1px solid var(--card-border);
@@ -137,15 +140,17 @@
     @media screen and (max-width: $bp-tablet) {
       .card-wrapper {
         width: 90vw;
+        position: relative;
+        margin: 0;
 
         &.left,
         &.right {
           display: none;
         }
-      }
 
-      .swiper-controls.visible {
-        display: block;
+        &.active {
+          position: relative;
+        }
       }
     }
   }

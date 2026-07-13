@@ -55,13 +55,20 @@
 
 @media screen and (max-width: $bp-tablet) {
   .footer {
+    &__container {
+      flex-direction: column;
+      gap: $space-md;
+      text-align: center;
+    }
+
     &__contact {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
+      gap: $space-sm;
     }
 
     &__socials {
-      margin-left: $space-md;
+      margin-left: 0;
     }
   }
 }
