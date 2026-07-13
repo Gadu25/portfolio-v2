@@ -1,17 +1,17 @@
 import { ref, onMounted } from 'vue'
 
-export function useTheme() {
-  const theme = ref('dark') // Default theme
+type Theme = 'light' | 'dark'
+
+export const useTheme = () => {
+  const theme = ref<Theme>('dark')
 
   onMounted(() => {
-    // Retrieve the saved theme from localStorage
-    const savedTheme = localStorage.getItem('theme') || 'light'
+    const savedTheme = (localStorage.getItem('theme') as Theme) || 'light'
     theme.value = savedTheme
     document.documentElement.setAttribute('data-theme', savedTheme)
   })
 
   const toggleTheme = () => {
-    // Toggle between light and dark themes
     theme.value = theme.value === 'light' ? 'dark' : 'light'
     document.documentElement.setAttribute('data-theme', theme.value)
     localStorage.setItem('theme', theme.value)

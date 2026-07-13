@@ -1,0 +1,48 @@
+// Spacing
+$space-xs: 4px;
+$space-sm: 8px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 40px;
+$space-2xl: 64px;
+$space-3xl: 96px;
+
+// Border radius
+$radius-sm: 6px;
+$radius-md: 12px;
+$radius-lg: 20px;
+$radius-full: 9999px;
+
+// Shadows
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.1);
+
+// Transitions
+$transition-fast: 0.15s ease;
+$transition-base: 0.25s ease;
+$transition-medium: 0.3s ease;
+$transition-slow: 0.4s ease;
+
+// Breakpoints
+$bp-mobile: 480px;
+$bp-tablet: 768px;
+$bp-narrow: 650px;
+$bp-desktop: 1024px;
+$bp-wide: 1200px;
+
+// Layout
+$max-width: 1100px;
+$nav-height: 60px;
+
+// Icon sizes
+$icon-xs: 20px;
+$icon-sm: 28px;
+$icon-md: 32px;
+$icon-lg: 40px;
+$icon-xl: 48px;
+
+// Logo container sizes
+$logo-sm: 60px;
+$logo-md: 68px;
+$logo-lg: 72px;

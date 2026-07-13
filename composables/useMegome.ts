@@ -75,5 +75,3 @@ export const useMegome = () => {
     getCertificateById,
   }
 }
-
-export const useProfile = useMegome

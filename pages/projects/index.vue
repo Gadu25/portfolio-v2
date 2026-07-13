@@ -30,17 +30,13 @@
                                 <p>{{ project.description }}</p>
                             </div>
                             <div class="buttons">
-                                <div v-if="project.githubLink" class="github hover-pointer" @click="visitSite(project.githubLink)">
-                                    <img :src="github" alt="github-icon"/>
-                                    <p>Github</p>
-                                </div>
-                                <div class="visit hover-pointer" @click="visitSite(project.link)">
-                                    <p>Visit Demo</p>
-                                    <i class="fa fa-chevron-right"></i>
-                                </div>
-                                <NuxtLink :to="'/projects/'+project.id" class="details hover-pointer">
-                                    <p>View Details</p>
-                                    <i class="fa fa-chevron-right"></i>
+                                <a v-if="project.githubLink" :href="project.githubLink" target="_blank" rel="noopener noreferrer" class="btn btn--secondary hover-pointer">
+                                    <i class="fa-brands fa-github"></i>
+                                    <span>Source</span>
+                                </a>
+                                <NuxtLink :to="'/projects/'+project.id" class="btn btn--primary hover-pointer">
+                                    <span>View Details</span>
+                                    <i class="fa fa-arrow-right"></i>
                                 </NuxtLink>
                             </div>
                         </div>
@@ -53,7 +49,6 @@
 
 <script setup>
     import projectData from '~/data/projects';
-    import github from '~/assets/images/tech/github.webp'
     import ogImage from '~/assets/images/memoji/tablet.webp';
 
     const { getProjects } = useMegome()
@@ -70,10 +65,6 @@
             console.error('Failed to fetch projects:', e)
         }
     })
-
-    const visitSite = (url)=> {
-        window.open(url)
-    }
 
     useSeoMeta({
         description: 'Browse the personal projects and web app demos created by Alexander Udag using Vue, Nuxt, Laravel, and more.',

@@ -1,3 +1,4 @@
+@import './abstracts/variables';
 @import './base/typography';
 @import './themes/colors';
 
@@ -7,6 +8,7 @@
 @import './components/swiping-card';
 @import './components/regular-cards';
 @import './components/tooltip';
+@import './components/confirm-dialog';
 
 @import './layout/regularworkexp';
 @import './layout/certifications';
@@ -20,33 +22,33 @@
 @import './layout/detail-page';
 @import './layout/error';
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-* {
-    box-sizing: 0;
-    margin: 0;
-    padding: 0;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-    transition: background-color .4s linear, color .4s linear;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    margin: 0;
-    overflow-x: hidden;
-}
-
-.title {
-    font-size: 25px;
-    transition: all .2s linear;
-    &:hover {
-        font-size: 40px;
-    }
-}
-
-.button {
-  background-color: var(--primary-color);
+  transition: background-color $transition-slow, color $transition-slow;
+  background-color: var(--background-color);
   color: var(--text-color);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+::selection {
+  background-color: var(--special-color);
+  color: var(--surface-color);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }

@@ -1,58 +1,68 @@
-$width: 48px;
-$height: 23px;
-$color: $special_color_dark;
-$ball_color: $special_color_light;
+.theme-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 
-$halfWidth: $width / 2;
-$moonWidth: $width / 5;
+  &:focus-visible .theme-toggle__track {
+    outline: 2px solid var(--special-color);
+    outline-offset: 2px;
+  }
 
-.theme-toggle-container {
+  &__track {
+    display: block;
     position: relative;
-    width: $width;
-    height: $height;
-    background-color: $color;
-    border-radius: calc($height/2);
-    display: flex;
-    align-items: center;
+    width: $icon-xl;
+    height: 22px;
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: $radius-full;
     overflow: hidden;
-    // cursor: pointer;
+    transition: all $transition-base;
+  }
 
-    .toggle-circle {
-        width: $height - $height*.2;
-        height: $height - $height*.2;
-        margin: 0 $height*.1;
+  &__thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--special-color);
+    transition: all $transition-slow cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.dark {
+      position: absolute;
+      transform: translateX($icon-xl - 22px);
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        background-color: var(--card-color);
         border-radius: 50%;
-        background-color: $ball_color;
-        transition: all .4s;
-
-        &.dark {
-            position: absolute;
-            background-color: $ball_color;
-            transform: translateX($width - $height);
-
-            &::after{
-                content:"";
-                width: $height - calc($height*.2);
-                height: $height - calc($height*.2);
-                background-color: $color;
-                position: absolute;
-                border-radius: 50%;
-                z-index: 1;
-                animation: delay .5s ease;
-                transform: translateX(-$moonWidth);
-            }
-        }
-
-
-        &.light, &.dark{
-            &:hover{
-                background-color: lighten($ball_color, 10%);
-            }
-        }
+        z-index: 1;
+        animation: moon-delay 0.4s ease forwards;
+        transform: translateX(-16px);
+      }
     }
+
+    &.light,
+    &.dark {
+      &:hover {
+        filter: brightness(1.15);
+      }
+    }
+  }
 }
 
-@keyframes delay {
-    0%   { transform: translateX(-$halfWidth); }
-    100% { transform: translateX(-$moonWidth); }
+@keyframes moon-delay {
+  0% {
+    transform: translateX(-($icon-xl / 2));
+  }
+  100% {
+    transform: translateX(-16px);
+  }
 }

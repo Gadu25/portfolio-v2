@@ -1,96 +1,104 @@
 .regular-card {
-    margin: 10px 0;
-    .card {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        .company-wrapper {
-            display: flex;
-            flex-direction: column;
-            border-bottom: 2px solid var(--card-color);
-            border-radius: 12px;
-            padding: 25px;
-            transition: all 0.5 ease;
+  margin: $space-md 0;
 
-            @media screen and (max-width: 480px) {
-                padding: 10px;
-                background-color: var(--card-color);
-            }
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
 
-            &:hover {
-                background-color: var(--card-color);
-            }
-            .view-details {
-              margin-top: 12px;
-              color: var(--special-color);
-              text-decoration: none;
-              transition: opacity 0.2s;
-              &:hover {
-                opacity: 0.8;
-              }
-            }
-            .company-title{
-                display: inline-flex;
-                align-items: center;
-                .company-logo {
-                    img {
-                        width: 40px;
-                        object-fit:cover;
-                        margin-right: 8px;
-                    }
-                }
-                .company-name {
-                    font-weight: bold;
-                }
-            }
-            .my-role {
-                margin: 15px 0;
-            }
+    .company-wrapper {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid var(--border-color);
+      border-radius: $radius-md;
+      padding: $space-lg;
+      transition: all $transition-base;
 
-            .show-more {
-                margin: 5px 0;
-                transition: all .2s ease;
-                &:hover{
-                    color: var(--special-color)
-                }
-            }
-            .role-tasks {
-                margin-left: 15px;
-                height: 0px;
-                opacity: 0;
-                transition: all .3s linear;
-                display: none;
+      &:last-child {
+        border-bottom: none;
+      }
 
-                li {
-                    margin: 5px 0;
-                }
+      &:hover {
+        background-color: var(--card-color);
+      }
 
-                &.active {
-                    height: 100%;
-                    opacity: 1;
-                    display: block;
-                }
+      @media screen and (max-width: $bp-mobile) {
+        padding: $space-md;
+        background-color: var(--card-color);
+        border-radius: $radius-md;
+        border: 1px solid var(--card-border);
+      }
 
-            }
+      .company-title {
+        display: inline-flex;
+        align-items: center;
 
-            .techs {
-                display: flex;
-                gap: 5px;
-                flex-wrap: wrap;
-                .tech {
-                    display: flex;
-                    align-items: center;
-                    border: 1px solid var(--card-color);
-                    margin-top: 3px;
-                    padding: 6px;
-                    border-radius: 5px;
-
-                    img {
-                        margin-right: 5px;
-                        height: 20px;
-                    }
-                }
-            }
+        .company-logo img {
+          width: $icon-lg;
+          object-fit: cover;
+          border-radius: $radius-sm;
+          margin-right: $space-sm;
         }
+
+        .company-name {
+          font-weight: $font-weight-semibold;
+        }
+      }
+
+      .my-role {
+        margin: $space-md 0;
+      }
+
+      .role-tasks {
+        margin-left: $space-md;
+        height: 0;
+        opacity: 0;
+        transition: all $transition-medium ease;
+        display: none;
+
+        li {
+          margin: $space-sm 0;
+        }
+
+        &.active {
+          height: 100%;
+          opacity: 1;
+          display: block;
+        }
+      }
+
+      .techs {
+        display: flex;
+        gap: $space-xs;
+        flex-wrap: wrap;
+
+        .tech {
+          display: flex;
+          align-items: center;
+          border: 1px solid var(--border-color);
+          margin-top: $space-xs;
+          padding: $space-xs $space-sm;
+          border-radius: $radius-sm;
+          background: var(--card-color);
+          transition: all $transition-base;
+
+          &:hover {
+            border-color: var(--special-color);
+          }
+        }
+      }
+
+      .view-details {
+        margin-top: $space-md;
+        color: var(--special-color);
+        text-decoration: none;
+        font-weight: $font-weight-medium;
+        transition: opacity $transition-base;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
     }
+  }
 }

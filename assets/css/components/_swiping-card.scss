@@ -1,129 +1,152 @@
 .swiping-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  .contents {
     display: flex;
     justify-content: center;
-    align-items: center;
-    position: relative;
-    
-    .contents{
+
+    .swiper-controls {
+      display: none;
+
+      &.visible {
+        display: block;
+      }
+
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      .control-wrapper {
+        position: relative;
         display: flex;
-        justify-content: center;
-        .swiper-controls {
-            display: none;
-        }
-        .swiper-controls {
-            position:absolute;
-            top:0;
-            right: 0;
-            .control-wrapper {
-                position:relative;
-                display: flex;
-                justify-content: space-between;
-                .swiper-left, .swiper-right {
-                    text-align: center;
-                    padding: 5px;
-                    background-color: var(--card-color);
-                    font-size: 20px;
-                    border-radius: 5px;
-                    i {
-                        margin: auto;
-                    }
-                }
-                .swiper-right {
-                    margin-left: 10px;
-                }
-            }
-        }
-        .card-wrapper {
-            width: 60vw;
-            max-width: 900px;
-            margin: 40px 0;
-            top: 0;
-            position: absolute;
-            opacity: 0.8;
-            transition: transform 0.6s ease, z-index 0.2s ease;
-            .card {
-                padding: 25px;
-                background-color: var(--card-color);
-                border-radius: 12px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-                transition: transform 0.6s ease, z-index 0.2s ease;
-        
-                .company-wrapper {
-                    display: flex;
-                    flex-direction: column;
-                    .company-title{
-                        display: inline-flex;
-                        align-items: center;
-                        margin-bottom: 10px;
-                        .company-logo {
-                            img {
-                                width: 40px;
-                                object-fit:cover;
-                                transition: all .3s ease-in;
-                                margin-right: 8px;
-                            }
-                        }
-                        .company-name {
-                            font-weight: bold;
-                        }
-                    }
-                    .my-role {
-                        margin: 15px 0;
-                    }
-                    .role-tasks {
-                        li {
-                            margin: 15px 0;
-                        }
-                    }
-                    .card-actions {
-                        margin-top: 15px;
-                        .view-details {
-                            color: var(--special-color);
-                            text-decoration: none;
-                            transition: opacity 0.2s;
-                            &:hover {
-                                opacity: 0.8;
-                            }
-                        }
-                    }
-                }
-            }
-            &.active {
-                z-index: 13;
-                transform: translateX(0) scale(1);
-                opacity: 1;
-              }
-          
-            &.left {
-                z-index: 2;
-                transform: translateX(-35%) scale(0.7);
-            }
-        
-            &.right {
-                z-index: 2;
-                transform: translateX(35%) scale(0.7);
-            }
-    
-            &.none {
-                display: none;
-            }
-        }
+        justify-content: space-between;
+        gap: $space-sm;
 
-        @media screen and (max-width: 768px) {
-            .card-wrapper {
-                width: 90vw;
-                &.left {
-                    display: none;
-                }
-            
-                &.right {
-                    display: none;
-                }
-            }
+        .swiper-left,
+        .swiper-right {
+          text-align: center;
+          padding: $space-sm $space-md;
+          background-color: var(--card-color);
+          font-size: $font-size-md;
+          border-radius: $radius-sm;
+          border: 1px solid var(--card-border);
+          transition: all $transition-base;
+          cursor: pointer;
 
-            .swiper-controls {
-                display: block;
-            }
+          &:hover {
+            background-color: var(--special-color);
+            color: var(--surface-color);
+          }
+
+          i {
+            margin: auto;
+          }
         }
+      }
     }
+
+    .card-wrapper {
+      width: 60vw;
+      max-width: 800px;
+      margin: $space-xl 0;
+      top: 0;
+      position: absolute;
+      opacity: 0.8;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s ease;
+
+      .card {
+        padding: $space-lg;
+        background-color: var(--surface-color);
+        border-radius: $radius-md;
+        border: 1px solid var(--card-border);
+        box-shadow: $shadow-md;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s ease;
+
+        .company-wrapper {
+          display: flex;
+          flex-direction: column;
+
+          .company-title {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: $space-sm;
+
+            .company-logo img {
+              width: $icon-lg;
+              object-fit: cover;
+              border-radius: $radius-sm;
+              margin-right: $space-sm;
+            }
+
+            .company-name {
+              font-weight: $font-weight-semibold;
+            }
+          }
+
+          .my-role {
+            margin: $space-md 0;
+          }
+
+          .role-tasks {
+            li {
+              margin: $space-md 0;
+            }
+          }
+
+          .card-actions {
+            margin-top: $space-md;
+          }
+
+          .view-details {
+            color: var(--special-color);
+            text-decoration: none;
+            font-weight: $font-weight-medium;
+            transition: opacity $transition-base;
+
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+
+      &.active {
+        z-index: 13;
+        transform: translateX(0) scale(1);
+        opacity: 1;
+      }
+
+      &.left {
+        z-index: 2;
+        transform: translateX(-35%) scale(0.7);
+      }
+
+      &.right {
+        z-index: 2;
+        transform: translateX(35%) scale(0.7);
+      }
+
+      &.none {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: $bp-tablet) {
+      .card-wrapper {
+        width: 90vw;
+
+        &.left,
+        &.right {
+          display: none;
+        }
+      }
+
+      .swiper-controls.visible {
+        display: block;
+      }
+    }
+  }
 }
