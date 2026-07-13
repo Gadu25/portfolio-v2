@@ -1,39 +1,47 @@
-$special_color_dark: #333333;
-$special_color_light: #f5ba07;
-
+// Light theme
 :root {
   --primary-color: #3498db;
-  --background-color: #ffffff;
-  --text-color: #333333;
-  --secondary-text-color: #666666;
-  --secondary-text-color-light: #888888;
+  --background-color: #fafafa;
+  --surface-color: #ffffff;
+  --text-color: #1a1a2e;
+  --secondary-text-color: #64748b;
+  --border-color: #e2e8f0;
 
-  --special-color: #3D5AFEE6;
-  --special-color-60: #3D5AFE99;
-  --special-color-50: #3D5AFE80;
+  --special-color: #3D5AEE;
+  --special-color-60: rgba(61, 90, 238, 0.6);
+  --special-color-50: rgba(61, 90, 238, 0.5);
+  --special-color-hover: rgba(61, 90, 238, 0.9);
 
-  --card-color: #F8F9FA;
+  --card-color: #f1f5f9;
+  --card-border: rgba(0, 0, 0, 0.04);
 
-  --glowing-card: 0 0 8px rgba(61, 90, 254, 1), 
-                  0 0 10px rgba(61, 90, 254, 0.8), 
-                  0 0 10px rgba(61, 90, 254, 0.6);
+  --glowing-card: 0 0 0 1px rgba(61, 90, 238, 0.1),
+                  0 4px 20px rgba(61, 90, 238, 0.08);
+
+  --nav-bg: rgba(250, 250, 250, 0.8);
+  --nav-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
-[data-theme="dark"] {
+// Dark theme
+[data-theme='dark'] {
   --primary-color: #1abc9c;
-  --background-color: #121212;
-  --text-color: #e0e0e0;
-  --secondary-text-color: #b3b3b3;
-  --secondary-text-color-dark: #999999;
+  --background-color: #0f0f1a;
+  --surface-color: #1a1a2e;
+  --text-color: #e2e8f0;
+  --secondary-text-color: #94a3b8;
+  --border-color: rgba(255, 255, 255, 0.06);
 
-  --special-color: #f5ba07E6;
-  --special-color-60: #f5ba0799;
-  --special-color-50: #f5ba0780;
+  --special-color: #f5ba07;
+  --special-color-60: rgba(245, 186, 7, 0.6);
+  --special-color-50: rgba(245, 186, 7, 0.5);
+  --special-color-hover: rgba(245, 186, 7, 0.9);
 
-  --card-color: #1F1F1F;
+  --card-color: #16213e;
+  --card-border: rgba(255, 255, 255, 0.04);
 
-  --glowing-card: 0 0 8px rgba(245, 186, 7, 1), 
-                  0 0 10px rgba(245, 186, 7, 0.8), 
-                  0 0 10px rgba(245, 186, 7, 0.6);
+  --glowing-card: 0 0 0 1px rgba(245, 186, 7, 0.1),
+                  0 4px 20px rgba(245, 186, 7, 0.06);
+
+  --nav-bg: rgba(15, 15, 26, 0.85);
+  --nav-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
-

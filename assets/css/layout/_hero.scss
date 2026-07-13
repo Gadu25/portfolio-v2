@@ -1,39 +1,59 @@
 .hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 10%;
-    min-height: 100vh;
-    margin-top: 15px;
-    .content {
-        position: relative;
-        text-align: center;
-        margin-top: 48px;
-        .headline {
-            color: var(--special-color);
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        img {
-            display: none;
-            @media screen and (min-width: 480px) {
-                display: block;
-                position: absolute;
-                height: 180px;
-                margin: auto;
-                top: 0;
-                left: 50%;
-                transform: translateX(-50%) translateY(-156px);
-            }
-        }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: $space-xl 10%;
+  position: relative;
+
+  &__content {
+    position: relative;
+    text-align: center;
+    max-width: 700px;
+  }
+
+  &__avatar {
+    display: none;
+
+    @media screen and (min-width: $bp-mobile) {
+      display: block;
+      position: absolute;
+      height: 160px;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(-180px);
+      transition: transform $transition-base;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06));
     }
-    .special-button {
-        margin: 20px auto;
-    }
+  }
+
+  &__name {
+    margin-top: $space-md;
+    color: var(--text-color);
+  }
+
+  &__tagline {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-normal;
+    color: var(--secondary-text-color);
+    margin: $space-md 0;
+    line-height: 1.6;
+  }
+
+  &__title {
+    display: block;
+    font-size: $font-size-sm;
+    color: var(--secondary-text-color);
+    margin-bottom: $space-lg;
+  }
+
+  &__cta {
+    margin: $space-lg auto 0;
+  }
 }
 
-@media screen and (max-width: 480px){
-    .hero {
-        padding: 0 5%;
-    }
+@media screen and (max-width: $bp-mobile) {
+  .hero {
+    padding: $space-xl 5%;
+  }
 }

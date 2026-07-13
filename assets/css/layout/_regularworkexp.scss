@@ -1,15 +1,9 @@
-.regular-work-exp {
-    margin-top: 80px;
-    width: 100vw;
-    .content {
-        max-width: 1200px;
-        margin: auto;
-        padding: 0 15px;
-    }
+.regular-work {
+  padding: $space-2xl 0;
 
-    @media screen and (max-width: 480px) {
-        .content {
-            width: 90%;
-        }
-    }
+  &__container {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 0 $space-lg;
+  }
 }

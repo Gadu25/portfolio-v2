@@ -1,78 +1,107 @@
-$font_large: 60px;
-$font_medium_large: 30px;
-$font_medium: 16px;
-$font_small: 12px;
+$font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-$mobile_font_large: 50px;
-$mobile_font_medium_large: 24px; 
-$mobile_font_medium: 14px;
-$mobile_font_small: 8px;
+$font-size-2xs: 0.6875rem;
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-md: 1.125rem;
+$font-size-lg: 1.5rem;
+$font-size-xl: 2rem;
+$font-size-2xl: 2.5rem;
+$font-size-3xl: 3.5rem;
+$font-size-4xl: 4.5rem;
 
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
 
 body {
-    font-family: "Inter", sans-serif;
+  font-family: $font-family;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
-    text-decoration: none;
-    color: var(--text-color);
+  text-decoration: none;
+  color: inherit;
+  transition: color $transition-base;
 }
 
 p {
-    line-height: 1.75;
-    font-size: $font_medium;
+  line-height: 1.7;
+  font-size: $font-size-base;
+  color: var(--text-color);
 }
 
 h1 {
-    font-size: $font_large;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  letter-spacing: -0.01em;
 }
 
 h3 {
-    font-size: $font_medium_large;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  letter-spacing: -0.01em;
 }
 
 h4 {
-    font-size: $font_medium + 2px;
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
 }
 
-li {
-    font-size: $font_medium;
+small {
+  font-size: $font-size-sm;
+  color: var(--secondary-text-color);
+}
+
+strong {
+  font-weight: $font-weight-semibold;
 }
 
 .item-count {
-    color: var(--special-color);
+  color: var(--special-color);
+  font-weight: $font-weight-normal;
 }
 
 .text-secondary {
-    color: var(--secondary-text-color);
+  color: var(--secondary-text-color);
 }
 
+@media screen and (max-width: $bp-mobile) {
+  h1 {
+    font-size: $font-size-3xl;
+  }
 
-@media screen and (max-width: 480px) {
-    h1 {
-        font-size: 40px;
-    }
-    h2 {
-        font-size: 15px;
-    }
-    p {
-        font-size: $mobile_font_medium
-    }
+  h2 {
+    font-size: $font-size-lg;
+  }
 
-    h4 {
-        font-size: $font_medium;
-    }
+  h3 {
+    font-size: $font-size-lg;
+  }
 
-    li {
-        font-size: $mobile_font_medium;
-    }
-}
+  h4 {
+    font-size: $font-size-base;
+  }
 
-@media screen and (max-width: 650px) {
-    p {
-        font-size: $mobile_font_medium
-    }
-    li {
-        font-size: $mobile_font_medium;
-    }
+  p {
+    font-size: $font-size-sm;
+  }
+
+  small {
+    font-size: $font-size-xs;
+  }
 }

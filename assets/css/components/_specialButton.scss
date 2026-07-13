@@ -1,29 +1,37 @@
 $width: 170px;
-$height: 40px;
+$height: 44px;
 
 .button-container {
-    height: $height;
-    width: $width;
-    margin: 5px 0;
-    // cursor: pointer;
-    border-radius: calc($height/4);
-    border: 1px solid var(--text-color);
+  height: $height;
+  width: $width;
+  border-radius: $radius-full;
+  border: 1.5px solid var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--text-color);
+  transition: all $transition-base;
+  cursor: pointer;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.02em;
 
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    overflow: hidden;
-
-    background-color: var(--text-color);
+  p {
     color: var(--background-color);
+    margin: 0;
+  }
 
-    transition: all .4s;
-   
-    &:hover {
-        background-color: var(--background-color);
-        color: var(--text-color)
+  &:hover {
+    background-color: var(--background-color);
+
+    p {
+      color: var(--text-color);
     }
+    box-shadow: var(--glowing-card);
+    transform: translateY(-1px);
+  }
 
+  &:active {
+    transform: translateY(0);
+  }
 }
