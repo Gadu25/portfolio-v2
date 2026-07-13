@@ -1,14 +1,78 @@
+import storybook from '~/assets/images/tech/storybook.webp'
+import cypress from '~/assets/images/tech/cypress.webp'
+import quasar from '~/assets/images/tech/quasar.webp'
+import css from '~/assets/images/tech/css.webp'
+import bootstrap from '~/assets/images/tech/bootstrap.webp'
+import javascript from '~/assets/images/tech/javascript.webp'
+import typescript from '~/assets/images/tech/typescript.webp'
+import laravel from '~/assets/images/tech/laravel.webp'
+import react from '~/assets/images/tech/react.webp'
+import mysql from '~/assets/images/tech/mysql.webp'
+import nodejs from '~/assets/images/tech/nodejs.webp'
+import nuxt from '~/assets/images/tech/nuxt.webp'
+import php from '~/assets/images/tech/php.webp'
+import postgresql from '~/assets/images/tech/postgresql.webp'
+import sass from '~/assets/images/tech/sass.webp'
+import tailwind from '~/assets/images/tech/tailwind.webp'
+import vue from '~/assets/images/tech/vue.webp'
+import wordpress from '~/assets/images/tech/wordpress.webp'
+import nextjs from '~/assets/images/tech/nextjs.webp'
+import firebase from '~/assets/images/tech/firebase.webp'
+import go from '~/assets/images/tech/go.webp'
+
 import catchThemAll from '~/assets/images/projects/catchThemAll.webp'
 import apiHub from '~/assets/images/projects/apiHub.webp'
 import gep from '~/assets/images/projects/gep.webp'
 import passkeep from '~/assets/images/projects/passkeep.webp'
 import mojitoCocktail from '~/assets/images/projects/mojito.webp'
+import megome from '~/assets/images/projects/megome.webp'
 
 export default [
     {
-        id: 1,
-        userId: 1,
-        title: 'Geodetic Engineers of the Philippines Website',
+        name: 'Megome',
+        previewImage: megome,
+        url: 'https://megome-beta.udaglab.com',
+        gitHubUrl: '',
+        description: 'Megome is an API-first portfolio infrastructure platform that allows developers to store, manage, and expose structured career data through a secure REST API. It transforms personal portfolios into dynamic data sources that can be consumed by websites, CLI tools, and applications. The system is built around a strict schema-based data model, enabling consistent, predictable JSON responses across all clients. Megome includes an integrated dashboard for profile management, API key generation, and real-time API testing through an embedded playground.',
+        status: {
+            title: 'Ongoing Development',
+            color: '#FFA500'
+        },
+        tags: [
+            'SaaS',
+            'API Platform',
+            'Developer Tool',
+            'Experimental Product'
+        ],
+        contributors: [],
+        techUsed: [
+            {
+                name: 'Next.js',
+                icon: nextjs
+            },
+            {
+                name: 'TypeScript',
+                icon: typescript
+            },
+            {
+                name: 'Tailwind CSS',
+                icon: tailwind
+            },
+            {
+                name: 'Go',
+                icon: go,
+            },
+            {
+                name: 'MySQL',
+                icon: mysql
+            }
+        ]
+    },
+    {
+        name: 'Geodetic Engineers of the Philippines Website',
+        previewImage: gep,
+        url: 'https://nationalgep.org',
+        gitHubUrl: '',
         description: 'The official website of the Geodetic Engineers of the Philippines (GEP), built to centralize important updates, news, and events for geodetic professionals across the country. The site supports dynamic content management through WordPress, including custom post types, image galleries, and announcement features. It provides a responsive, user-friendly experience tailored for both desktop and mobile users.',
         link: 'https://nationalgep.org',
         githubLink: '',
@@ -79,7 +143,10 @@ export default [
         description: 'API Hub is a versatile web application that integrates multiple APIs to deliver a seamless and interactive experience. Built using Nuxt.js with Pinia for state management, it showcases advanced skills in API fetching, styling, and dynamic data presentation. The app features real-time weather updates (OpenWeatherMap), the latest news (NewsAPI), stunning photography (Unsplash), country data (REST Countries), random user profiles (RandomUser API), daily jokes (JokeAPI), currency exchange rates (ExchangeRate API), NASA insights, and a library database (Open Library API). With a modern, responsive design, API Hub demonstrates efficient data handling and a polished user experience.',
         link: 'https://api-hub-seven.vercel.app/',
         githubLink: 'https://github.com/Gadu25/api-hub',
-        status: 'Ongoing',
+        status: {
+            title: 'Stale',
+            color: '#FFA500'
+        },
         isDraft: false,
         createdAt: '2024-06-01T00:00:00Z',
         updatedAt: '2024-06-01T00:00:00Z',
