@@ -23,7 +23,7 @@
                                 <div v-html="card.description"></div>
                             </div>
                             <div class="card-actions">
-                                <NuxtLink :to="'/experience/'+card.id+'?from=home'" class="view-details hover-pointer" @click.stop>
+                                <NuxtLink :to="'/experience/'+card.id+'?from=work'" class="view-details hover-pointer" @click.stop>
                                     <small>View Details <i class="fa fa-chevron-right"></i></small>
                                 </NuxtLink>
                             </div>

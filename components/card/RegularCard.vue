@@ -27,7 +27,7 @@
                     <div class="role-tasks">
                         <div v-html="work.description"></div>
                     </div>
-                    <NuxtLink :to="'/experience/'+work.id+'?from=home'" class="view-details hover-pointer" @click.stop>
+                    <NuxtLink :to="'/experience/'+work.id+'?from=work'" class="view-details hover-pointer" @click.stop>
                         <small>View Details <i class="fa fa-chevron-right"></i></small>
                     </NuxtLink>
                 </div>
