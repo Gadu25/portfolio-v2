@@ -111,7 +111,7 @@
         ogTitle: () => experience.value ? `${experience.value.title} – ${experience.value.company}` : 'Experience – Alexander Udag',
         ogDescription: () => experience.value ? `${experience.value.title} at ${experience.value.company}` : 'Work experience details.',
         ogImage: ogImage,
-        ogUrl: () => `https://alexander-udag.vercel.app/experience/${route.params.id}`,
+        ogUrl: () => `https://alexander.udaglab.com/experience/${route.params.id}`,
         twitterTitle: () => experience.value ? `${experience.value.title} – ${experience.value.company}` : 'Experience – Alexander Udag',
         twitterDescription: () => experience.value ? `${experience.value.title} at ${experience.value.company}` : 'Work experience details.',
         twitterImage: ogImage,
