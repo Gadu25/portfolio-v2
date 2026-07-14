@@ -1,47 +1,55 @@
 <template>
     <div class="projects">
         <div class="content">
-            <h4>Projects <span class="item-count">({{ projects.length }})</span></h4>
-            <template v-for="project of projects">
-                <div class="project-card" data-aos="fade-up">
-                    <div class="project-content">
-                        <div class="col">
-                            <div class="image-container">
-                                <img :src="project.images.cover" :alt="project.title+'-preview'"/>
+            <h4>Projects <span v-if="!loading" class="item-count">({{ projects.length }})</span></h4>
+            <template v-if="loading">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading projects...</p>
+                </div>
+            </template>
+            <template v-else>
+                <template v-for="project of projects">
+                    <div class="project-card" data-aos="fade-up">
+                        <div class="project-content">
+                            <div class="col">
+                                <div class="image-container">
+                                    <img :src="project.images.cover" :alt="project.title+'-preview'"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col">
-                            <div class="head">
-                                <h4>{{ project.title }}</h4>
-                                <small class="text-secondary">
-                                    <i class="fa fa-circle" style="font-size: 9px;"></i> 
-                                    {{ project.status }}
-                                </small>
-                            </div>
-                            <small><strong>Tech stacks</strong></small>
-                            <div class="techs">
-                                <template v-for="tech in project.technologies">
-                                    <div class="tech">
-                                        <span class="tech-name"><small>{{ tech.name }}</small></span>
-                                    </div>
-                                </template>
-                            </div>
-                            <div class="desc">
-                                <p>{{ project.description }}</p>
-                            </div>
-                            <div class="buttons">
-                                <a v-if="project.githubLink" :href="project.githubLink" target="_blank" rel="noopener noreferrer" class="btn btn--secondary hover-pointer">
-                                    <i class="fa-brands fa-github"></i>
-                                    <span>Source</span>
-                                </a>
-                                <NuxtLink :to="'/projects/'+project.id" class="btn btn--primary hover-pointer">
-                                    <span>View Details</span>
-                                    <i class="fa fa-arrow-right"></i>
-                                </NuxtLink>
+                            <div class="col">
+                                <div class="head">
+                                    <h4>{{ project.title }}</h4>
+                                    <small class="text-secondary">
+                                        <i class="fa fa-circle" style="font-size: 9px;"></i> 
+                                        {{ project.status }}
+                                    </small>
+                                </div>
+                                <small><strong>Tech stacks</strong></small>
+                                <div class="techs">
+                                    <template v-for="tech in project.technologies">
+                                        <div class="tech">
+                                            <span class="tech-name"><small>{{ tech.name }}</small></span>
+                                        </div>
+                                    </template>
+                                </div>
+                                <div class="desc">
+                                    <p>{{ project.description }}</p>
+                                </div>
+                                <div class="buttons">
+                                    <a v-if="project.githubLink" :href="project.githubLink" target="_blank" rel="noopener noreferrer" class="btn btn--secondary hover-pointer">
+                                        <i class="fa-brands fa-github"></i>
+                                        <span>Source</span>
+                                    </a>
+                                    <NuxtLink :to="'/projects/'+project.id" class="btn btn--primary hover-pointer">
+                                        <span>View Details</span>
+                                        <i class="fa fa-arrow-right"></i>
+                                    </NuxtLink>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </template>
             </template>
         </div>
     </div>
@@ -54,6 +62,7 @@
     const { getProjects } = useMegome()
 
     const projects = ref(projectData)
+    const loading = ref(true)
 
     onMounted(async () => {
         try {
@@ -63,6 +72,8 @@
             }
         } catch (e) {
             console.error('Failed to fetch projects:', e)
+        } finally {
+            loading.value = false
         }
     })
 

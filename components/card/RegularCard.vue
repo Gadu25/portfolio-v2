@@ -1,7 +1,13 @@
 <template>
     <div class="regular-card">
         <div class="card">
-            <template v-for="work in works">
+            <template v-if="loading">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading experience...</p>
+                </div>
+            </template>
+            <template v-else v-for="work in works">
                 <div class="company-wrapper" data-aos="fade-up">
                     <div class="company-title">
                         <div v-if="work.logo" class="company-logo">
@@ -43,6 +49,10 @@ const props = defineProps({
     works: {
         type: Array,
         required: true
+    },
+    loading: {
+        type: Boolean,
+        default: false
     }
 });
 

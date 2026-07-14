@@ -1,0 +1,26 @@
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-md;
+  padding: $space-3xl 0;
+
+  .spinner {
+    width: $icon-md;
+    height: $icon-md;
+    border: 3px solid var(--card-color);
+    border-top-color: var(--special-color);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  p {
+    color: var(--secondary-text-color);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

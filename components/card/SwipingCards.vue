@@ -1,45 +1,53 @@
 <template>
     <div class="swiping-cards" data-aos="fade-down">
         <div class="contents">
-            <template v-for="(card, index) in cards">
-                <div class="card-wrapper" :class="card.position"
-                    @mousemove="(event) => handleMouseMove(event, card.position)"
-                    @mouseleave="(event) => resetTilt(event, card.position)">
-                    <div class="card hover-pointer" @click="clickCard(index)">
-                        <div class="company-wrapper">
-                            <div class="company-title">
-                                <div class="company-logo">
-                                    <img v-if="card.logo" :src="card.logo" :alt="card.company+'-logo'"/>
+            <template v-if="loading">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading experience...</p>
+                </div>
+            </template>
+            <template v-else>
+                <template v-for="(card, index) in cards">
+                    <div class="card-wrapper" :class="card.position"
+                        @mousemove="(event) => handleMouseMove(event, card.position)"
+                        @mouseleave="(event) => resetTilt(event, card.position)">
+                        <div class="card hover-pointer" @click="clickCard(index)">
+                            <div class="company-wrapper">
+                                <div class="company-title">
+                                    <div class="company-logo">
+                                        <img v-if="card.logo" :src="card.logo" :alt="card.company+'-logo'"/>
+                                    </div>
+                                    <div class="company-name">
+                                        <h4>{{ card.company }}</h4>
+                                    </div>
                                 </div>
-                                <div class="company-name">
-                                    <h4>{{ card.company }}</h4>
+                                <div class="my-role">
+                                    <h4>{{ card.title }}</h4>
+                                    <small class="text-secondary">{{ formatDate(card.startDate) }} - {{ card.isPresent ? 'present' : formatDate(card.endDate) }} <i> ({{ getStayDuration({ start: card.startDate, end: card.endDate }) }})</i></small>
                                 </div>
-                            </div>
-                            <div class="my-role">
-                                <h4>{{ card.title }}</h4>
-                                <small class="text-secondary">{{ formatDate(card.startDate) }} - {{ card.isPresent ? 'present' : formatDate(card.endDate) }} <i> ({{ getStayDuration({ start: card.startDate, end: card.endDate }) }})</i></small>
-                            </div>
-                            <div class="role-tasks">
-                                <div v-html="card.description"></div>
-                            </div>
-                            <div class="card-actions">
-                                <NuxtLink :to="'/experience/'+card.id+'?from=work'" class="view-details hover-pointer" @click.stop>
-                                    <small>View Details <i class="fa fa-chevron-right"></i></small>
-                                </NuxtLink>
+                                <div class="role-tasks">
+                                    <div v-html="card.description"></div>
+                                </div>
+                                <div class="card-actions">
+                                    <NuxtLink :to="'/experience/'+card.id+'?from=work'" class="view-details hover-pointer" @click.stop>
+                                        <small>View Details <i class="fa fa-chevron-right"></i></small>
+                                    </NuxtLink>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </template>
+                <div class="swiper-controls">
+                    <button class="swiper-btn hover-pointer" @click="handlePrev()" aria-label="Previous experience">
+                        <i class="fa fa-chevron-left"></i>
+                    </button>
+                    <span class="swiper-counter">{{ activeIndex + 1 }} / {{ cards.length }}</span>
+                    <button class="swiper-btn hover-pointer" @click="handleNext()" aria-label="Next experience">
+                        <i class="fa fa-chevron-right"></i>
+                    </button>
                 </div>
             </template>
-            <div class="swiper-controls">
-                <button class="swiper-btn hover-pointer" @click="handlePrev()" aria-label="Previous experience">
-                    <i class="fa fa-chevron-left"></i>
-                </button>
-                <span class="swiper-counter">{{ activeIndex + 1 }} / {{ cards.length }}</span>
-                <button class="swiper-btn hover-pointer" @click="handleNext()" aria-label="Next experience">
-                    <i class="fa fa-chevron-right"></i>
-                </button>
-            </div>
         </div>
     </div>
 </template>
@@ -55,6 +63,7 @@ const cards = ref(workexp.map((card, i) => ({
     ...card,
     position: i === 0 ? 'active' : i === 1 ? 'right' : 'left'
 })))
+const loading = ref(true)
 
 const activeIndex = computed(() => {
     const idx = cards.value.findIndex(c => c.position === 'active')
@@ -72,6 +81,8 @@ onMounted(async () => {
         }
     } catch (e) {
         console.error('Failed to fetch experiences:', e)
+    } finally {
+        loading.value = false
     }
 })
 

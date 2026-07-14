@@ -1,8 +1,8 @@
 <template>
   <section class="regular-work">
     <div class="regular-work__container">
-      <h4>Experience <span class="item-count">({{ works.length }})</span></h4>
-      <RegularCard :works="works" />
+      <h4>Experience <span v-if="!loading" class="item-count">({{ works.length }})</span></h4>
+      <RegularCard :works="works" :loading="loading" />
     </div>
   </section>
 </template>
@@ -14,6 +14,7 @@ import type { Experience } from '~/types/megome'
 
 const { getExperiences } = useMegome()
 const works = ref<Experience[]>(workexp)
+const loading = ref(true)
 
 onMounted(async () => {
   try {
@@ -23,6 +24,8 @@ onMounted(async () => {
     }
   } catch (e) {
     console.error('Failed to fetch experiences:', e)
+  } finally {
+    loading.value = false
   }
 })
 </script>

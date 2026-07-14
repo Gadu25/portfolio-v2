@@ -2,30 +2,38 @@
   <section class="hero">
     <Particles />
     <div class="hero__content">
-      <img
-        class="hero__avatar"
-        src="~/assets/images/memoji/mac.webp"
-        alt="Alex on mac"
-      />
-      <h1 class="hero__name">
-        {{ profile ? `${profile.firstName} ${profile.lastName}` : 'Alexander Udag' }}
-      </h1>
-      <p class="hero__tagline">
-        {{ profile?.tagline || 'Turning Ideas into Interactive Web Solutions' }}
-      </p>
-      <span class="hero__title">
-        {{ profile?.title || 'Software Engineer / Web Developer' }}
-      </span>
-      <SpecialButton
-        class="hero__cta"
-        button-text="My Resume"
-        @click="showConfirm = true"
-      />
-      <ConfirmDialog
-        v-model="showConfirm"
-        message="Would you like to download my resume?"
-        @confirm="downloadPDF(myResume, 'Alexander Udag')"
-      />
+      <template v-if="loading">
+        <div class="loading">
+          <div class="spinner"></div>
+          <p>Loading profile...</p>
+        </div>
+      </template>
+      <template v-else>
+        <img
+          class="hero__avatar"
+          src="~/assets/images/memoji/mac.webp"
+          alt="Alex on mac"
+        />
+        <h1 class="hero__name">
+          {{ profile ? `${profile.firstName} ${profile.lastName}` : 'Alexander Udag' }}
+        </h1>
+        <p class="hero__tagline">
+          {{ profile?.tagline || 'Turning Ideas into Interactive Web Solutions' }}
+        </p>
+        <span class="hero__title">
+          {{ profile?.title || 'Software Engineer / Web Developer' }}
+        </span>
+        <SpecialButton
+          class="hero__cta"
+          button-text="My Resume"
+          @click="showConfirm = true"
+        />
+        <ConfirmDialog
+          v-model="showConfirm"
+          message="Would you like to download my resume?"
+          @confirm="downloadPDF(myResume, 'Alexander Udag')"
+        />
+      </template>
     </div>
   </section>
 </template>
@@ -41,12 +49,15 @@ import type { Profile } from '~/types/megome'
 const { getProfile } = useMegome()
 const profile = ref<Profile | null>(null)
 const showConfirm = ref(false)
+const loading = ref(true)
 
 onMounted(async () => {
   try {
     profile.value = await getProfile()
   } catch (e) {
     console.error('Failed to fetch profile:', e)
+  } finally {
+    loading.value = false
   }
 })
 </script>
