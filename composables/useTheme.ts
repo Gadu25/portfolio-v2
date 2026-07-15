@@ -6,9 +6,7 @@ export const useTheme = () => {
   const theme = ref<Theme>('dark')
 
   onMounted(() => {
-    const savedTheme = (localStorage.getItem('theme') as Theme) || 'light'
-    theme.value = savedTheme
-    document.documentElement.setAttribute('data-theme', savedTheme)
+    theme.value = (localStorage.getItem('theme') as Theme) || 'dark'
   })
 
   const toggleTheme = () => {
