@@ -57,7 +57,7 @@
                 </div>
             </template>
 
-            <template v-else-if="loading">
+            <template v-else-if="status === 'pending'">
                 <div class="loading">
                     <p>Loading project...</p>
                 </div>
@@ -82,18 +82,9 @@
     const route = useRoute()
     const { getProjectById } = useMegome()
 
-    const project = ref(null)
-    const loading = ref(true)
-
-    onMounted(async () => {
-        try {
-            const id = Number(route.params.id)
-            project.value = await getProjectById(id)
-        } catch (e) {
-            console.error('Failed to fetch project:', e)
-        } finally {
-            loading.value = false
-        }
+    const { data: project, status } = await useCachedAsyncData(`project-${route.params.id}`, () => {
+        const id = Number(route.params.id)
+        return getProjectById(id)
     })
 
     useSeoMeta({

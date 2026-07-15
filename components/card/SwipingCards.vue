@@ -1,7 +1,7 @@
 <template>
     <div class="swiping-cards" data-aos="fade-down">
         <div class="contents">
-            <template v-if="loading">
+            <template v-if="status === 'pending'">
                 <div class="loading">
                     <div class="spinner"></div>
                     <p>Loading experience...</p>
@@ -59,31 +59,20 @@ import { useStayDuration } from "~/composables/useStayDuration";
 const { getStayDuration } = useStayDuration();
 const { formatDate } = useFormatDate();
 const { getExperiences } = useMegome();
-const cards = ref(workexp.map((card, i) => ({
-    ...card,
-    position: i === 0 ? 'active' : i === 1 ? 'right' : 'left'
-})))
-const loading = ref(true)
+
+const { data: rawCards, status } = await useCachedAsyncData('swiping-experiences', () => getExperiences())
+
+const cards = computed(() => {
+    const source = rawCards.value && rawCards.value.length > 0 ? rawCards.value : workexp
+    return source.map((card, i) => ({
+        ...card,
+        position: i === 0 ? 'active' : i === 1 ? 'right' : 'left'
+    }))
+})
 
 const activeIndex = computed(() => {
     const idx = cards.value.findIndex(c => c.position === 'active')
     return idx >= 0 ? idx : 0
-})
-
-onMounted(async () => {
-    try {
-        const apiCards = await getExperiences()
-        if (apiCards && apiCards.length > 0) {
-            cards.value = apiCards.map((card, i) => ({
-                ...card,
-                position: i === 0 ? 'active' : i === 1 ? 'right' : 'left'
-            }))
-        }
-    } catch (e) {
-        console.error('Failed to fetch experiences:', e)
-    } finally {
-        loading.value = false
-    }
 })
 
 const clickCard = (index) => {

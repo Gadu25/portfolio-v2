@@ -57,7 +57,7 @@
                 </div>
             </template>
 
-            <template v-else-if="loading">
+            <template v-else-if="status === 'pending'">
                 <div class="loading">
                     <div class="spinner"></div>
                     <p>Loading experience...</p>
@@ -86,24 +86,15 @@
     const { formatDate } = useFormatDate()
     const { getStayDuration } = useStayDuration()
 
-    const experience = ref(null)
-    const loading = ref(true)
+    const { data: experience, status } = await useCachedAsyncData(`experience-${route.params.id}`, () => {
+        const id = Number(route.params.id)
+        return getExperienceById(id)
+    })
 
     const backLink = computed(() => {
         const from = route.query.from
         if (from === 'home') return { label: 'Back to Home', path: '/' }
         return { label: 'Back to Work', path: '/work' }
-    })
-
-    onMounted(async () => {
-        try {
-            const id = Number(route.params.id)
-            experience.value = await getExperienceById(id)
-        } catch (e) {
-            console.error('Failed to fetch experience:', e)
-        } finally {
-            loading.value = false
-        }
     })
 
     useSeoMeta({

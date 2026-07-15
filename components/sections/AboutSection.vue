@@ -10,7 +10,7 @@
             alt="Alex waving"
           />
         </div>
-        <template v-if="loading">
+        <template v-if="status === 'pending'">
           <div class="loading">
             <div class="spinner"></div>
             <p>Loading about...</p>
@@ -59,21 +59,9 @@
 </template>
 
 <script setup lang="ts">
-import type { Profile } from '~/types/megome'
-
 const { getProfile } = useMegome()
-const profile = ref<Profile | null>(null)
-const loading = ref(true)
 
-onMounted(async () => {
-  try {
-    profile.value = await getProfile()
-  } catch (e) {
-    console.error('Failed to fetch profile:', e)
-  } finally {
-    loading.value = false
-  }
-})
+const { data: profile, status } = await useCachedAsyncData('profile', () => getProfile())
 
 const handleMouseMove = (event: MouseEvent) => {
   const target = event.currentTarget as HTMLElement

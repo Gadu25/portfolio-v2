@@ -2,7 +2,7 @@
   <section class="hero">
     <Particles />
     <div class="hero__content">
-      <template v-if="loading">
+      <template v-if="status === 'pending'">
         <div class="loading">
           <div class="spinner"></div>
           <p>Loading profile...</p>
@@ -44,20 +44,9 @@ import ConfirmDialog from '~/components/common/ConfirmDialog.vue'
 import Particles from '~/components/Particles.vue'
 import myResume from '~/assets/pdfs/resume.pdf'
 import { downloadPDF } from '~/utils/download'
-import type { Profile } from '~/types/megome'
 
 const { getProfile } = useMegome()
-const profile = ref<Profile | null>(null)
 const showConfirm = ref(false)
-const loading = ref(true)
 
-onMounted(async () => {
-  try {
-    profile.value = await getProfile()
-  } catch (e) {
-    console.error('Failed to fetch profile:', e)
-  } finally {
-    loading.value = false
-  }
-})
+const { data: profile, status } = await useCachedAsyncData('profile', () => getProfile())
 </script>

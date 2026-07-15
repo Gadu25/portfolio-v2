@@ -1,8 +1,8 @@
 <template>
     <div class="projects">
         <div class="content">
-            <h4>Projects <span v-if="!loading" class="item-count">({{ projects.length }})</span></h4>
-            <template v-if="loading">
+            <h4>Projects <span v-if="status !== 'pending'" class="item-count">({{ projects.length }})</span></h4>
+            <template v-if="status === 'pending'">
                 <div class="loading">
                     <div class="spinner"></div>
                     <p>Loading projects...</p>
@@ -61,20 +61,8 @@
 
     const { getProjects } = useMegome()
 
-    const projects = ref(projectData)
-    const loading = ref(true)
-
-    onMounted(async () => {
-        try {
-            const apiProjects = await getProjects()
-            if (apiProjects && apiProjects.length > 0) {
-                projects.value = apiProjects
-            }
-        } catch (e) {
-            console.error('Failed to fetch projects:', e)
-        } finally {
-            loading.value = false
-        }
+    const { data: projects, status } = await useCachedAsyncData('projects', () => getProjects(), {
+        default: () => projectData
     })
 
     useSeoMeta({

@@ -52,7 +52,7 @@
                 </div>
             </template>
 
-            <template v-else-if="loading">
+            <template v-else-if="status === 'pending'">
                 <div class="loading">
                     <div class="spinner"></div>
                     <p>Loading certificate...</p>
@@ -80,23 +80,14 @@
     const { getCertificateById } = useMegome()
     const { formatDate } = useFormatDate()
 
-    const certificate = ref(null)
-    const loading = ref(true)
+    const { data: certificate, status } = await useCachedAsyncData(`certificate-${route.params.id}`, () => {
+        const id = Number(route.params.id)
+        return getCertificateById(id)
+    })
 
     const isExpired = (date) => {
         return new Date(date) < new Date()
     }
-
-    onMounted(async () => {
-        try {
-            const id = Number(route.params.id)
-            certificate.value = await getCertificateById(id)
-        } catch (e) {
-            console.error('Failed to fetch certificate:', e)
-        } finally {
-            loading.value = false
-        }
-    })
 
     useSeoMeta({
         description: () => certificate.value ? `${certificate.value.title} - ${certificate.value.issuer}` : 'Certificate details.',
