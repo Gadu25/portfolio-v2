@@ -30,6 +30,6 @@ useSeoMeta({
 
 useHead({
   htmlAttrs: { lang: 'en' },
-  link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
+  link: [{ rel: 'icon', type: 'image/webp', href: '/favicon.webp' }],
 })
 </script>
