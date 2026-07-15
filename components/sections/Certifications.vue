@@ -1,9 +1,9 @@
 <template>
   <section class="certifications">
     <div class="certifications__container">
-      <h4>Certificates <span v-if="!loading" class="item-count">({{ certs.length }})</span></h4>
+      <h4>Certificates <span v-if="status !== 'pending'" class="item-count">({{ certs.length }})</span></h4>
 
-      <template v-if="loading">
+      <template v-if="status === 'pending'">
         <div class="loading">
           <div class="spinner"></div>
           <p>Loading certifications...</p>
@@ -70,27 +70,20 @@ interface CertDisplay {
 const { getCertificates } = useMegome()
 const { formatDate } = useFormatDate()
 
-const certs = ref<CertDisplay[]>(certifications)
 const showAll = ref(false)
-const loading = ref(true)
 
-onMounted(async () => {
-  try {
-    const apiCerts = await getCertificates()
-    if (apiCerts && apiCerts.length > 0) {
-      certs.value = apiCerts.map(cert => ({
-        id: cert.id,
-        name: cert.title,
-        provider: cert.issuer,
-        issued: cert.issueDate,
-        image: cert.certificateImage,
-        file: cert.credentialUrl,
-      }))
-    }
-  } catch (e) {
-    console.error('Failed to fetch certifications:', e)
-  } finally {
-    loading.value = false
+const { data: certs, status } = await useCachedAsyncData('certifications', async () => {
+  const apiCerts = await getCertificates()
+  if (apiCerts && apiCerts.length > 0) {
+    return apiCerts.map(cert => ({
+      id: cert.id,
+      name: cert.title,
+      provider: cert.issuer,
+      issued: cert.issueDate,
+      image: cert.certificateImage,
+      file: cert.credentialUrl,
+    }))
   }
+  return certifications
 })
 </script>
