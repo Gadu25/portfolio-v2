@@ -15,7 +15,7 @@
             <div class="certifications__card-content">
               <div
                 class="certifications__image-col hover-pointer"
-                @click="downloadPDF(cert.file, cert.name)"
+                @click="confirmDownload(cert)"
               >
                 <div class="certifications__image-wrapper">
                   <img :src="cert.image" :alt="`image-for-${cert.name}`" />
@@ -51,10 +51,16 @@
         </div>
       </template>
     </div>
+    <ConfirmDialog
+      v-model="showConfirm"
+      :message="confirmMessage"
+      @confirm="downloadPDF(pendingDownload.file, pendingDownload.name)"
+    />
   </section>
 </template>
 
 <script setup lang="ts">
+import ConfirmDialog from '~/components/common/ConfirmDialog.vue'
 import certifications from '~/data/certifications'
 import { downloadPDF } from '~/utils/download'
 
@@ -71,6 +77,16 @@ const { getCertificates } = useMegome()
 const { formatDate } = useFormatDate()
 
 const showAll = ref(false)
+const showConfirm = ref(false)
+const confirmMessage = ref('')
+const pendingDownload = ref<{ file: string; name: string }>({ file: '', name: '' })
+
+const confirmDownload = (cert: CertDisplay) => {
+  if (!cert.file) return
+  pendingDownload.value = { file: cert.file, name: cert.name }
+  confirmMessage.value = `Would you like to download the certificate for "${cert.name}"?`
+  showConfirm.value = true
+}
 
 const { data: certs, status } = await useCachedAsyncData('certifications', async () => {
   const apiCerts = await getCertificates()
