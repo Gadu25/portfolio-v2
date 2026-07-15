@@ -21,7 +21,7 @@ useSeoMeta({
   ogTitle: 'Alexander Udag – Web Developer Portfolio',
   ogDescription: 'Explore the portfolio of Alexander Udag, a frontend-focused fullstack developer passionate about Vue, Nuxt, and modern web technologies.',
   ogImage,
-  ogUrl: 'https://alexander-udag.vercel.app/',
+  ogUrl: 'https://alexander.udaglab.com/',
   twitterTitle: 'Alexander Udag – Web Developer Portfolio',
   twitterDescription: 'Creative web developer with a knack for clean design and optimized code.',
   twitterImage: ogImage,

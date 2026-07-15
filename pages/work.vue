@@ -15,7 +15,7 @@ useSeoMeta({
   ogTitle: 'Work Experience & Certifications – Alexander Udag',
   ogDescription: "Get to know Alexander's professional journey through his job experiences and technical certifications.",
   ogImage,
-  ogUrl: 'https://alexander-udag.vercel.app/work',
+  ogUrl: 'https://alexander.udaglab.com/work',
   twitterTitle: 'Work Experience & Certifications – Alexander Udag',
   twitterDescription: 'A look into Alexander Udag\'s software development career and recognized certifications.',
   twitterImage: ogImage,

@@ -94,7 +94,7 @@
         ogTitle: () => certificate.value ? `${certificate.value.title} – Alexander Udag` : 'Certificate – Alexander Udag',
         ogDescription: () => certificate.value ? `${certificate.value.title} - ${certificate.value.issuer}` : 'Certificate details.',
         ogImage: () => certificate.value?.certificateImage || ogImage,
-        ogUrl: () => `https://alexander-udag.vercel.app/certifications/${route.params.id}`,
+        ogUrl: () => `https://alexander.udaglab.com/certifications/${route.params.id}`,
         twitterTitle: () => certificate.value ? `${certificate.value.title} – Alexander Udag` : 'Certificate – Alexander Udag',
         twitterDescription: () => certificate.value ? `${certificate.value.title} - ${certificate.value.issuer}` : 'Certificate details.',
         twitterImage: () => certificate.value?.certificateImage || ogImage,

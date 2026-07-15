@@ -70,7 +70,7 @@
         ogTitle: 'Personal Projects & Demos – Alexander Udag',
         ogDescription: 'Discover personal experiments and side projects by Alexander that reflect his creativity and technical skills.',
         ogImage: ogImage,
-        ogUrl: 'https://alexander-udag.vercel.apps/projects',
+        ogUrl: 'https://alexander.udaglab.com/projects',
         twitterTitle: 'Personal Projects & Demos – Alexander Udag',
         twitterDescription: 'Explore side projects and interactive demos crafted with love and code by Alexander Udag.',
         twitterImage: ogImage,

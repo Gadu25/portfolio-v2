@@ -92,7 +92,7 @@
         ogTitle: () => project.value ? `${project.value.title} – Alexander Udag` : 'Project – Alexander Udag',
         ogDescription: () => project.value?.description || 'Project details by Alexander Udag.',
         ogImage: () => project.value?.images.cover || ogImage,
-        ogUrl: () => `https://alexander-udag.vercel.app/projects/${route.params.id}`,
+        ogUrl: () => `https://alexander.udaglab.com/projects/${route.params.id}`,
         twitterTitle: () => project.value ? `${project.value.title} – Alexander Udag` : 'Project – Alexander Udag',
         twitterDescription: () => project.value?.description || 'Project details by Alexander Udag.',
         twitterImage: () => project.value?.images.cover || ogImage,
