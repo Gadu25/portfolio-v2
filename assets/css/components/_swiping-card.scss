@@ -59,6 +59,8 @@
       position: absolute;
       opacity: 0.8;
       transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s ease;
+      user-select: none;
+      -webkit-user-select: none;
 
       .card {
         padding: 24px 36px;
@@ -120,6 +122,15 @@
         z-index: 13;
         transform: translateX(0) scale(1);
         opacity: 1;
+        pointer-events: none;
+
+        .card {
+          pointer-events: auto;
+
+          a, button, .view-details {
+            pointer-events: auto;
+          }
+        }
       }
 
       &.left {

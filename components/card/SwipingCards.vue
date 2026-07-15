@@ -8,11 +8,12 @@
                 </div>
             </template>
             <template v-else>
-                <template v-for="(card, index) in cards">
+                <template v-for="(card, index) in cards" :key="index">
                     <div class="card-wrapper" :class="card.position"
-                        @mousemove="(event) => handleMouseMove(event, card.position)"
-                        @mouseleave="(event) => resetTilt(event, card.position)">
-                        <div class="card hover-pointer" @click="clickCard(index)">
+                        @click="clickCard(index)">
+                        <div class="card"
+                            @mousemove="handleMouseMove"
+                            @mouseleave="resetTilt">
                             <div class="company-wrapper">
                                 <div class="company-title">
                                     <div class="company-logo">
@@ -62,105 +63,65 @@ const { getExperiences } = useMegome();
 
 const { data: rawCards, status } = await useCachedAsyncData('swiping-experiences', () => getExperiences())
 
-const cards = computed(() => {
-    const source = rawCards.value && rawCards.value.length > 0 ? rawCards.value : workexp
-    return source.map((card, i) => ({
+const cards = ref([])
+
+watch(rawCards, (newRawCards) => {
+    const source = newRawCards && newRawCards.length > 0 ? newRawCards : workexp
+    cards.value = source.map((card, i) => ({
         ...card,
-        position: i === 0 ? 'active' : i === 1 ? 'right' : 'left'
+        position: i === 0 ? 'active' : i === 1 ? 'right' : i === 2 ? 'left' : 'none'
     }))
-})
+}, { immediate: true })
 
 const activeIndex = computed(() => {
     const idx = cards.value.findIndex(c => c.position === 'active')
     return idx >= 0 ? idx : 0
 })
 
-const clickCard = (index) => {
-    let active = index
-    let left = (active - 1) < 0 ? (cards.value.length - 1) : (active - 1)
-    let right = (active + 1) > (cards.value.length - 1) ? 0 : (active + 1)
+const setPositions = (active) => {
+    const len = cards.value.length
+    const left = (active - 1) < 0 ? len - 1 : active - 1
+    const right = (active + 1) > len - 1 ? 0 : active + 1
 
-    for (let i = 0; i < cards.value.length; i++) {
-        if (i == active) {
-            cards.value[i].position = 'active'
-        } else if (i == left) {
-            cards.value[i].position = 'left'
-        } else if (i == right) {
-            cards.value[i].position = 'right'
-        } else {
-            cards.value[i].position = 'none'
-        }
-    }
+    cards.value = cards.value.map((card, i) => ({
+        ...card,
+        position: i === active ? 'active' : i === left ? 'left' : i === right ? 'right' : 'none'
+    }))
+}
+
+const clickCard = (index) => {
+    setPositions(index)
 }
 
 const handleNext = () => {
-    let activeIndex = 0
-    for (let i = 0; i < cards.value.length; i++) {
-        if (cards.value[i].position == 'active') {
-            activeIndex = i >= (cards.value.length - 1) ? 0 : i + 1
-        }
-    }
-
-    let active = activeIndex
-    let left = (active - 1) < 0 ? (cards.value.length - 1) : (active - 1)
-    let right = (active + 1) > (cards.value.length - 1) ? 0 : (active + 1)
-
-    for (let i = 0; i < cards.value.length; i++) {
-        if (i == active) {
-            cards.value[i].position = 'active'
-        } else if (i == left) {
-            cards.value[i].position = 'left'
-        } else if (i == right) {
-            cards.value[i].position = 'right'
-        } else {
-            cards.value[i].position = 'none'
-        }
-    }
+    const current = activeIndex.value
+    const next = current >= (cards.value.length - 1) ? 0 : current + 1
+    setPositions(next)
 }
 
 const handlePrev = () => {
-    let activeIndex = 0
-    for (let i = 0; i < cards.value.length; i++) {
-        if (cards.value[i].position == 'active') {
-            activeIndex = i <= 0 ? (cards.value.length - 1) : i - 1
-        }
-    }
-
-    let active = activeIndex
-    let left = (active - 1) < 0 ? (cards.value.length - 1) : (active - 1)
-    let right = (active + 1) > (cards.value.length - 1) ? 0 : (active + 1)
-
-    for (let i = 0; i < cards.value.length; i++) {
-        if (i == active) {
-            cards.value[i].position = 'active'
-        } else if (i == left) {
-            cards.value[i].position = 'left'
-        } else if (i == right) {
-            cards.value[i].position = 'right'
-        } else {
-            cards.value[i].position = 'none'
-        }
-    }
+    const current = activeIndex.value
+    const prev = current <= 0 ? cards.value.length - 1 : current - 1
+    setPositions(prev)
 }
 
 const handleMouseMove = (event) => {
-    const card = event.currentTarget.querySelector('.card');
-    const rect = card.getBoundingClientRect();
+    const card = event.currentTarget
+    const rect = card.getBoundingClientRect()
 
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
+    const x = event.clientX - rect.left
+    const y = event.clientY - rect.top
 
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
+    const centerX = rect.width / 2
+    const centerY = rect.height / 2
 
-    const rotateX = (centerY - y) / 50;
-    const rotateY = (x - centerX) / 50;
+    const rotateX = (centerY - y) / 50
+    const rotateY = (x - centerX) / 50
 
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
 }
 
 const resetTilt = (event) => {
-    const card = event.currentTarget.querySelector('.card');
-    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    event.currentTarget.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)'
 }
 </script>
