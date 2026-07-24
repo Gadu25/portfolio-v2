@@ -10,7 +10,7 @@
     align-items: center;
     flex-direction: column;
     position: relative;
-    min-height: 600px;
+    min-height: 300px;
 
     .swiper-controls {
       display: none;
@@ -73,6 +73,26 @@
         .company-wrapper {
           display: flex;
           flex-direction: column;
+          .techs {
+            display: flex;
+            gap: $space-xs;
+            flex-wrap: wrap;
+
+            .tech {
+              display: flex;
+              align-items: center;
+              border: 1px solid var(--border-color);
+              margin-top: $space-xs;
+              padding: $space-xs $space-sm;
+              border-radius: $radius-sm;
+              background: var(--card-color);
+              transition: all $transition-base;
+
+              &:hover {
+                border-color: var(--special-color);
+              }
+            }
+          }
 
           .company-title {
             display: inline-flex;

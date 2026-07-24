@@ -93,8 +93,10 @@
 
     const backLink = computed(() => {
         const from = route.query.from
-        if (from === 'home') return { label: 'Back to Home', path: '/' }
-        return { label: 'Back to Work', path: '/work' }
+
+        console.log(route, 'testing')
+        if (from === 'home') return { label: 'Back to /Home', path: '/' }
+        return { label: 'Back to /Work', path: '/work' }
     })
 
     useSeoMeta({

@@ -27,11 +27,19 @@
                                     <h4>{{ card.title }}</h4>
                                     <small class="text-secondary">{{ formatDate(card.startDate) }} - {{ card.isPresent ? 'present' : formatDate(card.endDate) }} <i> ({{ getStayDuration({ start: card.startDate, end: card.endDate }) }})</i></small>
                                 </div>
-                                <div class="role-tasks">
-                                    <div v-html="card.description"></div>
+                                <!-- <div class="role-tasks"> -->
+                                <!--     <div v-html="card.description"></div> -->
+                                <!-- </div> -->
+                                <div class="techs">
+                                    <template v-for="item in card.technologies">
+                                        <div class="tech">
+                                            <!-- <img :src="item.icon" :alt="'icon-for-' + item.name" /> -->
+                                            <span class="tech-name"><small>{{ item.name }}</small></span>
+                                        </div>
+                                    </template>
                                 </div>
                                 <div class="card-actions">
-                                    <NuxtLink :to="'/experience/'+card.id+'?from=work'" class="view-details hover-pointer" @click.stop>
+                                    <NuxtLink :to="'/experience/'+card.id+'?from=home'" class="view-details hover-pointer" @click.stop>
                                         <small>View Details <i class="fa fa-chevron-right"></i></small>
                                     </NuxtLink>
                                 </div>
