@@ -93,8 +93,6 @@
 
     const backLink = computed(() => {
         const from = route.query.from
-
-        console.log(route, 'testing')
         if (from === 'home') return { label: 'Back to /Home', path: '/' }
         return { label: 'Back to /Work', path: '/work' }
     })
