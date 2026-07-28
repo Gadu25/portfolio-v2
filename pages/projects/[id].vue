@@ -22,7 +22,7 @@
                                 <span>GitHub</span>
                             </a>
                             <a v-if="project.link" :href="project.link" target="_blank" class="link-btn demo-btn">
-                                <span>Visit Demo</span>
+                                <span>Visit</span>
                                 <i class="fa fa-external-link"></i>
                             </a>
                         </div>
