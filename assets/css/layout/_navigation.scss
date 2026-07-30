@@ -56,14 +56,14 @@
           left: 0;
           width: 0;
           height: 2px;
-          background: var(--special-color);
+          background: var(--text-color);
           transition: width $transition-base;
           border-radius: $radius-full;
         }
       }
 
       &.active a {
-        color: var(--special-color);
+        color: var(--text-color);
 
         &::after {
           width: 100%;
@@ -170,7 +170,7 @@
         font-weight: unset;
 
         &.active a {
-          color: var(--special-color) !important;
+          color: var(--text-color) !important;
         }
       }
     }
