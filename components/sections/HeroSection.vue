@@ -8,11 +8,6 @@
         </div>
       </template>
       <template v-else>
-        <!-- <img -->
-        <!--   class="hero__avatar" -->
-        <!--   src="~/assets/images/memoji/mac.webp" -->
-        <!--   alt="Alex on mac" -->
-        <!-- /> -->
         <h1 class="hero__name">
           {{ profile ? `${profile.firstName} ${profile.lastName}` : 'Alexander Udag' }}
         </h1>

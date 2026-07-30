@@ -1,7 +1,7 @@
 <template>
   <section class="certifications">
     <div class="certifications__container">
-      <h3>Certificates <span v-if="status !== 'pending'" class="item-count">({{ certs.length }})</span></h4>
+      <h3>Certificates <span v-if="status !== 'pending'" class="item-count">({{ certs.length }})</span></h3>
 
       <template v-if="status === 'pending'">
         <div class="loading">
