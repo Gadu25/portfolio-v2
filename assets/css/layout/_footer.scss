@@ -1,7 +1,7 @@
 .footer {
   padding: $space-xl 0 $space-lg;
   margin-top: $space-xl;
-  background: linear-gradient(to top, var(--card-color), transparent);
+  background: linear-gradient(to top, var(--surface-color), transparent);
 
   &__container {
     max-width: $max-width;
@@ -19,7 +19,7 @@
       transition: all $transition-base;
 
       &:hover {
-        color: var(--special-color);
+        color: var(--text-color);
       }
     }
   }
