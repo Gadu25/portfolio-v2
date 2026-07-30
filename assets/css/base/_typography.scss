@@ -102,3 +102,8 @@ strong {
     font-size: $font-size-xs;
   }
 }
+
+.item-count {
+  color: var(--secondary-text-color);
+  font-weight: $font-weight-normal;
+}
