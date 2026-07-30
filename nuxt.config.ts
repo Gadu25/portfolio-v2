@@ -17,7 +17,7 @@ export default defineNuxtConfig({
         { name: 'description', content: 'A portfolio showcasing my web development skills, projects, and experience.' },
         { name: 'keywords', content: 'web developer, portfolio, front-end, JavaScript, React, Vue, Laravel, HTML, CSS, Nuxt, Tailwind' },
         { name: 'robots', content: 'index, follow' },
-        { name: 'theme-color', content: '#0070f3' },
+        { name: 'theme-color', content: '#ffffff' },
       ],
       link: [
         {
