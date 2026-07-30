@@ -1,7 +1,7 @@
 <template>
   <section class="regular-work">
     <div class="regular-work__container">
-      <h4>Experience <span v-if="status !== 'pending'" class="item-count">({{ works.length }})</span></h4>
+      <h3>Experience <span v-if="status !== 'pending'" class="item-count">({{ works.length }})</span></h4>
       <RegularCard :works="works" :loading="status === 'pending'" />
     </div>
   </section>
