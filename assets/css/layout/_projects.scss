@@ -124,14 +124,13 @@
               }
 
               &--primary {
-                background-color: var(--text-color);
-                color: var(--background-color);
+                background-color: transparent;
+                color: var(--text-color);
                 border: 1px solid var(--text-color);
 
                 &:hover {
-                  opacity: 0.9;
-                  transform: translateY(-1px);
-                  box-shadow: $shadow-sm;
+                  background-color: var(--text-color);
+                  color: var(--background-color);
                 }
               }
             }

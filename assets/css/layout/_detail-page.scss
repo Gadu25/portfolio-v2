@@ -223,8 +223,14 @@
 
     .demo-btn,
     .primary-btn {
-      background-color: var(--text-color);
-      color: var(--background-color);
+      background-color: transparent;
+      color: var(--text-color);
+      border: 1px solid var(--text-color);
+
+      &:hover {
+        background-color: var(--text-color);
+        color: var(--background-color);
+      }
     }
   }
 
