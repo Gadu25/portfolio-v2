@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: $space-xl 10%;
+  padding: $space-xl $space-lg;
   position: relative;
 
   &__content {
@@ -56,6 +56,6 @@
 
 @media screen and (max-width: $bp-mobile) {
   .hero {
-    padding: $space-xl 5%;
+    padding: $space-xl $space-md;
   }
 }
