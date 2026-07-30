@@ -34,7 +34,7 @@ a {
 
 p {
   line-height: 1.7;
-  font-size: $font-size-base;
+  font-size: $font-size-sm;
   color: var(--text-color);
 }
 
@@ -52,13 +52,13 @@ h2 {
 }
 
 h3 {
-  font-size: $font-size-xl;
+  font-size: $font-size-lg;
   font-weight: $font-weight-medium;
   letter-spacing: -0.01em;
 }
 
 h4 {
-  font-size: $font-size-md;
+  font-size: $font-size-base;
   font-weight: $font-weight-medium;
   text-transform: uppercase;
   letter-spacing: 0.05em;
