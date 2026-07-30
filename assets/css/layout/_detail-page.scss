@@ -17,7 +17,7 @@
       cursor: pointer;
 
       &:hover {
-        color: var(--special-color);
+        color: var(--text-color);
       }
     }
 
@@ -30,7 +30,7 @@
         border-radius: $radius-md;
         overflow: hidden;
         margin-bottom: $space-lg;
-        background-color: var(--card-color);
+        background-color: var(--surface-color);
 
         img {
           width: 100%;
@@ -53,7 +53,7 @@
 
         .company,
         .issuer {
-          color: var(--special-color);
+          color: var(--text-color);
           margin-bottom: $space-sm;
         }
 
@@ -85,8 +85,8 @@
             font-size: $font-size-xs;
             padding: $space-xs $space-md;
             border-radius: $radius-full;
-            background-color: var(--card-color);
-            color: var(--special-color);
+            background-color: var(--surface-color);
+            color: var(--text-color);
             font-weight: $font-weight-medium;
           }
         }
@@ -124,7 +124,7 @@
 
         .credential-id {
           font-family: 'SF Mono', 'Fira Code', monospace;
-          background-color: var(--card-color);
+          background-color: var(--surface-color);
           padding: $space-sm $space-md;
           border-radius: $radius-sm;
           display: inline-block;
@@ -132,7 +132,7 @@
         }
 
         .credential-link {
-          color: var(--special-color);
+          color: var(--text-color);
           text-decoration: none;
           display: inline-flex;
           align-items: center;
@@ -153,14 +153,14 @@
           .tech-tag {
             padding: $space-xs $space-md;
             border-radius: $radius-sm;
-            background-color: var(--card-color);
+            background-color: var(--surface-color);
             font-size: $font-size-sm;
             color: var(--text-color);
             border: 1px solid transparent;
             transition: all $transition-base;
 
             &:hover {
-              border-color: var(--special-color);
+              border-color: var(--text-color);
             }
           }
         }
@@ -172,7 +172,7 @@
           .screenshot-item {
             border-radius: $radius-md;
             overflow: hidden;
-            background-color: var(--card-color);
+            background-color: var(--surface-color);
 
             img {
               width: 100%;
@@ -216,14 +216,14 @@
     }
 
     .github-btn {
-      background-color: var(--card-color);
+      background-color: var(--surface-color);
       color: var(--text-color);
       border: 1px solid var(--border-color);
     }
 
     .demo-btn,
     .primary-btn {
-      background-color: var(--special-color);
+      background-color: var(--text-color);
       color: var(--background-color);
     }
   }
@@ -247,7 +247,7 @@
 .experience-detail {
   .content {
     .header-card {
-      background-color: var(--card-color);
+      background-color: var(--surface-color);
       border-radius: $radius-md;
       padding: $space-xl;
       transition: background-color $transition-base;
@@ -302,14 +302,14 @@
             white-space: nowrap;
 
             &.present {
-              background-color: var(--special-color);
+              background-color: var(--text-color);
               color: var(--background-color);
             }
           }
         }
 
         .company {
-          color: var(--special-color);
+          color: var(--text-color);
           font-weight: $font-weight-medium;
           margin-bottom: $space-sm;
         }
@@ -347,7 +347,7 @@
         gap: $space-sm;
 
         i {
-          color: var(--special-color);
+          color: var(--text-color);
           font-size: $font-size-sm;
         }
       }
@@ -371,7 +371,7 @@
               width: 6px;
               height: 6px;
               border-radius: 50%;
-              background-color: var(--special-color);
+              background-color: var(--text-color);
             }
           }
         }
@@ -389,7 +389,7 @@
         .tech-tag {
           padding: $space-xs $space-md;
           border-radius: $radius-sm;
-          background-color: var(--card-color);
+          background-color: var(--surface-color);
           font-size: $font-size-xs;
           font-weight: $font-weight-medium;
           color: var(--text-color);
@@ -397,8 +397,8 @@
           transition: all $transition-base;
 
           &:hover {
-            border-color: var(--special-color);
-            color: var(--special-color);
+            border-color: var(--text-color);
+            color: var(--text-color);
           }
         }
       }
@@ -482,7 +482,7 @@
       border-radius: $radius-md;
       overflow: hidden;
       margin-bottom: $space-lg;
-      background-color: var(--card-color);
+      background-color: var(--surface-color);
 
       img {
         width: 100%;
@@ -496,11 +496,11 @@
         align-items: center;
         justify-content: center;
         min-height: 200px;
-        background-color: var(--card-color);
+        background-color: var(--surface-color);
 
         i {
           font-size: $font-size-3xl;
-          color: var(--special-color);
+          color: var(--text-color);
           opacity: 0.6;
         }
       }
@@ -515,7 +515,7 @@
       }
 
       .issuer {
-        color: var(--special-color);
+        color: var(--text-color);
         font-weight: $font-weight-medium;
         margin-bottom: $space-sm;
       }
@@ -552,14 +552,14 @@
         gap: $space-sm;
 
         i {
-          color: var(--special-color);
+          color: var(--text-color);
           font-size: $font-size-sm;
         }
       }
 
       .credential-id {
         font-family: 'SF Mono', 'Fira Code', monospace;
-        background-color: var(--card-color);
+        background-color: var(--surface-color);
         padding: $space-sm $space-md;
         border-radius: $radius-sm;
         display: inline-block;
@@ -568,7 +568,7 @@
       }
 
       .credential-link {
-        color: var(--special-color);
+        color: var(--text-color);
         text-decoration: none;
         display: inline-flex;
         align-items: center;
