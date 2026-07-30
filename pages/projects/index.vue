@@ -1,7 +1,7 @@
 <template>
     <div class="projects">
         <div class="content">
-            <h4>Projects <span v-if="status !== 'pending'" class="item-count">({{ projects.length }})</span></h4>
+            <h3>Projects <span v-if="status !== 'pending'" class="item-count">({{ projects.length }})</span></h3>
             <template v-if="status === 'pending'">
                 <div class="loading">
                     <div class="spinner"></div>

@@ -3,12 +3,12 @@
     <div class="about__container">
       <div class="about__text" data-aos="fade-up">
         <div class="about__heading">
-          <h3>About Me</h3>
-          <img
-            class="about__memoji"
-            src="~/assets/images/memoji/hi.webp"
-            alt="Alex waving"
-          />
+          <h3>About</h3>
+          <!-- <img -->
+          <!--   class="about__memoji" -->
+          <!--   src="~/assets/images/memoji/hi.webp" -->
+          <!--   alt="Alex waving" -->
+          <!-- /> -->
         </div>
         <template v-if="status === 'pending'">
           <div class="loading">

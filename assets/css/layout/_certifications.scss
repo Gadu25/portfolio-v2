@@ -1,5 +1,5 @@
 .certifications {
-  padding: $space-2xl 0;
+  padding: 0 0 $space-3xl 0;
 
   &__container {
     max-width: $max-width;
@@ -11,13 +11,12 @@
     margin-bottom: $space-md;
     border-radius: $radius-md;
     background: var(--surface-color);
-    border: 1px solid var(--card-border);
+    border: 1px solid var(--border-color);
     transition: all $transition-base;
     overflow: hidden;
 
     &:hover {
-      box-shadow: var(--glowing-card);
-      border-color: var(--special-color);
+      border-color: var(--text-color);
     }
   }
 
@@ -36,7 +35,7 @@
     height: 90px;
     border-radius: $radius-sm;
     overflow: hidden;
-    background: var(--card-color);
+    background: var(--surface-color);
 
     img {
       width: 100%;
@@ -68,7 +67,7 @@
   }
 
   &__details {
-    color: var(--special-color);
+    color: var(--text-color);
     font-weight: $font-weight-medium;
     transition: opacity $transition-base;
 
@@ -83,7 +82,7 @@
     transition: color $transition-base;
 
     &:hover {
-      color: var(--special-color);
+      color: var(--text-color);
     }
   }
 }

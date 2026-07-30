@@ -10,25 +10,24 @@ $height: 44px;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  background-color: var(--text-color);
+  background-color: transparent;
   transition: all $transition-base;
   cursor: pointer;
   font-weight: $font-weight-medium;
   letter-spacing: 0.02em;
 
   p {
-    color: var(--background-color);
+    color: var(--text-color);
     margin: 0;
+    transition: color $transition-base;
   }
 
   &:hover {
-    background-color: var(--background-color);
+    background-color: var(--text-color);
 
     p {
-      color: var(--text-color);
+      color: var(--background-color);
     }
-    box-shadow: var(--glowing-card);
-    transform: translateY(-1px);
   }
 
   &:active {

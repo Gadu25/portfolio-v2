@@ -17,16 +17,16 @@ export default defineNuxtConfig({
         { name: 'description', content: 'A portfolio showcasing my web development skills, projects, and experience.' },
         { name: 'keywords', content: 'web developer, portfolio, front-end, JavaScript, React, Vue, Laravel, HTML, CSS, Nuxt, Tailwind' },
         { name: 'robots', content: 'index, follow' },
-        { name: 'theme-color', content: '#0070f3' },
+        { name: 'theme-color', content: '#ffffff' },
       ],
       link: [
         {
           rel: 'stylesheet',
           href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css',
         },
-        { 
-          rel: 'stylesheet', 
-          href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap' 
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap'
         },
       ],
       script: [

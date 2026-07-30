@@ -1,9 +1,11 @@
 .tech {
-  padding: $space-xl 0;
+  @media screen and (min-width: 768px) {
+    padding: $space-3xl 0;
+  }
 
   &:hover {
     h3 {
-      color: var(--special-color);
+      color: var(--text-color);
       transition: color 0.6s ease;
     }
   }
@@ -56,7 +58,7 @@
       }
 
       .tech__label {
-        color: var(--special-color);
+        color: var(--text-color);
       }
     }
   }
@@ -79,9 +81,9 @@
       width: 100%;
       gap: $space-md;
       padding: $space-sm $space-md;
-      background: var(--card-color);
+      background: var(--surface-color);
       border-radius: $radius-md;
-      border: 1px solid var(--card-border);
+      border: 1px solid var(--border-color);
 
       img {
         width: $icon-md;
@@ -96,7 +98,7 @@
 
       &:hover {
         background: var(--surface-color);
-        border-color: var(--special-color);
+        border-color: var(--text-color);
 
         img {
           transform: none;

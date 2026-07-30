@@ -14,7 +14,7 @@
                             <img :src="work.logo" :alt="work.company + '-logo'" />
                         </div>
                         <div class="company-name">
-                            <h4>{{ work.company }}</h4>
+                            <h3>{{ work.company }}</h3>
                         </div>
                     </div>
                     <div class="my-role">

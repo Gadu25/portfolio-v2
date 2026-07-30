@@ -6,7 +6,7 @@
   -webkit-tap-highlight-color: transparent;
 
   &:focus-visible .theme-toggle__track {
-    outline: 2px solid var(--special-color);
+    outline: 2px solid var(--text-color);
     outline-offset: 2px;
   }
 
@@ -15,7 +15,7 @@
     position: relative;
     width: $icon-xl;
     height: 22px;
-    background-color: var(--card-color);
+    background-color: var(--surface-color);
     border: 1px solid var(--border-color);
     border-radius: $radius-full;
     overflow: hidden;
@@ -29,7 +29,7 @@
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background-color: var(--special-color);
+    background-color: var(--text-color);
     transition: all $transition-slow cubic-bezier(0.4, 0, 0.2, 1);
 
     &.dark {
@@ -41,7 +41,7 @@
         position: absolute;
         width: 18px;
         height: 18px;
-        background-color: var(--card-color);
+        background-color: var(--surface-color);
         border-radius: 50%;
         z-index: 1;
         animation: moon-delay 0.4s ease forwards;
