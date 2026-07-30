@@ -1,6 +1,5 @@
 <template>
   <div class="layout">
-    <Cursor />
     <Navigation @navigate="setDirection" :is-scrolled="isScrolled" />
     <NuxtPage :transition="{ name: transitionDirection, mode: 'out-in' }" />
     <FooterSection />
@@ -10,7 +9,6 @@
 <script setup lang="ts">
 import Navigation from '~/layouts/Navigation.vue'
 import FooterSection from '~/layouts/Footer.vue'
-import Cursor from '~/components/Cursor.vue'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
