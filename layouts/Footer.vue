@@ -7,11 +7,11 @@
       <div class="footer__col">
         <div class="footer__contact">
           <div class="footer__get-in-touch">
-            <img
-              class="footer__call-memoji"
-              src="~/assets/images/memoji/call.webp"
-              alt="Alex call memoji"
-            />
+            <!-- <img -->
+            <!--   class="footer__call-memoji" -->
+            <!--   src="~/assets/images/memoji/call.webp" -->
+            <!--   alt="Alex call memoji" -->
+            <!-- /> -->
             <p>Get in Touch |</p>
           </div>
           <div class="footer__socials">

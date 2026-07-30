@@ -2,11 +2,11 @@
   <nav class="nav" :class="{ 'nav--scrolled': scrolled }">
     <div class="nav__container">
       <ul class="nav__links">
-        <li>
-          <NuxtLink to="/" @click="closeMobile">
-            <img src="~/assets/images/memoji.webp" alt="my-memoji-icon" />
-          </NuxtLink>
-        </li>
+        <!-- <li> -->
+        <!--   <NuxtLink to="/" @click="closeMobile"> -->
+        <!--     <img src="~/assets/images/memoji.webp" alt="my-memoji-icon" /> -->
+        <!--   </NuxtLink> -->
+        <!-- </li> -->
         <li
           v-for="(nav, index) in navs"
           :key="nav.route"

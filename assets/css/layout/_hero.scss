@@ -42,5 +42,12 @@
 @media screen and (max-width: $bp-mobile) {
   .hero {
     padding: $space-xl $space-md;
+    &__title {
+      font-size: $font-size-lg;
+      margin-bottom: $space-sm;
+    }
+    &__tagline {
+      font-size: $font-size-sm;
+    }
   }
 }

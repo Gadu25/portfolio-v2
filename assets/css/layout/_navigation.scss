@@ -8,6 +8,7 @@
   transition: all $transition-base;
   z-index: 100;
   border-bottom: 1px solid transparent;
+  padding: 8px;
 
   &--scrolled {
     border-bottom-color: var(--border-color);
