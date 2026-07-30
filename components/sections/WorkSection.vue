@@ -1,7 +1,7 @@
 <template>
   <section class="work">
     <div class="work__container">
-      <h3>Work Experience</h3>
+      <h3>Experience</h3>
       <SwipingCards />
     </div>
   </section>

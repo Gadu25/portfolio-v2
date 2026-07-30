@@ -49,7 +49,7 @@
                         <div class="screenshots">
                             <template v-for="(screenshot, index) in project.images.screenshots">
                                 <div class="screenshot-item">
-                                    <img :src="screenshot" :alt="'screenshot-'+(index+1)"/>
+                                    <img :src="screenshot.url" :alt="'screenshot-'+(index+1)"/>
                                 </div>
                             </template>
                         </div>

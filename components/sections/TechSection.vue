@@ -1,7 +1,7 @@
 <template>
   <section class="tech">
     <div class="tech__container">
-      <h3>Tech Experience</h3>
+      <h3>Technologies</h3>
       <div class="tech__grid">
         <div
           v-for="item in techs"
