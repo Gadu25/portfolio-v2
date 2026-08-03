@@ -39,6 +39,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: $space-lg;
+    min-height: $space-lg;
     border: none;
     background: transparent;
     color: var(--secondary-text-color);

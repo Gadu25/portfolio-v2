@@ -1,3 +1,4 @@
+import { onScopeDispose } from 'vue'
 import type { ProjectFull } from '~/types/megome'
 
 export const useProjectSearch = (projects: Ref<ProjectFull[] | null>) => {
@@ -11,6 +12,10 @@ export const useProjectSearch = (projects: Ref<ProjectFull[] | null>) => {
     timeout = setTimeout(() => {
       debouncedQuery.value = value
     }, debounceMs)
+  })
+
+  onScopeDispose(() => {
+    if (timeout) clearTimeout(timeout)
   })
 
   const results = computed(() => {
