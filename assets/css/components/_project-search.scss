@@ -1,0 +1,53 @@
+.project-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: $space-lg;
+
+  &__icon {
+    position: absolute;
+    left: $space-md;
+    color: var(--secondary-text-color);
+    font-size: $font-size-sm;
+    pointer-events: none;
+  }
+
+  &__input {
+    width: 100%;
+    padding: $space-sm $space-xl;
+    border: 1px solid var(--border-color);
+    border-radius: $radius-md;
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    font-size: $font-size-sm;
+    font-family: inherit;
+    transition: border-color $transition-base;
+
+    &:focus {
+      outline: none;
+      border-color: var(--text-color);
+    }
+
+    &::placeholder {
+      color: var(--secondary-text-color);
+    }
+  }
+
+  &__clear {
+    position: absolute;
+    right: $space-sm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: var(--secondary-text-color);
+    font-size: $font-size-sm;
+    cursor: pointer;
+    transition: color $transition-base;
+
+    &:hover {
+      color: var(--text-color);
+    }
+  }
+}
