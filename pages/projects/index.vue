@@ -1,7 +1,8 @@
 <template>
     <div class="projects">
         <div class="content">
-            <h3>Projects <span v-if="status !== 'pending'" class="item-count">({{ projects.length }})</span></h3>
+            <h3>Projects <span v-if="status !== 'pending'" class="item-count">({{ results.length }})</span></h3>
+            <ProjectSearch v-model="query" />
             <template v-if="status === 'pending'">
                 <div class="loading">
                     <div class="spinner"></div>
@@ -9,7 +10,7 @@
                 </div>
             </template>
             <template v-else>
-                <template v-for="project of projects">
+                <template v-for="project of results">
                     <div class="project-card" data-aos="fade-up">
                         <div class="project-content">
                             <div class="col">
@@ -50,12 +51,17 @@
                         </div>
                     </div>
                 </template>
+                <div v-if="hasQuery && results.length === 0" class="projects__empty text-secondary">
+                    <p>No projects match '{{ query }}'.</p>
+                    <small class="hover-pointer" @click="clear">Clear search</small>
+                </div>
             </template>
         </div>
     </div>
 </template>
 
 <script setup>
+    import ProjectSearch from '~/components/common/ProjectSearch.vue'
     import projectData from '~/data/projects';
     import ogImage from '~/assets/images/memoji/tablet.webp';
 
@@ -64,6 +70,8 @@
     const { data: projects, status } = await useCachedAsyncData('projects', () => getProjects(), {
         default: () => projectData
     })
+
+    const { query, results, hasQuery, clear } = useProjectSearch(projects)
 
     useSeoMeta({
         description: 'Browse the personal projects and web app demos created by Alexander Udag using Vue, Nuxt, Laravel, and more.',

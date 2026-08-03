@@ -138,5 +138,22 @@
         }
       }
     }
+
+    .projects__empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: $space-xs;
+      margin-top: $space-lg;
+      text-align: center;
+
+      small {
+        cursor: pointer;
+
+        &:hover {
+          color: var(--text-color);
+        }
+      }
+    }
   }
 }
