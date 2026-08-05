@@ -196,6 +196,7 @@ export function useTerminal() {
     lines.value = []
     currentInput.value = ''
     isStreaming.value = false
+    chatHistory.value = []
   }
 
   function toggle() {
@@ -271,114 +272,7 @@ export function useTerminal() {
     ])
   }
 
-  async function submit() {
-    const input = currentInput.value.trim()
-    if (!input || isStreaming.value) return
-
-    const prompt = `visitor@alex:~$ ${input}`
-
-    if (input === 'clear' || input === 'cls') {
-      lines.value = []
-      currentInput.value = ''
-      return
-    }
-
-    if (input === 'exit' || input === 'logout') {
-      close()
-      return
-    }
-
-    if (input === 'resume' || input === 'cv') {
-      addLine({ text: prompt, type: 'prompt' })
-      handleResume()
-      currentInput.value = ''
-      history.value = [...history.value, input]
-      historyIndex.value = -1
-      return
-    }
-
-    history.value = [...history.value, input]
-    historyIndex.value = -1
-
-    addLine({ text: prompt, type: 'prompt' })
-
-    const commands = getStructuredCommands()
-    const matched = commands.find((cmd) => cmd.match(input))
-
-    if (matched && input !== 'hack' && input !== 'sudo') {
-      addLines(matched.handler())
-      currentInput.value = ''
-      return
-    }
-
-    if (input === 'hack' || input === 'sudo') {
-      currentInput.value = ''
-      isStreaming.value = true
-      chatHistory.value = [...chatHistory.value, { role: 'user', text: input }]
-
-      try {
-        const response = await fetch('/api/terminal', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: input, history: chatHistory.value.slice(0, -1) })
-        })
-
-        if (!response.ok) {
-          addLine({ text: '[CONNECTION UNSTABLE - retry in ~5s]', type: 'error' })
-          isStreaming.value = false
-          return
-        }
-
-        let fullText = ''
-        let isFirstChunk = true
-        const reader = response.body!.getReader()
-        const decoder = new TextDecoder()
-        let buffer = ''
-
-        while (true) {
-          const { done, value } = await reader.read()
-          if (done) break
-
-          buffer += decoder.decode(value, { stream: true })
-          const lines_arr = buffer.split('\n')
-          buffer = lines_arr.pop() || ''
-
-          for (const line of lines_arr) {
-            if (line.startsWith('data: ')) {
-              const jsonStr = line.slice(6).trim()
-              if (!jsonStr) continue
-              try {
-                const parsed = JSON.parse(jsonStr)
-                if (parsed.error) {
-                  addLine({ text: `[${parsed.error}]`, type: 'error' })
-                  continue
-                }
-                if (parsed.text) {
-                  fullText += parsed.text
-                  addOutputChunk(parsed.text, isFirstChunk)
-                  isFirstChunk = false
-                }
-              } catch {
-                // skip
-              }
-            }
-          }
-        }
-
-        if (fullText) {
-          chatHistory.value = [...chatHistory.value, { role: 'model', text: fullText }]
-        }
-      } catch (err: any) {
-        addLine({ text: '[CARRIER LOST]', type: 'error' })
-      }
-
-      isStreaming.value = false
-      currentInput.value = ''
-      return
-    }
-
-    currentInput.value = ''
-    isStreaming.value = true
+  async function streamFromApi(input: string) {
     chatHistory.value = [...chatHistory.value, { role: 'user', text: input }]
 
     try {
@@ -390,8 +284,6 @@ export function useTerminal() {
 
       if (!response.ok) {
         addLine({ text: '[CONNECTION UNSTABLE - retry in ~5s]', type: 'error' })
-        isStreaming.value = false
-        currentInput.value = ''
         return
       }
 
@@ -434,10 +326,54 @@ export function useTerminal() {
       if (fullText) {
         chatHistory.value = [...chatHistory.value, { role: 'model', text: fullText }]
       }
-    } catch (err: any) {
+    } catch {
       addLine({ text: '[CARRIER LOST]', type: 'error' })
     }
+  }
 
+  async function submit() {
+    const input = currentInput.value.trim()
+    if (!input || isStreaming.value) return
+
+    const prompt = `visitor@alex:~$ ${input}`
+
+    if (input === 'clear' || input === 'cls') {
+      lines.value = []
+      currentInput.value = ''
+      return
+    }
+
+    if (input === 'exit' || input === 'logout') {
+      close()
+      return
+    }
+
+    if (input === 'resume' || input === 'cv') {
+      addLine({ text: prompt, type: 'prompt' })
+      handleResume()
+      currentInput.value = ''
+      history.value = [...history.value, input]
+      historyIndex.value = -1
+      return
+    }
+
+    history.value = [...history.value, input]
+    historyIndex.value = -1
+
+    addLine({ text: prompt, type: 'prompt' })
+
+    const commands = getStructuredCommands()
+    const matched = commands.find((cmd) => cmd.match(input))
+
+    if (matched && input !== 'hack' && input !== 'sudo') {
+      addLines(matched.handler())
+      currentInput.value = ''
+      return
+    }
+
+    currentInput.value = ''
+    isStreaming.value = true
+    await streamFromApi(input)
     isStreaming.value = false
     currentInput.value = ''
   }
