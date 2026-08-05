@@ -2,11 +2,6 @@
   <nav class="nav" :class="{ 'nav--scrolled': scrolled }">
     <div class="nav__container">
       <ul class="nav__links">
-        <!-- <li> -->
-        <!--   <NuxtLink to="/" @click="closeMobile"> -->
-        <!--     <img src="~/assets/images/memoji.webp" alt="my-memoji-icon" /> -->
-        <!--   </NuxtLink> -->
-        <!-- </li> -->
         <li
           v-for="(nav, index) in navs"
           :key="nav.route"
@@ -31,7 +26,17 @@
           </label>
         </div>
       </div>
-      <ThemeToggle class="nav__theme-toggle" />
+      <div class="nav__actions">
+        <button
+          class="terminal-nav-btn"
+          @click="openTerminal"
+          aria-label="Open terminal"
+          title="Open terminal (Ctrl+K)"
+        >
+          &gt;_
+        </button>
+        <ThemeToggle class="nav__theme-toggle" />
+      </div>
     </div>
     <div class="nav__mobile" :class="{ active: toggle }">
       <ul>
@@ -83,6 +88,11 @@ const closeMobile = () => {
   if (toggle.value) {
     toggle.value = false
   }
+}
+
+const openTerminal = () => {
+  const term = useTerminal()
+  term.open()
 }
 
 watch(toggle, (newVal) => {
