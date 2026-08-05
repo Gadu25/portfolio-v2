@@ -1,65 +1,46 @@
 import { readBody, setResponseHeader } from 'h3'
-import techs from '~/data/techs'
-import workexp from '~/data/workexp'
-import projects from '~/data/projects'
-import certifications from '~/data/certifications'
 
 const GEMINI_API_BASE = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:streamGenerateContent'
 
 function buildSystemPrompt(): string {
-  const profile = {
-    name: 'Alexander Udag',
-    title: 'Creative Software Engineer',
-    bio: `Creative software engineer crafting responsive and high-performing web applications. Frontend-focused fullstack developer passionate about Vue, Nuxt, and modern web technologies. Skilled in building scalable component libraries, designing clean UIs, and integrating robust backends.`
-  }
-
-  const skills = techs.map((t) => t.name).join(', ')
-
-  const experienceStrs = workexp.map((w: any, i: number) => {
-    const endStr = w.isPresent ? 'Present' : (w.endDate || '')
-    const techStr = (w.technologies || []).map((t: any) => t.name || t.slug || '').filter(Boolean).join(', ')
-    return `${w.title} at ${w.company} (${w.startDate} - ${endStr}): ${techStr}`
-  })
-
-  const projectStrs = projects.map((p: any, i: number) => {
-    const name = p.name || p.title || 'Unknown'
-    const status = typeof p.status === 'string' ? p.status : p.status?.title || 'Unknown'
-    const techStr = (p.techUsed || p.technologies || [])
-      .map((t: any) => t.name || t.slug || '')
-      .filter(Boolean)
-      .join(', ')
-    return `${name}: ${p.description || ''} (${techStr}) — Status: ${status}`
-  })
-
-  const certStrs = certifications.map((c: any) => `${c.name} — ${c.provider} (${c.issued})`)
-
-  const links = [
-    'Portfolio: https://alexander.udaglab.com',
-    'GitHub: https://github.com/Gadu25',
-    'LinkedIn: https://linkedin.com/in/alexander-udag'
-  ]
-
   return `You are the system operator of this portfolio terminal.
 Persona: a cryptic but helpful operator. Speak in terminal-appropriate language. Be concise. Use monospace-friendly formatting (no markdown, no emojis). Keep responses to 1-4 lines unless listing data.
 
 PORTFOLIO CONTEXT:
-Name: ${profile.name}
-Title: ${profile.title}
-Bio: ${profile.bio}
+Name: Alexander Udag
+Title: Creative Software Engineer
+Bio: Creative software engineer crafting responsive and high-performing web applications. Frontend-focused fullstack developer passionate about Vue, Nuxt, and modern web technologies. Skilled in building scalable component libraries, designing clean UIs, and integrating robust backends.
 
 EXPERIENCE:
-${experienceStrs.map((e, i) => `${i + 1}. ${e}`).join('\n')}
+1. Frontend Software Engineer at Flexicon Solution Inc. (Sep 2024 - Present): Vue, Nuxt, Storybook, Cypress, SCSS, Quasar, NodeJS
+2. Full Stack Web Developer at DOST-SEI (Mar 2023 - Aug 2024): Vue, Laravel, PHP, MySQL, Bootstrap, PostgreSQL, NodeJS
+3. Junior Frontend Web Developer at Xtendly Philippines Inc. (Jul 2022 - Feb 2023): React, Next.js, Tailwind, Laravel, MySQL, NodeJS, WordPress
 
 PROJECTS:
-${projectStrs.map((p, i) => `${i + 1}. ${p}`).join('\n')}
+1. Megome: API-first portfolio infrastructure platform (Next.js, TypeScript, Tailwind CSS, Go, MySQL) — Status: Ongoing Development
+2. GEP Website: Official site for Geodetic Engineers of the Philippines (WordPress, PHP, SCSS, JavaScript, MySQL) — Status: Live
+3. Mojito Cocktail: GSAP animation playground (React, TypeScript, Tailwind CSS) — Status: Done
+4. CatchThemAll: Interactive Pokemon web app (Nuxt, Tailwind, JavaScript, NodeJS, Sass) — Status: Beta
+5. API-Hub: Multi-API integration dashboard (Nuxt, Tailwind, JavaScript, NodeJS, Sass) — Status: Stale
+6. Passkeep: Secure password manager (Next.js, Tailwind CSS, Firebase) — Status: Live
 
-SKILLS: ${skills}
+SKILLS: JavaScript, Vue, Nuxt, React, Next.js, TypeScript, SCSS/Sass, Tailwind CSS, Bootstrap, Node.js, PHP, Laravel, MySQL, PostgreSQL, WordPress, Go, Storybook, Cypress, Quasar, Firebase, Git
 
 CERTIFICATIONS:
-${certStrs.map((c, i) => `${i + 1}. ${c}`).join('\n')}
+1. Advance CSS and Sass — Udemy (Jan 2025)
+2. Crash Course on Python — Google (Jul 2023)
+3. Build a Website with HTML, CSS, and GitHub Pages — Codecademy (Sep 2024)
+4. Introduction to UI and UX Design — Codecademy (Sep 2024)
+5. Learn CSS — Codecademy (Sep 2024)
+6. Learn HTML — Codecademy (Sep 2024)
+7. Learn JavaScript — Codecademy (Sep 2024)
+8. Learn Sass — Codecademy (Sep 2024)
+9. Learn Vue.js — Codecademy (Sep 2024)
 
 LINKS:
-${links.join('\n')}
+Portfolio: https://alexander.udaglab.com
+GitHub: https://github.com/Gadu25
+LinkedIn: https://linkedin.com/in/alexander-udag
 
 RULES:
 - If asked about skills, projects, experience, or certifications: respond directly with the data above.
