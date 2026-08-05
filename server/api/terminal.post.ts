@@ -1,4 +1,8 @@
 import { readBody, setResponseHeader } from 'h3'
+import techs from '~/data/techs'
+import workexp from '~/data/workexp'
+import projects from '~/data/projects'
+import certifications from '~/data/certifications'
 
 const GEMINI_API_BASE = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:streamGenerateContent'
 
@@ -9,34 +13,25 @@ function buildSystemPrompt(): string {
     bio: `Creative software engineer crafting responsive and high-performing web applications. Frontend-focused fullstack developer passionate about Vue, Nuxt, and modern web technologies. Skilled in building scalable component libraries, designing clean UIs, and integrating robust backends.`
   }
 
-  const experience = [
-    'Frontend Software Engineer at Flexicon Solution Inc. (Sep 2024 - Present): Built Vue.js/Nuxt component library with Storybook, Cypress testing, SCSS styling.',
-    'Full Stack Web Developer at DOST-SEI (Mar 2023 - Aug 2024): Built PMIS with Vue.js, Laravel, MySQL. REST APIs, responsive layouts, stakeholder demos.',
-    'Junior Frontend Web Developer at Xtendly Philippines Inc. (Jul 2022 - Feb 2023): React/Next.js pages with Tailwind, Laravel APIs, MySQL databases.'
-  ]
+  const skills = techs.map((t) => t.name).join(', ')
 
-  const projects = [
-    'Megome: API-first portfolio infrastructure platform (Next.js, TypeScript, Go, MySQL) — SaaS, ongoing.',
-    'GEP Website: Official site for Geodetic Engineers of the Philippines (WordPress, PHP, SCSS, JS, MySQL) — live at nationalgep.org.',
-    'Mojito Cocktail: GSAP animation playground (React, TypeScript, Tailwind) — hobby project.',
-    'CatchThemAll: Interactive Pokemon web app (Nuxt, Tailwind, SCSS, JS, Node) — beta.',
-    'API-Hub: Multi-API integration dashboard (Nuxt, Tailwind, JS, Node, SCSS) — stale.',
-    'Passkeep: Secure password manager (Next.js, Tailwind, Firebase) — live.'
-  ]
+  const experienceStrs = workexp.map((w: any, i: number) => {
+    const endStr = w.isPresent ? 'Present' : (w.endDate || '')
+    const techStr = (w.technologies || []).map((t: any) => t.name || t.slug || '').filter(Boolean).join(', ')
+    return `${w.title} at ${w.company} (${w.startDate} - ${endStr}): ${techStr}`
+  })
 
-  const skills = 'JavaScript, Vue, Nuxt, React, Next.js, TypeScript, SCSS/Sass, Tailwind CSS, Bootstrap, Node.js, PHP, Laravel, MySQL, PostgreSQL, WordPress, Go, Storybook, Cypress, Quasar, Firebase, Git'
+  const projectStrs = projects.map((p: any, i: number) => {
+    const name = p.name || p.title || 'Unknown'
+    const status = typeof p.status === 'string' ? p.status : p.status?.title || 'Unknown'
+    const techStr = (p.techUsed || p.technologies || [])
+      .map((t: any) => t.name || t.slug || '')
+      .filter(Boolean)
+      .join(', ')
+    return `${name}: ${p.description || ''} (${techStr}) — Status: ${status}`
+  })
 
-  const certifications = [
-    'Advance CSS and Sass — Udemy (Jan 2025)',
-    'Crash Course on Python — Google (Jul 2023)',
-    'Build a Website with HTML, CSS, and GitHub Pages — Codecademy (Sep 2024)',
-    'Introduction to UI and UX Design — Codecademy (Sep 2024)',
-    'Learn CSS — Codecademy (Sep 2024)',
-    'Learn HTML — Codecademy (Sep 2024)',
-    'Learn JavaScript — Codecademy (Sep 2024)',
-    'Learn Sass — Codecademy (Sep 2024)',
-    'Learn Vue.js — Codecademy (Sep 2024)'
-  ]
+  const certStrs = certifications.map((c: any) => `${c.name} — ${c.provider} (${c.issued})`)
 
   const links = [
     'Portfolio: https://alexander.udaglab.com',
@@ -53,15 +48,15 @@ Title: ${profile.title}
 Bio: ${profile.bio}
 
 EXPERIENCE:
-${experience.map((e, i) => `${i + 1}. ${e}`).join('\n')}
+${experienceStrs.map((e, i) => `${i + 1}. ${e}`).join('\n')}
 
 PROJECTS:
-${projects.map((p, i) => `${i + 1}. ${p}`).join('\n')}
+${projectStrs.map((p, i) => `${i + 1}. ${p}`).join('\n')}
 
 SKILLS: ${skills}
 
 CERTIFICATIONS:
-${certifications.map((c, i) => `${i + 1}. ${c}`).join('\n')}
+${certStrs.map((c, i) => `${i + 1}. ${c}`).join('\n')}
 
 LINKS:
 ${links.join('\n')}

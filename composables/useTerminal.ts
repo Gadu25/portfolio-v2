@@ -1,3 +1,8 @@
+import techs from '~/data/techs'
+import workexp from '~/data/workexp'
+import projects from '~/data/projects'
+import certifications from '~/data/certifications'
+
 export interface TerminalLine {
   text: string
   type: 'prompt' | 'output' | 'error' | 'dim' | 'system'
@@ -15,6 +20,7 @@ const history = ref<string[]>([])
 const historyIndex = ref(-1)
 const isStreaming = ref(false)
 const chatHistory = ref<ChatMessage[]>([])
+let bootTimers: ReturnType<typeof setTimeout>[] = []
 
 interface StructuredCommand {
   match: (input: string) => boolean
@@ -58,73 +64,67 @@ function getStructuredCommands(): StructuredCommand[] {
     },
     {
       match: (input) => input === 'ls skills' || input === 'skills',
-      handler: () => [
-        { text: 'TECH STACK', type: 'dim' as const },
-        { text: '──────────', type: 'dim' as const },
-        { text: 'JavaScript | TypeScript | Vue | Nuxt | React | Next.js', type: 'output' as const },
-        { text: 'Node.js | PHP | Laravel | Go', type: 'output' as const },
-        { text: 'SCSS | Sass | Tailwind CSS | Bootstrap', type: 'output' as const },
-        { text: 'MySQL | PostgreSQL | Firebase', type: 'output' as const },
-        { text: 'WordPress | Quasar | Storybook | Cypress | Git', type: 'output' as const },
-      ]
+      handler: () => {
+        const names = techs.map((t) => t.name)
+        const outputLine = names.join(' | ')
+        return [
+          { text: 'TECH STACK', type: 'dim' as const },
+          { text: '──────────', type: 'dim' as const },
+          { text: outputLine, type: 'output' as const },
+        ]
+      }
     },
     {
       match: (input) => input === 'ls projects' || input === 'projects',
-      handler: () => [
-        { text: 'PROJECTS', type: 'dim' as const },
-        { text: '────────', type: 'dim' as const },
-        { text: '1. Megome — API-first portfolio platform', type: 'output' as const },
-        { text: '   Next.js · TypeScript · Go · MySQL  (SaaS, ongoing)', type: 'dim' as const },
-        { text: '', type: 'system' as const },
-        { text: '2. GEP Website — Official site for Geodetic Engineers PH', type: 'output' as const },
-        { text: '   WordPress · PHP · SCSS · MySQL  (Live)', type: 'dim' as const },
-        { text: '', type: 'system' as const },
-        { text: '3. Mojito Cocktail — GSAP animation playground', type: 'output' as const },
-        { text: '   React · TypeScript · Tailwind  (Done)', type: 'dim' as const },
-        { text: '', type: 'system' as const },
-        { text: '4. CatchThemAll — Interactive Pokemon web app', type: 'output' as const },
-        { text: '   Nuxt · Tailwind · SCSS · JS  (Beta)', type: 'dim' as const },
-        { text: '', type: 'system' as const },
-        { text: '5. API-Hub — Multi-API integration dashboard', type: 'output' as const },
-        { text: '   Nuxt · Tailwind · JS · SCSS  (Stale)', type: 'dim' as const },
-        { text: '', type: 'system' as const },
-        { text: '6. Passkeep — Secure password manager', type: 'output' as const },
-        { text: '   Next.js · Tailwind · Firebase  (Live)', type: 'dim' as const },
-      ]
+      handler: () => {
+        const lines: TerminalLine[] = [
+          { text: 'PROJECTS', type: 'dim' as const },
+          { text: '────────', type: 'dim' as const },
+        ]
+        projects.forEach((p: any, i: number) => {
+          const name = p.name || p.title || 'Unknown'
+          const status = typeof p.status === 'string' ? p.status : p.status?.title || 'Unknown'
+          const techList = (p.techUsed || p.technologies || [])
+            .map((t: any) => t.name || t.slug || '')
+            .filter(Boolean)
+            .join(' · ')
+          lines.push({ text: `${i + 1}. ${name} — ${status}`, type: 'output' as const })
+          lines.push({ text: `   ${techList}`, type: 'dim' as const })
+          lines.push({ text: '', type: 'system' as const })
+        })
+        return lines
+      }
     },
     {
       match: (input) => input === 'ls experience' || input === 'experience',
-      handler: () => [
-        { text: 'WORK EXPERIENCE', type: 'dim' as const },
-        { text: '───────────────', type: 'dim' as const },
-        { text: '1. Frontend Software Engineer', type: 'output' as const },
-        { text: '   Flexicon Solution Inc. — Sep 2024 to Present', type: 'dim' as const },
-        { text: '   Vue · Nuxt · Storybook · Cypress · SCSS · Quasar', type: 'dim' as const },
-        { text: '', type: 'system' as const },
-        { text: '2. Full Stack Web Developer', type: 'output' as const },
-        { text: '   DOST-SEI — Mar 2023 to Aug 2024', type: 'dim' as const },
-        { text: '   Vue · Laravel · PHP · MySQL · Bootstrap · Postgres', type: 'dim' as const },
-        { text: '', type: 'system' as const },
-        { text: '3. Junior Frontend Web Developer', type: 'output' as const },
-        { text: '   Xtendly Philippines Inc. — Jul 2022 to Feb 2023', type: 'dim' as const },
-        { text: '   React · Next.js · Tailwind · Laravel · MySQL · WP', type: 'dim' as const },
-      ]
+      handler: () => {
+        const lines: TerminalLine[] = [
+          { text: 'WORK EXPERIENCE', type: 'dim' as const },
+          { text: '───────────────', type: 'dim' as const },
+        ]
+        workexp.forEach((w: any, i: number) => {
+          const endStr = w.isPresent ? 'Present' : (w.endDate || '')
+          const techStr = (w.technologies || []).map((t: any) => t.name || t.slug || '').filter(Boolean).join(' · ')
+          lines.push({ text: `${i + 1}. ${w.title}`, type: 'output' as const })
+          lines.push({ text: `   ${w.company} — ${w.startDate} to ${endStr}`, type: 'dim' as const })
+          lines.push({ text: `   ${techStr}`, type: 'dim' as const })
+          lines.push({ text: '', type: 'system' as const })
+        })
+        return lines
+      }
     },
     {
       match: (input) => input === 'ls certs' || input === 'certs',
-      handler: () => [
-        { text: 'CERTIFICATIONS', type: 'dim' as const },
-        { text: '──────────────', type: 'dim' as const },
-        { text: '• Advance CSS and Sass — Udemy (Jan 2025)', type: 'output' as const },
-        { text: '• Crash Course on Python — Google (Jul 2023)', type: 'output' as const },
-        { text: '• Build a Website with HTML, CSS, and GitHub Pages — Codecademy', type: 'output' as const },
-        { text: '• Introduction to UI and UX Design — Codecademy', type: 'output' as const },
-        { text: '• Learn CSS — Codecademy', type: 'output' as const },
-        { text: '• Learn HTML — Codecademy', type: 'output' as const },
-        { text: '• Learn JavaScript — Codecademy', type: 'output' as const },
-        { text: '• Learn Sass — Codecademy', type: 'output' as const },
-        { text: '• Learn Vue.js — Codecademy', type: 'output' as const },
-      ]
+      handler: () => {
+        const lines: TerminalLine[] = [
+          { text: 'CERTIFICATIONS', type: 'dim' as const },
+          { text: '──────────────', type: 'dim' as const },
+        ]
+        certifications.forEach((c: any) => {
+          lines.push({ text: `• ${c.name} — ${c.provider} (${c.issued})`, type: 'output' as const })
+        })
+        return lines
+      }
     },
     {
       match: (input) => input === 'contact' || input === 'links',
@@ -171,27 +171,34 @@ const BOOT_LINES = [
 
 export function useTerminal() {
   function open() {
+    bootTimers.forEach(clearTimeout)
+    bootTimers = []
+
     visible.value = true
     lines.value = []
 
     let delay = 0
     for (const line of BOOT_LINES) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         lines.value = [...lines.value, line]
         nextTick(() => scrollToBottom())
       }, delay)
+      bootTimers.push(timer)
       delay += 80
     }
 
-    setTimeout(() => {
+    const focusTimer = setTimeout(() => {
       nextTick(() => {
         const inputEl = document.querySelector('.terminal__input') as HTMLInputElement
         inputEl?.focus()
       })
     }, delay + 100)
+    bootTimers.push(focusTimer)
   }
 
   function close() {
+    bootTimers.forEach(clearTimeout)
+    bootTimers = []
     visible.value = false
     lines.value = []
     currentInput.value = ''
@@ -266,9 +273,9 @@ export function useTerminal() {
     addLines([
       { text: '[RESUME ACCESS]', type: 'dim' as const },
       { text: '────────────────', type: 'dim' as const },
-      { text: 'The downloadable resume is linked on the homepage.', type: 'output' as const },
+      { text: 'To download my resume, visit the homepage and click the "My Resume" button.', type: 'output' as const },
+      { text: 'If you\'re already on the homepage, scroll up to the hero section.', type: 'dim' as const },
       { text: 'LinkedIn: https://linkedin.com/in/alexander-udag', type: 'output' as const },
-      { text: 'GitHub:  https://github.com/Gadu25', type: 'output' as const },
     ])
   }
 
@@ -327,6 +334,9 @@ export function useTerminal() {
         chatHistory.value = [...chatHistory.value, { role: 'model', text: fullText }]
       }
     } catch {
+      if (fullText) {
+        addLine({ text: '[TRANSMISSION TRUNCATED]', type: 'error' })
+      }
       addLine({ text: '[CARRIER LOST]', type: 'error' })
     }
   }

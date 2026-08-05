@@ -64,6 +64,9 @@ function onKeydown(e: KeyboardEvent) {
   } else if ((e.ctrlKey || e.metaKey) && e.key === 'l') {
     e.preventDefault()
     currentInput.value = ''
+  } else if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
+    e.preventDefault()
+    close()
   }
 }
 
