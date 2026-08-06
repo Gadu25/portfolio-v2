@@ -5,8 +5,10 @@
         <div class="terminal" @click.stop @mousedown.stop="focusInput">
           <div class="terminal__header">
             <span class="terminal__title">portfolio-terminal</span>
-            <span class="terminal__hint">esc to close · ctrl+k to toggle</span>
-            <button class="terminal__btn" @click="close" aria-label="Close terminal">&times;</button>
+            <div class="terminal__end">
+              <span class="terminal__hint">esc to close · ctrl+k to toggle</span>
+              <button class="terminal__btn" @click="close" aria-label="Close terminal">&times;</button>
+            </div>
           </div>
           <div class="terminal__body" ref="bodyRef" @mousedown="focusInput">
             <div class="terminal__output">

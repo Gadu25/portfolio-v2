@@ -58,6 +58,7 @@
 
   &__hint {
     color: #4b5563;
+    margin-right: 12px;
   }
 
   &__body {
@@ -147,6 +148,11 @@
     animation: terminal-cursor-blink 1s step-end infinite;
     vertical-align: middle;
     margin-left: 1px;
+  }
+
+  &__end {
+    display: flex;
+    align-items: center;
   }
 
   &__btn {
