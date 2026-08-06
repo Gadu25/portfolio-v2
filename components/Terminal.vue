@@ -2,13 +2,13 @@
   <Teleport to="body">
     <Transition name="terminal-fade">
       <div v-if="visible" class="terminal-overlay" @click.self="close">
-        <div class="terminal" @click.stop>
+        <div class="terminal" @click.stop @mousedown.stop="focusInput">
           <div class="terminal__header">
             <span class="terminal__title">portfolio-terminal</span>
             <span class="terminal__hint">esc to close · ctrl+k to toggle</span>
             <button class="terminal__btn" @click="close" aria-label="Close terminal">&times;</button>
           </div>
-          <div class="terminal__body" ref="bodyRef">
+          <div class="terminal__body" ref="bodyRef" @mousedown="focusInput">
             <div class="terminal__output">
               <div
                 v-for="(line, i) in lines"
@@ -29,6 +29,7 @@
                 autocapitalize="off"
                 :disabled="isStreaming"
                 @keydown="onKeydown"
+                @input="scrollToBottom"
               />
               <span v-if="isStreaming" class="terminal__cursor" />
             </div>
@@ -40,15 +41,37 @@
 </template>
 
 <script setup lang="ts">
-const { visible, lines, currentInput, isStreaming, close, submit, navigateHistory, aiAvailable, checkStatus, getPrompt, tabComplete } = useTerminal()
+const { visible, lines, currentInput, isStreaming, close, submit: rawSubmit, navigateHistory, aiAvailable, checkStatus, getPrompt, tabComplete } = useTerminal()
+
+async function doSubmit() {
+  await rawSubmit()
+  await nextTick()
+  focusInput()
+}
 
 const bodyRef = ref<HTMLElement | null>(null)
 const inputRef = ref<HTMLInputElement | null>(null)
 
+function focusInput() {
+  inputRef.value?.focus()
+}
+
+function scrollToBottom() {
+  nextTick(() => {
+    if (bodyRef.value) bodyRef.value.scrollTop = bodyRef.value.scrollHeight
+  })
+}
+
+watch(lines, () => scrollToBottom(), { deep: true })
+watch(visible, (v) => {
+  document.body.style.overflow = v ? 'hidden' : ''
+  if (v) nextTick(focusInput)
+})
+
 function onKeydown(e: KeyboardEvent) {
   if (e.key === 'Enter') {
     e.preventDefault()
-    submit()
+    doSubmit()
   } else if (e.key === 'ArrowUp') {
     e.preventDefault()
     navigateHistory('up')
@@ -60,6 +83,7 @@ function onKeydown(e: KeyboardEvent) {
     close()
   } else if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
     e.preventDefault()
+    e.stopPropagation()
     close()
   } else if ((e.ctrlKey || e.metaKey) && e.key === 'l') {
     e.preventDefault()
@@ -75,10 +99,9 @@ function onKeydown(e: KeyboardEvent) {
 
 function onGlobalKeydown(e: KeyboardEvent) {
   if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+    if (visible.value) return // already handled by local onKeydown
     e.preventDefault()
-    if (visible.value) {
-      close()
-    } else if (aiAvailable.value) {
+    if (aiAvailable.value) {
       const term = useTerminal()
       term.open()
     }
