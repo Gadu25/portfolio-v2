@@ -82,8 +82,15 @@ function lsDir(path: string[]): TerminalLine[] {
     return [{ text: '.ai', type: 'dim' as const }]
   }
 
-  const item = findItem(path.slice(0, -1), path[path.length - 1])
-  if (!item) return [{ text: `ls: ${path.join('/')}: no such directory`, type: 'error' as const }]
+  if (path.length >= 2) {
+    const item = findItem(path.slice(0, -1), path[path.length - 1])
+    if (!item) return [{ text: `ls: ${path.join('/')}: no such directory`, type: 'error' as const }]
+  }
+
+  const knownDirs = ['projects', 'skills', 'experience', 'certs']
+  if (path.length === 1 && !knownDirs.includes(path[0])) {
+    return [{ text: `ls: ${path[0]}: no such directory`, type: 'error' as const }]
+  }
 
   if (path[0] === 'projects') {
     if (path.length === 1) {
