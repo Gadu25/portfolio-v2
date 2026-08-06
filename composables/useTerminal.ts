@@ -650,7 +650,12 @@ export function useTerminal() {
           } catch {}
         }
       }
-      if (fullText) chatHistory.value = [...chatHistory.value, { role: 'model', text: fullText }]
+      if (fullText) {
+        chatHistory.value = [...chatHistory.value, { role: 'model', text: fullText }]
+        if (fullText.includes('RATE LIMITED') || fullText.includes('COOLDOWN')) {
+          aiAvailable.value = false
+        }
+      }
     } catch {
       if (fullText) addLine({ text: '[TRANSMISSION TRUNCATED]', type: 'error' as const })
       addLine({ text: '[CARRIER LOST]', type: 'error' as const })

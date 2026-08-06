@@ -108,12 +108,16 @@ function onGlobalKeydown(e: KeyboardEvent) {
   }
 }
 
+let statusInterval: ReturnType<typeof setInterval> | null = null
+
 onMounted(() => {
   checkStatus()
+  statusInterval = setInterval(checkStatus, 10000)
   window.addEventListener('keydown', onGlobalKeydown)
 })
 
 onUnmounted(() => {
+  if (statusInterval) clearInterval(statusInterval)
   window.removeEventListener('keydown', onGlobalKeydown)
 })
 </script>
