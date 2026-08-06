@@ -20,6 +20,7 @@ const history = ref<string[]>([])
 const historyIndex = ref(-1)
 const isStreaming = ref(false)
 const chatHistory = ref<ChatMessage[]>([])
+const aiAvailable = ref(false)
 let bootTimers: ReturnType<typeof setTimeout>[] = []
 
 interface StructuredCommand {
@@ -352,6 +353,15 @@ export function useTerminal() {
     }
   }
 
+  async function checkStatus() {
+    try {
+      const res = await $fetch<{ available: boolean }>('/api/terminal/status')
+      aiAvailable.value = res.available
+    } catch {
+      aiAvailable.value = false
+    }
+  }
+
   async function submit() {
     const input = currentInput.value.trim()
     if (!input || isStreaming.value) return
@@ -404,6 +414,7 @@ export function useTerminal() {
     lines: readonly(lines),
     currentInput,
     isStreaming: readonly(isStreaming),
+    aiAvailable: readonly(aiAvailable),
     open,
     close,
     toggle,
@@ -411,6 +422,7 @@ export function useTerminal() {
     addLines,
     addOutputChunk,
     submit,
-    navigateHistory
+    navigateHistory,
+    checkStatus
   }
 }

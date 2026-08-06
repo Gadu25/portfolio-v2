@@ -28,6 +28,7 @@
       </div>
       <div class="nav__actions">
         <button
+          v-if="aiAvailable"
           class="terminal-nav-btn"
           @click="openTerminal"
           aria-label="Open terminal"
@@ -56,6 +57,8 @@
 
 <script setup lang="ts">
 import ThemeToggle from '~/components/common/ThemeToggle.vue'
+
+const { aiAvailable, checkStatus } = useTerminal()
 
 const props = defineProps<{
   isScrolled?: boolean
@@ -94,6 +97,10 @@ const openTerminal = () => {
   const term = useTerminal()
   term.open()
 }
+
+onMounted(() => {
+  checkStatus()
+})
 
 watch(toggle, (newVal) => {
   if (newVal) {

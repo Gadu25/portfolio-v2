@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-const { visible, lines, currentInput, isStreaming, close, submit, navigateHistory } = useTerminal()
+const { visible, lines, currentInput, isStreaming, close, submit, navigateHistory, aiAvailable, checkStatus } = useTerminal()
 
 const bodyRef = ref<HTMLElement | null>(null)
 const inputRef = ref<HTMLInputElement | null>(null)
@@ -75,7 +75,7 @@ function onGlobalKeydown(e: KeyboardEvent) {
     e.preventDefault()
     if (visible.value) {
       close()
-    } else {
+    } else if (aiAvailable.value) {
       const term = useTerminal()
       term.open()
     }
@@ -83,6 +83,7 @@ function onGlobalKeydown(e: KeyboardEvent) {
 }
 
 onMounted(() => {
+  checkStatus()
   window.addEventListener('keydown', onGlobalKeydown)
 })
 

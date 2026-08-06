@@ -1,27 +1,8 @@
 import { readBody, setResponseHeader } from 'h3'
+import { isAvailable, remainingCooldown, setCooldown, parseRetryDelay, formatCooldown } from '~/server/utils/gemini'
 
-const GEMINI_API_BASE = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:streamGenerateContent'
-
-function parseRetryDelay(errorBody: string): string | null {
-  try {
-    const parsed = JSON.parse(errorBody)
-    const details = parsed?.error?.details || []
-    for (const detail of details) {
-      if (detail['@type'] === 'type.googleapis.com/google.rpc.RetryInfo') {
-        const raw = detail.retryDelay
-        const match = raw.match(/(\d+)s/)
-        if (match) {
-          const seconds = parseInt(match[1], 10)
-          if (seconds < 60) return `${seconds}s`
-          const mins = Math.ceil(seconds / 60)
-          return `${mins} minute${mins > 1 ? 's' : ''}`
-        }
-        return raw
-      }
-    }
-  } catch {}
-  return null
-}
+const GEMINI_MODEL = 'gemini-flash-latest'
+const GEMINI_API_BASE = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}`
 
 function buildSystemPrompt(): string {
   return `You are the system operator of this portfolio terminal.
@@ -101,6 +82,22 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 500, statusMessage: 'Gemini API key not configured' })
   }
 
+  setResponseHeader(event, 'Content-Type', 'text/event-stream')
+  setResponseHeader(event, 'Cache-Control', 'no-cache')
+  setResponseHeader(event, 'Connection', 'keep-alive')
+
+  if (!isAvailable()) {
+    const remaining = remainingCooldown()
+    const msg = `[COOLDOWN — retry in ~${formatCooldown(remaining!)}]`
+    const stream = new ReadableStream({
+      start(controller) {
+        controller.enqueue(`data: ${JSON.stringify({ text: msg })}\n\n`)
+        controller.close()
+      }
+    })
+    return stream
+  }
+
   const body = await readBody<{ message: string; history: Array<{ role: 'user' | 'model'; text: string }> }>(event)
 
   if (!body?.message || typeof body.message !== 'string') {
@@ -110,13 +107,7 @@ export default defineEventHandler(async (event) => {
   const trimmed = body.message.slice(0, 500)
   const history = body.history || []
 
-  const url = `${GEMINI_API_BASE}?alt=sse`
-
-  setResponseHeader(event, 'Content-Type', 'text/event-stream')
-  setResponseHeader(event, 'Cache-Control', 'no-cache')
-  setResponseHeader(event, 'Connection', 'keep-alive')
-
-  const geminiResponse = await fetch(url, {
+  const geminiResponse = await fetch(`${GEMINI_API_BASE}:streamGenerateContent?alt=sse`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -129,21 +120,27 @@ export default defineEventHandler(async (event) => {
     const errorText = await geminiResponse.text()
 
     if (geminiResponse.status === 429) {
-      const retryDelay = parseRetryDelay(errorText)
-      const message = retryDelay
-        ? `[RATE LIMITED — quota exhausted. Retry in ~${retryDelay}]`
-        : '[RATE LIMITED — quota exhausted. Retry later.]'
+      const retrySec = parseRetryDelay(errorText)
+      setCooldown(retrySec)
 
+      const msg = `[RATE LIMITED — quota exhausted. Retry in ~${formatCooldown(retrySec)}]`
       const stream = new ReadableStream({
         start(controller) {
-          controller.enqueue(`data: ${JSON.stringify({ text: message })}\n\n`)
+          controller.enqueue(`data: ${JSON.stringify({ text: msg })}\n\n`)
           controller.close()
         }
       })
       return stream
     }
 
-    throw createError({ statusCode: 502, statusMessage: `Gemini API error: ${geminiResponse.status}` })
+    const msg = `[CONNECTION UNSTABLE — Gemini returned ${geminiResponse.status}]`
+    const stream = new ReadableStream({
+      start(controller) {
+        controller.enqueue(`data: ${JSON.stringify({ text: msg })}\n\n`)
+        controller.close()
+      }
+    })
+    return stream
   }
 
   const decoder = new TextDecoder()
