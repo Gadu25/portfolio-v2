@@ -37,6 +37,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
+    geminiApiKey: process.env.GEMINI_API_KEY,
     public: {
       megomeAccessKey: process.env.MEGOME_ACCESS_KEY,
       megomeUrl: process.env.MEGOME_URL

@@ -73,8 +73,10 @@
     }
   }
 
-  &__theme-toggle {
-    margin-left: $space-md;
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
   }
 
   &__burger {

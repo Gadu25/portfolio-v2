@@ -3,6 +3,7 @@
     <Navigation @navigate="setDirection" :is-scrolled="isScrolled" />
     <NuxtPage :transition="{ name: transitionDirection, mode: 'out-in' }" />
     <FooterSection />
+    <Terminal />
   </div>
 </template>
 
