@@ -1,7 +1,7 @@
-import techs from '~/data/techs'
-import workexp from '~/data/workexp'
-import projects from '~/data/projects'
-import certifications from '~/data/certifications'
+import staticTechs from '~/data/techs'
+import staticWorkExp from '~/data/workexp'
+import staticProjects from '~/data/projects'
+import staticCerts from '~/data/certifications'
 
 export interface TerminalLine {
   text: string
@@ -22,6 +22,12 @@ const isStreaming = ref(false)
 const chatHistory = ref<ChatMessage[]>([])
 const aiAvailable = ref(false)
 const cwd = ref<string[]>([])
+
+const dataTechs = ref<any[]>(staticTechs)
+const dataWorkExp = ref<any[]>(staticWorkExp)
+const dataProjects = ref<any[]>(staticProjects)
+const dataCerts = ref<any[]>(staticCerts)
+
 let bootTimers: ReturnType<typeof setTimeout>[] = []
 
 // ── Helpers ──
@@ -40,29 +46,33 @@ function getPrompt(): string {
   return `visitor@alex:~/${cwd.value.join('/')}$`
 }
 
+function techs() { return dataTechs.value }
+function workexp() { return dataWorkExp.value }
+function projects() { return dataProjects.value }
+function certifications() { return dataCerts.value }
+
 // ── Directory tree ──
 
-// Returns children at a path. Directories end with `/`, files do not.
 function getChildren(path: string[]): string[] {
   if (path.length === 0) return ['projects/', 'skills/', 'experience/', 'certs/', 'about']
   const dir = path[0]
   if (dir === 'projects') {
-    if (path.length === 1) return projects.map((p: any) => slugify(p.name || p.title || '') + '/')
+    if (path.length === 1) return projects().map((p: any) => slugify(p.name || p.title || '') + '/')
     if (path.length === 2) return ['description', 'status', 'url', 'technologies']
     return []
   }
   if (dir === 'skills') {
-    if (path.length === 1) return techs.map((t: any) => slugify(t.name) + '/')
+    if (path.length === 1) return techs().map((t: any) => slugify(t.name) + '/')
     if (path.length === 2) return ['url']
     return []
   }
   if (dir === 'experience') {
-    if (path.length === 1) return workexp.map((w: any) => slugify(w.company) + '/')
+    if (path.length === 1) return workexp().map((w: any) => slugify(w.company) + '/')
     if (path.length === 2) return ['description', 'role', 'dates', 'technologies']
     return []
   }
   if (dir === 'certs') {
-    if (path.length === 1) return certifications.map((c: any) => slugify(c.name) + '/')
+    if (path.length === 1) return certifications().map((c: any) => slugify(c.name) + '/')
     if (path.length === 2) return ['issuer', 'date']
     return []
   }
@@ -73,10 +83,10 @@ function findItem(path: string[], name: string): any | null {
   if (path.length === 0) return null
   const dir = path[0]
   const slug = slugify(name)
-  if (dir === 'projects') return projects.find((p: any) => slugify(p.name || p.title || '') === slug) || null
-  if (dir === 'skills') return techs.find((t: any) => slugify(t.name) === slug) || null
-  if (dir === 'experience') return workexp.find((w: any) => slugify(w.company) === slug) || null
-  if (dir === 'certs') return certifications.find((c: any) => slugify(c.name) === slug) || null
+  if (dir === 'projects') return projects().find((p: any) => slugify(p.name || p.title || '') === slug) || null
+  if (dir === 'skills') return techs().find((t: any) => slugify(t.name) === slug) || null
+  if (dir === 'experience') return workexp().find((w: any) => slugify(w.company) === slug) || null
+  if (dir === 'certs') return certifications().find((c: any) => slugify(c.name) === slug) || null
   return null
 }
 
@@ -97,10 +107,9 @@ function lsDir(path: string[]): TerminalLine[] {
   }
 
   if (path.length === 1) {
-    // Top-level directory listing: show item directories
     if (path[0] === 'projects') {
       const result: TerminalLine[] = []
-      projects.forEach((p: any) => {
+      projects().forEach((p: any) => {
         const slug = slugify(p.name || p.title || '')
         const status = typeof p.status === 'string' ? p.status : p.status?.title || ''
         result.push({ text: `${slug}/`, type: 'output' as const })
@@ -110,15 +119,15 @@ function lsDir(path: string[]): TerminalLine[] {
     }
     if (path[0] === 'skills') {
       const result: TerminalLine[] = []
-      techs.forEach((t: any) => {
+      techs().forEach((t: any) => {
         result.push({ text: `${slugify(t.name)}/`, type: 'output' as const })
-        result.push({ text: `  ${t.link}`, type: 'dim' as const })
+        result.push({ text: `  ${t.link || ''}`, type: 'dim' as const })
       })
       return result
     }
     if (path[0] === 'experience') {
       const result: TerminalLine[] = []
-      workexp.forEach((w: any) => {
+      workexp().forEach((w: any) => {
         const slug = slugify(w.company)
         const endStr = w.isPresent ? 'Present' : (w.endDate || '')
         result.push({ text: `${slug}/`, type: 'output' as const })
@@ -128,15 +137,14 @@ function lsDir(path: string[]): TerminalLine[] {
     }
     if (path[0] === 'certs') {
       const result: TerminalLine[] = []
-      certifications.forEach((c: any) => {
+      certifications().forEach((c: any) => {
         result.push({ text: `${slugify(c.name)}/`, type: 'output' as const })
-        result.push({ text: `  ${c.provider} — ${c.issued}`, type: 'dim' as const })
+        result.push({ text: `  ${c.provider || c.issuer} — ${c.issued || c.issueDate}`, type: 'dim' as const })
       })
       return result
     }
   }
 
-  // Depth 2: inside a specific item, show table-style summary
   if (path.length === 2) {
     const item = findItem(path.slice(0, 1), path[1])
     if (!item) return [{ text: `ls: ${path[1]}: no such item`, type: 'error' as const }]
@@ -148,7 +156,7 @@ function lsDir(path: string[]): TerminalLine[] {
       const showTech = (item.techUsed || item.technologies || []).map((t: any) => t.name || t.slug || '').filter(Boolean).join(' · ')
       return [
         { text: showName, type: 'output' as const },
-        { text: '─'.repeat(showName.length), type: 'dim' as const },
+        { text: '─'.repeat(showName.length || 1), type: 'dim' as const },
         { text: `status       ${showStatus}`, type: 'output' as const },
         { text: `url          ${showUrl}`, type: 'output' as const },
         { text: `technologies ${showTech}`, type: 'output' as const },
@@ -159,8 +167,8 @@ function lsDir(path: string[]): TerminalLine[] {
     if (path[0] === 'skills') {
       return [
         { text: item.name, type: 'output' as const },
-        { text: '─'.repeat(item.name.length), type: 'dim' as const },
-        { text: `url  ${item.link}`, type: 'output' as const },
+        { text: '─'.repeat(item.name.length || 1), type: 'dim' as const },
+        { text: `url  ${item.link || ''}`, type: 'output' as const },
       ]
     }
     if (path[0] === 'experience') {
@@ -168,7 +176,7 @@ function lsDir(path: string[]): TerminalLine[] {
       const showTech = (item.technologies || []).map((t: any) => t.name || t.slug || '').filter(Boolean).join(' · ')
       return [
         { text: `${item.title} at ${item.company}`, type: 'output' as const },
-        { text: '─'.repeat(Math.min(item.title.length + item.company.length + 4, 60)), type: 'dim' as const },
+        { text: '─'.repeat(Math.min((item.title || '').length + (item.company || '').length + 4, 60) || 1), type: 'dim' as const },
         { text: `role         ${item.title}`, type: 'output' as const },
         { text: `company      ${item.company}`, type: 'output' as const },
         { text: `dates        ${item.startDate} - ${endStr}`, type: 'output' as const },
@@ -180,9 +188,9 @@ function lsDir(path: string[]): TerminalLine[] {
     if (path[0] === 'certs') {
       return [
         { text: item.name, type: 'output' as const },
-        { text: '─'.repeat(item.name.length), type: 'dim' as const },
-        { text: `issuer  ${item.provider}`, type: 'output' as const },
-        { text: `date    ${item.issued}`, type: 'output' as const },
+        { text: '─'.repeat((item.name || '').length || 1), type: 'dim' as const },
+        { text: `issuer  ${item.provider || item.issuer}`, type: 'output' as const },
+        { text: `date    ${item.issued || item.issueDate}`, type: 'output' as const },
       ]
     }
   }
@@ -224,7 +232,7 @@ function catFile(path: string[], name: string): TerminalLine[] {
   }
 
   if (path[0] === 'skills') {
-    if (name === 'url') return [{ text: item.link, type: 'output' as const }]
+    if (name === 'url') return [{ text: item.link || '', type: 'output' as const }]
   }
 
   if (path[0] === 'experience') {
@@ -241,8 +249,8 @@ function catFile(path: string[], name: string): TerminalLine[] {
   }
 
   if (path[0] === 'certs') {
-    if (name === 'issuer') return [{ text: item.provider, type: 'output' as const }]
-    if (name === 'date') return [{ text: item.issued, type: 'output' as const }]
+    if (name === 'issuer') return [{ text: item.provider || item.issuer || '', type: 'output' as const }]
+    if (name === 'date') return [{ text: item.issued || item.issueDate || '', type: 'output' as const }]
   }
 
   return [{ text: `cat: ${name}: no such file`, type: 'error' as const }]
@@ -272,7 +280,7 @@ function findAll(query: string): TerminalLine[] {
   const result: TerminalLine[] = [{ text: `Searching for "${query}"...`, type: 'dim' as const }, { text: '', type: 'system' as const }]
   let found = 0
 
-  projects.forEach((p: any) => {
+  projects().forEach((p: any) => {
     const name = (p.name || p.title || '').toLowerCase()
     const desc = (p.description || '').toLowerCase()
     if (name.includes(q) || desc.includes(q)) {
@@ -282,13 +290,13 @@ function findAll(query: string): TerminalLine[] {
       found++
     }
   })
-  techs.forEach((t: any) => {
+  techs().forEach((t: any) => {
     if (t.name.toLowerCase().includes(q)) {
       result.push({ text: `~/skills/${slugify(t.name)}/`, type: 'output' as const })
       found++
     }
   })
-  workexp.forEach((w: any) => {
+  workexp().forEach((w: any) => {
     const company = w.company.toLowerCase()
     const title = (w.title || '').toLowerCase()
     if (company.includes(q) || title.includes(q)) {
@@ -296,11 +304,11 @@ function findAll(query: string): TerminalLine[] {
       found++
     }
   })
-  certifications.forEach((c: any) => {
-    const name = c.name.toLowerCase()
-    const provider = c.provider.toLowerCase()
+  certifications().forEach((c: any) => {
+    const name = (c.name || c.title || '').toLowerCase()
+    const provider = (c.provider || c.issuer || '').toLowerCase()
     if (name.includes(q) || provider.includes(q)) {
-      result.push({ text: `~/certs/${slugify(c.name)}/  — ${c.provider}`, type: 'output' as const })
+      result.push({ text: `~/certs/${slugify(c.name || c.title)}/  — ${c.provider || c.issuer}`, type: 'output' as const })
       found++
     }
   })
@@ -308,6 +316,77 @@ function findAll(query: string): TerminalLine[] {
   result.push({ text: '', type: 'system' as const })
   result.push({ text: `${found} result${found !== 1 ? 's' : ''} found.`, type: 'dim' as const })
   return result
+}
+
+// ── Megome sync ──
+
+async function syncFromMegome() {
+  const config = useRuntimeConfig()
+  const baseUrl = config.public.megomeUrl as string || 'https://megome-production.up.railway.app'
+  const accessKey = config.public.megomeAccessKey as string || ''
+
+  try {
+    const headers = { Authorization: `Bearer ${accessKey}` }
+    const [skillsRes, expRes, projRes, certsRes] = await Promise.all([
+      fetch(`${baseUrl}/public/v1/skill`, { headers }),
+      fetch(`${baseUrl}/public/v1/experience`, { headers }),
+      fetch(`${baseUrl}/public/v1/project`, { headers }),
+      fetch(`${baseUrl}/public/v1/certification`, { headers }),
+    ])
+
+    if (skillsRes.ok) {
+      const json = await skillsRes.json()
+      if (json.skills?.length) {
+        dataTechs.value = json.skills.map((s: any) => ({ name: s.skillName, link: '' }))
+      }
+    }
+
+    if (expRes.ok) {
+      const json = await expRes.json()
+      if (json.experiences?.length) {
+        dataWorkExp.value = json.experiences.map((e: any) => ({
+          title: e.title,
+          company: e.company,
+          startDate: e.startDate,
+          endDate: e.endDate,
+          isPresent: e.isPresent,
+          description: e.description,
+          technologies: (e.technologies || []).map((t: any) => ({ name: t.name || '', slug: t.slug || '' })),
+        }))
+      }
+    }
+
+    if (projRes.ok) {
+      const json = await projRes.json()
+      if (json.projects?.length) {
+        dataProjects.value = json.projects.map((p: any) => ({
+          name: p.title,
+          title: p.title,
+          description: p.description,
+          status: p.status,
+          url: p.link || '',
+          link: p.link || '',
+          techUsed: (p.technologies || []).map((t: any) => ({ name: t.name || '', slug: t.slug || '' })),
+          technologies: (p.technologies || []).map((t: any) => ({ name: t.name || '', slug: t.slug || '' })),
+        }))
+      }
+    }
+
+    if (certsRes.ok) {
+      const json = await certsRes.json()
+      if (json.certificates?.length) {
+        dataCerts.value = json.certificates.map((c: any) => ({
+          name: c.title,
+          provider: c.issuer,
+          issuer: c.issuer,
+          issued: c.issueDate,
+          issueDate: c.issueDate,
+        }))
+      }
+    }
+  } catch {
+    // Keep static fallback data
+  }
 }
 
 // ── Structured Commands ──
@@ -434,14 +513,14 @@ function getStructuredCommands(): StructuredCommand[] {
       handler: () => [
         { text: 'TECH STACK', type: 'dim' as const },
         { text: '──────────', type: 'dim' as const },
-        { text: techs.map((t) => t.name).join(' | '), type: 'output' as const },
+        { text: techs().map((t) => t.name).join(' | '), type: 'output' as const },
       ]
     },
     {
       match: (input) => input === 'projects' || input === 'ls projects',
       handler: () => {
         const result: TerminalLine[] = [{ text: 'PROJECTS', type: 'dim' as const }, { text: '────────', type: 'dim' as const }]
-        projects.forEach((p: any, i: number) => {
+        projects().forEach((p: any, i: number) => {
           const name = p.name || p.title || 'Unknown'
           const status = typeof p.status === 'string' ? p.status : p.status?.title || 'Unknown'
           const techList = (p.techUsed || p.technologies || []).map((t: any) => t.name || t.slug || '').filter(Boolean).join(' · ')
@@ -456,7 +535,7 @@ function getStructuredCommands(): StructuredCommand[] {
       match: (input) => input === 'experience' || input === 'ls experience',
       handler: () => {
         const result: TerminalLine[] = [{ text: 'WORK EXPERIENCE', type: 'dim' as const }, { text: '───────────────', type: 'dim' as const }]
-        workexp.forEach((w: any, i: number) => {
+        workexp().forEach((w: any, i: number) => {
           const endStr = w.isPresent ? 'Present' : (w.endDate || '')
           const techStr = (w.technologies || []).map((t: any) => t.name || t.slug || '').filter(Boolean).join(' · ')
           result.push({ text: `${i + 1}. ${w.title}`, type: 'output' as const })
@@ -471,8 +550,11 @@ function getStructuredCommands(): StructuredCommand[] {
       match: (input) => input === 'certs' || input === 'ls certs',
       handler: () => {
         const result: TerminalLine[] = [{ text: 'CERTIFICATIONS', type: 'dim' as const }, { text: '──────────────', type: 'dim' as const }]
-        certifications.forEach((c: any) => {
-          result.push({ text: `• ${c.name} — ${c.provider} (${c.issued})`, type: 'output' as const })
+        certifications().forEach((c: any) => {
+          const name = c.name || c.title || ''
+          const provider = c.provider || c.issuer || ''
+          const date = c.issued || c.issueDate || ''
+          result.push({ text: `• ${name} — ${provider} (${date})`, type: 'output' as const })
         })
         return result
       }
@@ -525,6 +607,9 @@ export function useTerminal() {
     visible.value = true
     lines.value = []
     cwd.value = []
+
+    syncFromMegome()
+
     let delay = 0
     for (const line of BOOT_LINES) {
       const timer = setTimeout(() => {
