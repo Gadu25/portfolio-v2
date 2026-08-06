@@ -313,14 +313,14 @@ function getPrompt(): string {
 
 interface StructuredCommand {
   match: (input: string) => boolean
-  handler: () => TerminalLine[]
+  handler: (input: string) => TerminalLine[]
 }
 
 function getStructuredCommands(): StructuredCommand[] {
   return [
     {
       match: (input) => input === 'help' || input === '?',
-      handler: () => [
+      handler: (_input: string) => [
         { text: 'AVAILABLE COMMANDS', type: 'dim' as const },
         { text: '────────────────', type: 'dim' as const },
         { text: '  ls                  — List current directory', type: 'dim' as const },
@@ -344,7 +344,7 @@ function getStructuredCommands(): StructuredCommand[] {
     },
     {
       match: (input) => input === 'whois',
-      handler: () => [
+      handler: (_input: string) => [
         { text: 'ALEXANDER UDAG', type: 'output' as const },
         { text: '─────────────────────────────', type: 'dim' as const },
         { text: 'Title: Creative Software Engineer', type: 'output' as const },
@@ -357,11 +357,11 @@ function getStructuredCommands(): StructuredCommand[] {
     },
     {
       match: (input) => input === 'ls',
-      handler: () => lsDir(cwd.value)
+      handler: (_input: string) => lsDir(cwd.value)
     },
     {
       match: (input) => input.startsWith('ls ') && input.length > 3,
-      handler: () => {
+      handler: (input: string) => {
         const target = input.slice(3).trim()
         if (target.startsWith('/') || target.includes('/')) {
           return [{ text: 'ls: absolute paths not yet supported. Use cd to navigate.', type: 'error' as const }]
@@ -375,14 +375,14 @@ function getStructuredCommands(): StructuredCommand[] {
     },
     {
       match: (input) => input === 'cd' || input === 'cd ~',
-      handler: () => {
+      handler: (_input: string) => {
         cwd.value = []
         return []
       }
     },
     {
       match: (input) => input === 'cd ..',
-      handler: () => {
+      handler: (_input: string) => {
         if (cwd.value.length > 0) {
           cwd.value = cwd.value.slice(0, -1)
         }
@@ -391,7 +391,7 @@ function getStructuredCommands(): StructuredCommand[] {
     },
     {
       match: (input) => input.startsWith('cd '),
-      handler: () => {
+      handler: (input: string) => {
         const target = input.slice(3).trim()
         const children = getChildren(cwd.value)
         const dirs = children.filter(c => c.endsWith('/')).map(c => c.slice(0, -1))
@@ -410,21 +410,21 @@ function getStructuredCommands(): StructuredCommand[] {
     },
     {
       match: (input) => input === 'pwd',
-      handler: () => {
+      handler: (_input: string) => {
         const path = cwd.value.length === 0 ? '~' : `~/${cwd.value.join('/')}`
         return [{ text: path, type: 'output' as const }]
       }
     },
     {
       match: (input) => input.startsWith('cat '),
-      handler: () => {
+      handler: (input: string) => {
         const target = input.slice(4).trim()
         return catFile(cwd.value, target)
       }
     },
     {
       match: (input) => input === 'tree',
-      handler: () => {
+      handler: (_input: string) => {
         const lines: TerminalLine[] = [
           { text: '~', type: 'output' as const },
           ...treeLines([], ''),
@@ -434,7 +434,7 @@ function getStructuredCommands(): StructuredCommand[] {
     },
     {
       match: (input) => input.startsWith('find '),
-      handler: () => {
+      handler: (input: string) => {
         const query = input.slice(5).trim()
         if (!query) return [{ text: 'find: missing search query', type: 'error' as const }]
         return findAll(query)
@@ -442,7 +442,7 @@ function getStructuredCommands(): StructuredCommand[] {
     },
     {
       match: (input) => input === 'ls skills' || input === 'skills',
-      handler: () => {
+      handler: (_input: string) => {
         const names = techs.map((t) => t.name)
         const outputLine = names.join(' | ')
         return [
@@ -454,7 +454,7 @@ function getStructuredCommands(): StructuredCommand[] {
     },
     {
       match: (input) => input === 'ls projects' || input === 'projects',
-      handler: () => {
+      handler: (_input: string) => {
         const result: TerminalLine[] = [
           { text: 'PROJECTS', type: 'dim' as const },
           { text: '────────', type: 'dim' as const },
@@ -475,7 +475,7 @@ function getStructuredCommands(): StructuredCommand[] {
     },
     {
       match: (input) => input === 'ls experience' || input === 'experience',
-      handler: () => {
+      handler: (_input: string) => {
         const result: TerminalLine[] = [
           { text: 'WORK EXPERIENCE', type: 'dim' as const },
           { text: '───────────────', type: 'dim' as const },
@@ -493,7 +493,7 @@ function getStructuredCommands(): StructuredCommand[] {
     },
     {
       match: (input) => input === 'ls certs' || input === 'certs',
-      handler: () => {
+      handler: (_input: string) => {
         const result: TerminalLine[] = [
           { text: 'CERTIFICATIONS', type: 'dim' as const },
           { text: '──────────────', type: 'dim' as const },
@@ -506,7 +506,7 @@ function getStructuredCommands(): StructuredCommand[] {
     },
     {
       match: (input) => input === 'contact' || input === 'links',
-      handler: () => [
+      handler: (_input: string) => [
         { text: 'CONNECT', type: 'dim' as const },
         { text: '───────', type: 'dim' as const },
         { text: 'Portfolio: https://alexander.udaglab.com', type: 'output' as const },
@@ -517,7 +517,7 @@ function getStructuredCommands(): StructuredCommand[] {
     },
     {
       match: (input) => input === 'ls' || input === 'ls --help',
-      handler: () => [
+      handler: (_input: string) => [
         { text: 'USAGE: ls [section]', type: 'dim' as const },
         { text: '─────────────────────', type: 'dim' as const },
         { text: '  ls           — List current directory', type: 'dim' as const },
@@ -531,7 +531,7 @@ function getStructuredCommands(): StructuredCommand[] {
     },
     {
       match: (input) => input === 'matrix',
-      handler: () => [
+      handler: (_input: string) => [
         { text: 'Wake up, Neo...', type: 'dim' as const },
         { text: 'The Matrix has you...', type: 'dim' as const },
         { text: '', type: 'system' as const },
@@ -792,7 +792,7 @@ export function useTerminal() {
     const matched = commands.find((cmd) => cmd.match(input))
 
     if (matched && input !== 'hack' && input !== 'sudo') {
-      addLines(matched.handler())
+      addLines(matched.handler(input))
       currentInput.value = ''
       return
     }
