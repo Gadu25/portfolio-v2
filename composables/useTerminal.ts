@@ -138,6 +138,17 @@ function getStructuredCommands(): StructuredCommand[] {
       ]
     },
     {
+      match: (input) => input === 'ls' || input === 'ls --help',
+      handler: () => [
+        { text: 'USAGE: ls <section>', type: 'dim' as const },
+        { text: '─────────────────────', type: 'dim' as const },
+        { text: '  ls skills       — Technologies', type: 'dim' as const },
+        { text: '  ls projects     — Project list', type: 'dim' as const },
+        { text: '  ls experience   — Work history', type: 'dim' as const },
+        { text: '  ls certs        — Certifications', type: 'dim' as const },
+      ]
+    },
+    {
       match: (input) => input === 'matrix',
       handler: () => {
         // Trigger matrix rain effect (handled in component)

@@ -2,6 +2,27 @@ import { readBody, setResponseHeader } from 'h3'
 
 const GEMINI_API_BASE = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:streamGenerateContent'
 
+function parseRetryDelay(errorBody: string): string | null {
+  try {
+    const parsed = JSON.parse(errorBody)
+    const details = parsed?.error?.details || []
+    for (const detail of details) {
+      if (detail['@type'] === 'type.googleapis.com/google.rpc.RetryInfo') {
+        const raw = detail.retryDelay
+        const match = raw.match(/(\d+)s/)
+        if (match) {
+          const seconds = parseInt(match[1], 10)
+          if (seconds < 60) return `${seconds}s`
+          const mins = Math.ceil(seconds / 60)
+          return `${mins} minute${mins > 1 ? 's' : ''}`
+        }
+        return raw
+      }
+    }
+  } catch {}
+  return null
+}
+
 function buildSystemPrompt(): string {
   return `You are the system operator of this portfolio terminal.
 Persona: a cryptic but helpful operator. Speak in terminal-appropriate language. Be concise. Use monospace-friendly formatting (no markdown, no emojis). Keep responses to 1-4 lines unless listing data.
@@ -89,7 +110,7 @@ export default defineEventHandler(async (event) => {
   const trimmed = body.message.slice(0, 500)
   const history = body.history || []
 
-  const url = `${GEMINI_API_BASE}?alt=sse&key=${apiKey}`
+  const url = `${GEMINI_API_BASE}?alt=sse`
 
   setResponseHeader(event, 'Content-Type', 'text/event-stream')
   setResponseHeader(event, 'Cache-Control', 'no-cache')
@@ -97,13 +118,32 @@ export default defineEventHandler(async (event) => {
 
   const geminiResponse = await fetch(url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'X-goog-api-key': apiKey
+    },
     body: JSON.stringify(buildGeminiBody(trimmed, history))
   })
 
   if (!geminiResponse.ok) {
     const errorText = await geminiResponse.text()
-    throw createError({ statusCode: 502, statusMessage: `Gemini API error: ${geminiResponse.status} ${errorText}` })
+
+    if (geminiResponse.status === 429) {
+      const retryDelay = parseRetryDelay(errorText)
+      const message = retryDelay
+        ? `[RATE LIMITED — quota exhausted. Retry in ~${retryDelay}]`
+        : '[RATE LIMITED — quota exhausted. Retry later.]'
+
+      const stream = new ReadableStream({
+        start(controller) {
+          controller.enqueue(`data: ${JSON.stringify({ text: message })}\n\n`)
+          controller.close()
+        }
+      })
+      return stream
+    }
+
+    throw createError({ statusCode: 502, statusMessage: `Gemini API error: ${geminiResponse.status}` })
   }
 
   const decoder = new TextDecoder()
