@@ -18,7 +18,7 @@
               >{{ line.text }}</div>
             </div>
             <div v-if="visible" class="terminal__prompt-line">
-              <span class="terminal__prompt">visitor@alex:~$</span>
+              <span class="terminal__prompt">{{ getPrompt() }}</span>
               <input
                 ref="inputRef"
                 v-model="currentInput"
@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-const { visible, lines, currentInput, isStreaming, close, submit, navigateHistory, aiAvailable, checkStatus } = useTerminal()
+const { visible, lines, currentInput, isStreaming, close, submit, navigateHistory, aiAvailable, checkStatus, getPrompt, tabComplete } = useTerminal()
 
 const bodyRef = ref<HTMLElement | null>(null)
 const inputRef = ref<HTMLInputElement | null>(null)
@@ -67,6 +67,9 @@ function onKeydown(e: KeyboardEvent) {
   } else if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
     e.preventDefault()
     close()
+  } else if (e.key === 'Tab') {
+    e.preventDefault()
+    tabComplete()
   }
 }
 
