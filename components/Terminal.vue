@@ -101,7 +101,8 @@ function onKeydown(e: KeyboardEvent) {
 
 function onGlobalKeydown(e: KeyboardEvent) {
   if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-    if (visible.value) return // already handled by local onKeydown
+    if (window.innerWidth < 768) return
+    if (visible.value) return
     e.preventDefault()
     if (aiAvailable.value) {
       const term = useTerminal()
