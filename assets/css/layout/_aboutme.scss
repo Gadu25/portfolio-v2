@@ -8,8 +8,8 @@
     max-width: $max-width;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: $space-2xl;
+    grid-template-columns: 1fr auto;
+    gap: $space-xl;
     padding: 0 $space-lg;
     align-items: center;
   }
@@ -36,7 +36,7 @@
 
   &__images {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     height: 320px;
   }

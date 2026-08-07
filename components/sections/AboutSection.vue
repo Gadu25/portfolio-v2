@@ -35,7 +35,7 @@
       </div>
       <div class="about__images" data-aos="fade-left">
         <div class="about__image-wrapper">
-          <img src="~/assets/images/night.webp" alt="Alex at night" />
+          <img src="~/assets/images/me.webp" alt="Alex at night" />
         </div>
       </div>
     </div>
