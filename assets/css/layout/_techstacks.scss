@@ -1,14 +1,5 @@
 .tech {
-  @media screen and (min-width: 768px) {
-    padding: $space-xl 0 0;
-  }
-
-  &:hover {
-    h3 {
-      color: var(--text-color);
-      transition: color 0.6s ease;
-    }
-  }
+  padding: $space-xl 0 0;
 
   &__container {
     max-width: $max-width;
@@ -19,91 +10,26 @@
   &__grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: $space-lg;
-    margin-top: $space-lg;
+    gap: $space-sm $space-md;
+    margin-top: $space-md;
   }
 
   &__item {
-    flex: 0 0 auto;
-  }
-
-  &__link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: $space-sm;
-    width: 80px;
-    text-decoration: none;
-    transition: all $transition-base;
-
-    img {
-      width: $icon-xl;
-      height: $icon-xl;
-      object-fit: contain;
-      transition: all $transition-medium cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .tech__label {
-      font-size: $font-size-xs;
-      color: var(--secondary-text-color);
-      text-align: center;
-      transition: color $transition-base;
-      white-space: nowrap;
-    }
+    color: var(--secondary-text-color);
+    font-weight: $font-weight-medium;
+    letter-spacing: 0.03em;
+    transition: color $transition-base;
 
     &:hover {
-      img {
-        transform: scale(1.15);
-      }
-
-      .tech__label {
-        color: var(--text-color);
-      }
+      color: var(--text-color);
     }
   }
 }
 
-@media screen and (max-width: $bp-mobile) {
+@media screen and (max-width: $bp-tablet) {
   .tech {
-    // margin-bottom: $space-lg;
-
     &__grid {
-      gap: $space-sm;
-    }
-
-    &__item {
-      flex: 0 0 calc(50% - #{$space-sm});
-    }
-
-    &__link {
-      flex-direction: row;
-      width: 100%;
-      gap: $space-md;
-      padding: $space-sm $space-md;
-      background: var(--surface-color);
-      border-radius: $radius-md;
-      border: 1px solid var(--border-color);
-
-      img {
-        width: $icon-md;
-        height: $icon-md;
-        flex-shrink: 0;
-      }
-
-      .tech__label {
-        font-size: $font-size-sm;
-        color: var(--text-color);
-      }
-
-      &:hover {
-        background: var(--surface-color);
-        border-color: var(--text-color);
-
-        img {
-          transform: none;
-        }
-      }
+      gap: $space-xs $space-sm;
     }
   }
 }
