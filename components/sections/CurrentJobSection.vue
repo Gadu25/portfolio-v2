@@ -17,7 +17,15 @@
               Since {{ formatDate(currentJob.startDate) }}
               <i> ({{ getStayDuration({ start: currentJob.startDate, end: currentJob.endDate }) }})</i>
             </small>
-            <p class="current-job__excerpt">{{ stripHtml(currentJob.description, 150) }}</p>
+            <div class="current-job__techs">
+              <span
+                v-for="tech in currentJob.technologies"
+                :key="tech.slug"
+                class="current-job__tech"
+              >
+                <small>{{ tech.name }}</small>
+              </span>
+            </div>
             <NuxtLink to="/work" class="current-job__link">
               View Full Experience &rarr;
             </NuxtLink>
@@ -40,12 +48,6 @@ const { data: rawExperiences, status } = await useCachedAsyncData('experiences',
 
 const currentJob = computed(() => {
   const source = rawExperiences.value && rawExperiences.value.length > 0 ? rawExperiences.value : workexp
-  return source.find((e: Experience) => e.isPresent) || source[0] || { company: '', title: '', logo: null, startDate: '', endDate: null, description: '' }
+  return source.find((e: Experience) => e.isPresent) || source[0] || { company: '', title: '', startDate: '', endDate: null, technologies: [], description: '' }
 })
-
-const stripHtml = (html: string, maxLen: number): string => {
-  const text = html.replace(/<[^>]*>/g, '')
-  if (text.length <= maxLen) return text
-  return text.slice(0, maxLen).replace(/\s+\S*$/, '') + '...'
-}
 </script>

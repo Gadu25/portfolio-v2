@@ -15,12 +15,15 @@
   }
 
   &__item {
+    border: 1px solid var(--border-color);
+    border-radius: $radius-full;
+    padding: 2px $space-sm;
     color: var(--secondary-text-color);
     font-weight: $font-weight-medium;
-    letter-spacing: 0.03em;
-    transition: color $transition-base;
+    transition: border-color $transition-base, color $transition-base;
 
     &:hover {
+      border-color: var(--text-color);
       color: var(--text-color);
     }
   }

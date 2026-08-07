@@ -28,9 +28,24 @@
     margin: 0;
   }
 
-  &__excerpt {
+  &__techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-xs;
+  }
+
+  &__tech {
+    border: 1px solid var(--border-color);
+    border-radius: $radius-full;
+    padding: 2px $space-sm;
+    font-size: $font-size-2xs;
     color: var(--secondary-text-color);
-    line-height: 1.6;
+    transition: border-color $transition-base, color $transition-base;
+
+    &:hover {
+      border-color: var(--text-color);
+      color: var(--text-color);
+    }
   }
 
   &__link {
