@@ -30,6 +30,7 @@
       </template>
     </div>
     <a
+      :class="{ 'hero__scroll--hidden': scrolled }"
       href="#about"
       class="hero__scroll"
       aria-label="Scroll down"
@@ -47,6 +48,19 @@ import { downloadPDF } from '~/utils/download'
 
 const { getProfile } = useMegome()
 const showConfirm = ref(false)
+const scrolled = ref(false)
+
+const onScroll = () => {
+  scrolled.value = window.scrollY > 100
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll, { passive: true })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+})
 
 const { data: profile, status } = await useCachedAsyncData('profile', () => getProfile())
 </script>
