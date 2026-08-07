@@ -3,8 +3,9 @@
     <Analytics />
     <HeroSection />
     <AboutSection />
+    <CurrentJobSection />
+    <RecentProjectSection />
     <TechSection />
-    <WorkSection />
   </div>
 </template>
 
@@ -12,8 +13,9 @@
 import { Analytics } from '@vercel/analytics/nuxt'
 import HeroSection from '~/components/sections/HeroSection.vue'
 import AboutSection from '~/components/sections/AboutSection.vue'
+import CurrentJobSection from '~/components/sections/CurrentJobSection.vue'
+import RecentProjectSection from '~/components/sections/RecentProjectSection.vue'
 import TechSection from '~/components/sections/TechSection.vue'
-import WorkSection from '~/components/sections/WorkSection.vue'
 import ogImage from '~/assets/images/memoji/sofaChill.webp'
 
 useSeoMeta({
