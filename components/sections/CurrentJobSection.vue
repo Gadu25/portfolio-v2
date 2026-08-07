@@ -9,9 +9,6 @@
       </template>
       <template v-else>
         <div class="current-job__card">
-          <div class="current-job__logo">
-            <img v-if="currentJob.logo" :src="currentJob.logo" :alt="currentJob.company + '-logo'" />
-          </div>
           <div class="current-job__details">
             <h4 class="text-secondary">Current Role</h4>
             <h3>{{ currentJob.company }}</h3>

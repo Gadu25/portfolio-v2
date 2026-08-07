@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: $space-3xl 0;
+  padding: $space-xl 0 0;
 
   &__container {
     max-width: $max-width;
@@ -62,7 +62,7 @@
 
 @media screen and (max-width: $bp-desktop) {
   .about {
-    padding: $space-2xl 0;
+    padding: $space-xl 0 0;
 
     &__container {
       grid-template-columns: 1fr;

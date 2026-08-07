@@ -28,13 +28,6 @@
               View All Projects &rarr;
             </NuxtLink>
           </div>
-          <div class="recent-project__image">
-            <img
-              v-if="recentProject.coverImage"
-              :src="recentProject.coverImage"
-              :alt="recentProject.title"
-            />
-          </div>
         </div>
       </template>
     </div>
