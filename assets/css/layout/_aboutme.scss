@@ -28,15 +28,6 @@
     margin-bottom: $space-lg;
   }
 
-  &__memoji {
-    display: none;
-
-    @media screen and (min-width: $bp-tablet) {
-      display: block;
-      height: 70px;
-    }
-  }
-
   &__bio {
     :deep(p) {
       margin-bottom: $space-md;

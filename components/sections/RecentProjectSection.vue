@@ -77,7 +77,7 @@ const recentProject = computed<NormalizedProject>(() => {
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
   )
 
-  return sorted[0]
+  return sorted[0] || { title: '', description: '', coverImage: null, technologies: [], createdAt: '' }
 })
 
 const truncate = (text: string, maxLen: number): string => {

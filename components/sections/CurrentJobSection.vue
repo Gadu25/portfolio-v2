@@ -20,7 +20,7 @@
               Since {{ formatDate(currentJob.startDate) }}
               <i> ({{ getStayDuration({ start: currentJob.startDate, end: currentJob.endDate }) }})</i>
             </small>
-            <p class="current-job__excerpt" v-html="stripHtml(currentJob.description, 150)" />
+            <p class="current-job__excerpt">{{ stripHtml(currentJob.description, 150) }}</p>
             <NuxtLink to="/work" class="current-job__link">
               View Full Experience &rarr;
             </NuxtLink>
@@ -32,6 +32,7 @@
 </template>
 
 <script setup lang="ts">
+import type { Experience } from '~/types/megome'
 import workexp from '~/data/workexp'
 
 const { getExperiences } = useMegome()
@@ -42,7 +43,7 @@ const { data: rawExperiences, status } = await useCachedAsyncData('experiences',
 
 const currentJob = computed(() => {
   const source = rawExperiences.value && rawExperiences.value.length > 0 ? rawExperiences.value : workexp
-  return source.find((e: any) => e.isPresent) || source[0]
+  return source.find((e: Experience) => e.isPresent) || source[0] || { company: '', title: '', logo: null, startDate: '', endDate: null, description: '' }
 })
 
 const stripHtml = (html: string, maxLen: number): string => {
