@@ -1,5 +1,5 @@
 <template>
-  <section class="about">
+  <section id="about" class="about">
     <div class="about__container">
       <div class="about__text" data-aos="fade-up">
         <div class="about__heading">

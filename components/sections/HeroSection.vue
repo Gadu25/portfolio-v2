@@ -29,6 +29,13 @@
         />
       </template>
     </div>
+    <a
+      href="#about"
+      class="hero__scroll"
+      aria-label="Scroll down"
+    >
+      <small>&darr;</small>
+    </a>
   </section>
 </template>
 
