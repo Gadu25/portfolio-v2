@@ -1,75 +1,64 @@
-# Nuxt 3 Minimal Starter
+# Alexander Udag — Portfolio
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+My personal portfolio website showcasing the projects I've built, the technologies I work with, and my professional experience as a frontend-focused fullstack developer.
 
-## Setup
+**Live at [alexander.udaglab.com](https://alexander.udaglab.com/)**
 
-Make sure to install the dependencies:
+## Tech Stack
+
+- **Framework:** Nuxt 3 + Vue 3
+- **Language:** TypeScript
+- **Styling:** SCSS
+- **Font:** Space Grotesk
+- **Icons:** Font Awesome
+- **Analytics:** Vercel Analytics
+- **Deployment:** Vercel
+
+## What's Inside
+
+- **Home** — hero, about me, tech stack, and featured work
+- **Projects** — side projects and experiments I've built (Megome, CatchThemAll, API-Hub, Passkeep, and more)
+- **Work Experience** — my professional journey from junior dev to frontend engineer
+- **Certifications** — courses and certificates from Codecademy, Google, and Udemy
+- **Terminal** — a fun interactive terminal Easter egg on the site
+
+## Getting Started
 
 ```bash
-# npm
+# install dependencies
 npm install
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
+# start the dev server
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+The site runs at `http://localhost:3000`.
 
-Build the application for production:
+## Build & Deploy
 
 ```bash
-# npm
+# production build
 npm run build
 
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
+# preview the production build locally
 npm run preview
 
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+# static generation (if needed)
+npm run generate
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Both the portfolio and the [Megome API platform](https://megome-beta.udaglab.com) (my API-first portfolio infrastructure project) are hosted on Vercel.
+
+## Environment Variables
+
+| Variable | Description |
+|---|---|
+| `GEMINI_API_KEY` | Google Gemini API key (used server-side) |
+| `MEGOME_ACCESS_KEY` | Megome API access key |
+| `MEGOME_URL` | Megome API base URL |
+
+Copy `.env.example` to `.env` and fill in your values.
+
+## License
+
+This is my personal portfolio — feel free to take inspiration, but please don't copy it outright.
