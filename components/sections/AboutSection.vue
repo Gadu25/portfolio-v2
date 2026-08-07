@@ -4,11 +4,6 @@
       <div class="about__text" data-aos="fade-up">
         <div class="about__heading">
           <h3>About</h3>
-          <!-- <img -->
-          <!--   class="about__memoji" -->
-          <!--   src="~/assets/images/memoji/hi.webp" -->
-          <!--   alt="Alex waving" -->
-          <!-- /> -->
         </div>
         <template v-if="status === 'pending'">
           <div class="loading">
@@ -39,18 +34,7 @@
         </template>
       </div>
       <div class="about__images" data-aos="fade-left">
-        <div
-          class="about__image-wrapper hover-pointer"
-          @mousemove="handleMouseMove"
-          @mouseleave="resetTilt"
-        >
-          <img src="~/assets/images/day.webp" alt="Alex during the day" />
-        </div>
-        <div
-          class="about__image-wrapper hover-pointer"
-          @mousemove="handleMouseMove"
-          @mouseleave="resetTilt"
-        >
+        <div class="about__image-wrapper">
           <img src="~/assets/images/night.webp" alt="Alex at night" />
         </div>
       </div>
@@ -62,28 +46,4 @@
 const { getProfile } = useMegome()
 
 const { data: profile, status } = await useCachedAsyncData('profile', () => getProfile())
-
-const handleMouseMove = (event: MouseEvent) => {
-  const target = event.currentTarget as HTMLElement
-  const card = target.querySelector('img') as HTMLElement
-  if (!card) return
-
-  const rect = card.getBoundingClientRect()
-  const x = event.clientX - rect.left
-  const y = event.clientY - rect.top
-  const centerX = rect.width / 2
-  const centerY = rect.height / 2
-
-  const rotateX = (centerY - y) / 20
-  const rotateY = (x - centerX) / 20
-
-  card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
-}
-
-const resetTilt = (event: MouseEvent) => {
-  const target = event.currentTarget as HTMLElement
-  const card = target.querySelector('img') as HTMLElement
-  if (!card) return
-  card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)'
-}
 </script>
