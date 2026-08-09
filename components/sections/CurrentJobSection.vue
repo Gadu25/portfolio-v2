@@ -27,7 +27,7 @@
               </span>
             </div>
             <NuxtLink to="/work" class="current-job__link">
-              View Full Experience &rarr;
+              View All Experience &rarr;
             </NuxtLink>
           </div>
         </div>
