@@ -3,7 +3,7 @@
         <div class="content">
             <div class="back-link hover-pointer" @click="navigateTo('/work')">
                 <i class="fa fa-chevron-left"></i>
-                <span>Back to Work</span>
+                <span>Back</span>
             </div>
 
             <template v-if="certificate">
@@ -65,7 +65,7 @@
                     <p>Certificate not found.</p>
                     <div class="link-btn primary-btn" @click="navigateTo('/work')">
                         <i class="fa fa-chevron-left"></i>
-                        <span>Back to Work</span>
+                        <span>Back</span>
                     </div>
                 </div>
             </template>

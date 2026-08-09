@@ -3,7 +3,7 @@
         <div class="content">
             <div class="back-link hover-pointer" @click="navigateTo(backLink.path)">
                 <i class="fa fa-chevron-left"></i>
-                <span>{{ backLink.label }}</span>
+                <span>Back</span>
             </div>
 
             <template v-if="experience">
@@ -70,7 +70,7 @@
                     <p>Experience not found.</p>
                     <div class="link-btn primary-btn" @click="navigateTo(backLink.path)">
                         <i class="fa fa-chevron-left"></i>
-                        <span>{{ backLink.label }}</span>
+                        <span>Back</span>
                     </div>
                 </div>
             </template>
@@ -93,8 +93,8 @@
 
     const backLink = computed(() => {
         const from = route.query.from
-        if (from === 'home') return { label: 'Back to /Home', path: '/' }
-        return { label: 'Back to /Work', path: '/work' }
+        if (from === 'home') return { path: '/' }
+        return { path: '/work' }
     })
 
     useSeoMeta({

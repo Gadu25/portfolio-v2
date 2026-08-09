@@ -3,7 +3,7 @@
         <div class="content">
             <div class="back-link hover-pointer" @click="navigateTo('/projects')">
                 <i class="fa fa-chevron-left"></i>
-                <span>Back to Projects</span>
+                <span>Back</span>
             </div>
 
             <template v-if="project">
@@ -45,7 +45,7 @@
                     </div>
 
                     <div v-if="project.images.screenshots?.length" class="section">
-                        <h4>Screenshots</h4>
+                        <h4>Preview</h4>
                         <div class="screenshots">
                             <template v-for="(screenshot, index) in project.images.screenshots">
                                 <div class="screenshot-item">
@@ -67,7 +67,7 @@
                 <div class="not-found">
                     <p>Project not found.</p>
                     <div class="link-btn demo-btn" @click="navigateTo('/projects')">
-                        <span>Back to Projects</span>
+                        <span>Back</span>
                     </div>
                 </div>
             </template>
