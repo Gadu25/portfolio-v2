@@ -1,0 +1,74 @@
+.udaglab {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+  margin-top: $space-lg;
+  padding: $space-lg;
+  background-color: #0d1117;
+  border: 1px solid rgba(59, 255, 127, 0.2);
+  border-radius: $radius-md;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color $transition-base, transform $transition-base;
+
+  &:hover {
+    border-color: #3bff7f;
+    transform: translateY(-2px);
+  }
+
+  &__header {
+    display: flex;
+    align-items: baseline;
+    gap: $space-sm;
+    font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', monospace;
+    font-size: $font-size-sm;
+  }
+
+  &__prompt {
+    color: #3bff7f;
+  }
+
+  &__title {
+    color: #f9fafb;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__tag {
+    margin-left: auto;
+    color: #6b7280;
+    font-size: $font-size-xs;
+  }
+
+  &__tagline {
+    margin: 0;
+    color: #f9fafb;
+  }
+
+  &__desc {
+    margin: 0;
+    color: #9ca3af;
+  }
+
+  &__cta {
+    margin-top: $space-xs;
+    color: #3bff7f;
+    font-size: $font-size-sm;
+    transition: text-decoration $transition-base;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.udaglab-home {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: $space-xl $space-lg 0;
+
+  .udaglab {
+    margin-top: 0;
+  }
+}

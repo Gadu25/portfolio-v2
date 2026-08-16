@@ -5,6 +5,9 @@
     <AboutSection />
     <CurrentJobSection />
     <RecentProjectSection />
+    <div class="udaglab-home">
+      <UdagLabTeaser />
+    </div>
     <TechSection />
   </div>
 </template>
@@ -15,6 +18,7 @@ import HeroSection from '~/components/sections/HeroSection.vue'
 import AboutSection from '~/components/sections/AboutSection.vue'
 import CurrentJobSection from '~/components/sections/CurrentJobSection.vue'
 import RecentProjectSection from '~/components/sections/RecentProjectSection.vue'
+import UdagLabTeaser from '~/components/common/UdagLabTeaser.vue'
 import TechSection from '~/components/sections/TechSection.vue'
 import ogImage from '~/assets/images/memoji/sofaChill.webp'
 

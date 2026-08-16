@@ -3,6 +3,7 @@
         <div class="content">
             <h3>Projects <span v-if="status !== 'pending'" class="item-count">({{ results.length }})</span></h3>
             <ProjectSearch v-model="query" />
+            <UdagLabTeaser />
             <template v-if="status === 'pending'">
                 <div class="loading">
                     <div class="spinner"></div>
@@ -42,7 +43,7 @@
                                         <i class="fa-brands fa-github"></i>
                                         <span>Source</span>
                                     </a>
-                                    <NuxtLink :to="'/projects/'+project.id" class="btn btn--primary hover-pointer">
+                                    <NuxtLink v-if="project.id" :to="'/projects/'+project.id" class="btn btn--primary hover-pointer">
                                         <span>View Details</span>
                                         <i class="fa fa-arrow-right"></i>
                                     </NuxtLink>
@@ -62,6 +63,7 @@
 
 <script setup>
     import ProjectSearch from '~/components/common/ProjectSearch.vue'
+    import UdagLabTeaser from '~/components/common/UdagLabTeaser.vue'
     import projectData from '~/data/projects';
     import ogImage from '~/assets/images/memoji/tablet.webp';
 
@@ -71,7 +73,26 @@
         default: () => projectData
     })
 
-    const { query, results, hasQuery, clear } = useProjectSearch(projects)
+    const normalizedProjects = computed(() => {
+        const source = projects.value && projects.value.length > 0 ? projects.value : projectData
+
+        return source.map((p) => ({
+            id: p.id,
+            title: p.title || p.name || '',
+            status: typeof p.status === 'string' ? p.status : (p.status?.title ?? ''),
+            description: p.description || '',
+            images: {
+                cover: p.images?.cover || p.previewImage || null,
+            },
+            technologies: (p.technologies || p.techUsed || []).map((t) => ({
+                name: t.name,
+                slug: t.slug || t.name.toLowerCase(),
+            })),
+            githubLink: p.githubLink || p.gitHubUrl || '',
+        }))
+    })
+
+    const { query, results, hasQuery, clear } = useProjectSearch(normalizedProjects)
 
     useSeoMeta({
         description: 'Browse the personal projects and web app demos created by Alexander Udag using Vue, Nuxt, Laravel, and more.',
